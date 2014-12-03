@@ -40,10 +40,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #apps de terceros
     'rest_framework',
-    'sorl.thumbnail',
+    #'sorl.thumbnail',
+    'easy_thumbnails',
     'gunicorn',
     #mis apps
-    #'carro',
+    'carro',
     #'cliente',
     #'catalogo',
     #'ubigeo',
@@ -98,8 +99,12 @@ USE_TZ = True
 MEDIA_ROOT = location("public/media")
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = location('public/static')
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 TEMPLATE_DIRS = (
     location('templates'),
@@ -121,6 +126,10 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
+}
+
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
 }
 
 try:
