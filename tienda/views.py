@@ -22,6 +22,17 @@ class PaginaViewsets(viewsets.ReadOnlyModelViewSet):
 		queryset = Pagina.objects.all()
 		return queryset
 
+class BloqueViewsets(viewsets.ReadOnlyModelViewSet):
+	serializer_class = BloqueSerializer
+
+	def get_queryset(self):
+		queryset = Bloque.objects.all()
+		pagina = self.request.QUERY_PARAMS.get('pagina', None)
+		if pagina is not None:
+			queryset = Bloque.objects.filter(pagina=pagina)
+		return queryset
+		
+
 class PaginaViewsApi(APIView):
 	def get_object(self):
 		slug = self.request.QUERY_PARAMS.get('slug', None)

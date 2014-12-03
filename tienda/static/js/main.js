@@ -11,6 +11,9 @@ $(document).ready(function(){
     //Modelos de tienda
     window.models.pagina = new Loviz.Models.Pagina();
 
+    //Colecciones de tienda
+    window.collections.bloques = new Loviz.Collections.Bloques();
+
     //Vistas de pagina
     window.views.pagina = new Loviz.Views.Pagina({
         model:window.models.pagina

@@ -57,8 +57,19 @@
 	{% verbatim %}
       <!--Este es template Pagina-->
       <script id="pagina_template" type="text/template">
-         <div id="banners"></div>
-         <div id="carruseles"></div>
+         <div class="banners">
+            <div class="contenedor">
+               <div class="container-fluid">
+                  <div id="banners" class="row">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="carruseles">
+            <div id="carruseles" class="contenedor">
+               
+            </div>
+         </div>
          <h1>{{titulo}}</h1>
          <div id="cuerpo">{{cuerpo}}</div>
          <div id="bloques_extras"></div>
@@ -89,6 +100,19 @@
          <div id="descripcion"></div>
          <div id="recomendados"></div>
       </script>
+
+      <!--Este es Template de Componentes-->
+      <script id="banner_template" type="text/template">
+         <a href="{{link}}">
+            <figure>
+               <img src="{{foto}}" alt="">
+            </figure>
+            <div class="cuerpo">
+               {{cuerpo}}
+            </div>
+         </a>
+      </script>
+
 
    {% endverbatim %}
 {% endblock %}
