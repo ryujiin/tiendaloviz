@@ -38,6 +38,15 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #apps de terceros
+    'rest_framework',
+    'sorl.thumbnail',
+    'gunicorn',
+    #mis apps
+    #'carro',
+    #'cliente',
+    #'catalogo',
+    #'ubigeo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,6 +63,7 @@ ROOT_URLCONF = 'apiloviz.urls'
 
 WSGI_APPLICATION = 'apiloviz.wsgi.application'
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
