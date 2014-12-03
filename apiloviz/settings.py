@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'cliente',
     'catalogo',
     'ubigeo',
+    'tienda',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,12 +100,8 @@ USE_TZ = True
 MEDIA_ROOT = location("public/media")
 MEDIA_URL = '/media/'
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = location('public/static')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 TEMPLATE_DIRS = (
     location('templates'),
