@@ -6,6 +6,6 @@ urlpatterns = patterns('',
 	url(r'^carro/$',HomeView.as_view() , name='catalogo'),	
 	url(r'^catalogo/',HomeView.as_view() , name='catalogo'),
 	url(r'^producto/',HomeView.as_view() , name='producto'),
-	url(r'^perfil/',HomeView.as_view() , name='perfil'),
-	url(r'^ld/',HomeView.as_view() , name='perfil'),
+	url(r'^user/',HomeView.as_view() , name='perfil'),
+	url(r'^pagina/',HomeView.as_view() , name='perfil'),
 )

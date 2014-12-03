@@ -20,7 +20,7 @@
          </div>
          <div id="menu_top_usuario">
             <ul>
-               <li><a href=""><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
+               <li><a class="link" href="/user/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
             </ul>
          </div>
       </div>
@@ -46,16 +46,6 @@
       </div>
    </header>
    <section id="contenido">
-      <div id="breadcrumb"></div>
-      <div id="pagina">
-      </div>
-      <div id="catalogo">
-      </div>
-      <div id="carro">
-      </div>
-      <div id="single_producto">
-      </div>
-      <div id="suscribir"></div>
    </section>
    <footer>
       <div id="footer"></div>
@@ -67,10 +57,10 @@
 	{% verbatim %}
       <!--Este es template Pagina-->
       <script id="pagina_template" type="text/template">
-         <h1>Esta es una pagina</h1>
          <div id="banners"></div>
          <div id="carruseles"></div>
-         <div id="cuerpo"></div>
+         <h1>{{titulo}}</h1>
+         <div id="cuerpo">{{cuerpo}}</div>
          <div id="bloques_extras"></div>
       </script>
 

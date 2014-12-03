@@ -8,6 +8,15 @@ $(document).ready(function(){
     //Vista Tienda
     window.views.tienda = new Loviz.Views.Tienda( $('body') );
 
+    //Modelos de tienda
+    window.models.pagina = new Loviz.Models.Pagina();
+
+    //Vistas de pagina
+    window.views.pagina = new Loviz.Views.Pagina({
+        model:window.models.pagina
+    });
+    window.views.carro = new Loviz.Views.Carro();
+
     Backbone.history.start({
         pushState:true,
     });

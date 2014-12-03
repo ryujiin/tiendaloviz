@@ -9,19 +9,31 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		'*notFound': 'notFound',
 	},
 	initialize : function () {
+		this.collection_pagina=new Loviz.Collections.Paginas()
   	},
 	root : function () {
-		window.app.state = "inicio";
+		var self = this;
+		var slug = 'home'
+		var modelo = this.collection_pagina.findWhere({slug:slug})
+		if (modelo===undefined) {
+			window.models.pagina.fetch({
+				data:$.param({slug:slug})
+			}).done(function () {
+				window.views.pagina.render();
+			});	
+		}else{
+			window.views.pagina.render();
+		}
+		this.collection_pagina.add([window.models.pagina])
 	},
 	carro : function () {
-		if (this.views_carro===undefined) {
-			this.views_carro = new Loviz.Views.Carro();
-		};
-		this.views_carro.render();
+		window.views.carro.render()
 	},
 	pagina: function () {
+		
 	},
 	usuario : function () {
+		
 	},
 	catalogo : function () {
 	},

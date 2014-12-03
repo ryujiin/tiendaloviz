@@ -1,6 +1,6 @@
-Loviz.Views.Carro = Backbone.View.extend({
+Loviz.Views.Usuario = Backbone.View.extend({
 	el:$('#contenido'),
-	template : swig.compile($("#carro_template").html()),
+	template : swig.compile($("#usuario_template").html()),
 	events :{
 	},
 	initialize: function () {
