@@ -40,14 +40,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     #apps de terceros
     'rest_framework',
-    #'sorl.thumbnail',
+    'rest_framework.authtoken',
     'easy_thumbnails',
     'gunicorn',
     #mis apps
     'carro',
-    #'cliente',
-    #'catalogo',
-    #'ubigeo',
+    'cliente',
+    'catalogo',
+    'ubigeo',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -115,18 +115,6 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
     #'social.apps.django_app.context_processors.backends',
     #'social.apps.django_app.context_processors.login_redirect',
 #)
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        #'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.AllowAny',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-}
 
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',

@@ -10,7 +10,7 @@ from rest_framework import authentication, permissions, parsers, renderers
 from rest_framework import viewsets, generics
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.decorators import api_view, throttle_classes
-from social.apps.django_app.utils import psa
+#from social.apps.django_app.utils import psa
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.contrib.auth import get_user_model

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{%block layout%}
+	<header>
+      <div id="banner_top">
+         <p>Envio Gratis a Todo el Perú por compras mayores a S/.60.00</p>
+      </div>
+      <div id="menu_top">
+         <div id="menu_top_ayudas">
+            <ul>
+               <li>x</li>
+               <li><span class="glyphicon glyphicon-earphone"></span>(01)556-3314</li>
+               <li><a href=""><span class="glyphicon glyphicon-headphones"></span>Soporte en Vivo</a></li>
+               <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></li>
+            </ul>
+         </div>
+         <div id="menu_top_buscar">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" class="buscador">
+         </div>
+         <div id="menu_top_usuario">
+            <ul>
+               <li><a href=""><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
+            </ul>
+         </div>
+      </div>
+      <div id="menu_principal">
+         <div id="logo">
+            <h1><a class="link" href="/">LovizDelCarpio</a></h1>
+         </div>
+         <div id="navegacion">
+            <ul>
+               <li><a class="link" href="/pagina/mujeres/">Mujeres</a></li>
+               <li><a href="/pagina/hombres/">Hombres</a></li>               
+               <li><a href="">Kids</a></li>
+               <li><a class="link" href="/catalogo/ofertas/">Ofertas</a></li>
+               <li><a href="">Sobre LovizDelcarpio</a></li>
+            </ul>
+         </div>
+         <div id="minicarro">
+            <a class="link" href="/carro/"><span class="glyphicon glyphicon-shopping-cart"></span><span class="num">0</span></a>
+         </div>
+      </div>
+      <div id="banner_header">
+         <div>Comenzaron las Fiestas</div>
+      </div>
+   </header>
+   <section id="contenido">
+      <div id="breadcrumb"></div>
+      <div id="pagina">
+      </div>
+      <div id="catalogo">
+      </div>
+      <div id="carro">
+      </div>
+      <div id="single_producto">
+      </div>
+      <div id="suscribir"></div>
+   </section>
+   <footer>
+      <div id="footer"></div>
+      <div id="bootom_footer"></div>
+   </footer>
+{%endblock%}
+
+{% block templatesjs %}
+	{% verbatim %}
+      <!--Este es template Pagina-->
+      <script id="pagina_template" type="text/template">
+         <h1>Esta es una pagina</h1>
+         <div id="banners"></div>
+         <div id="carruseles"></div>
+         <div id="cuerpo"></div>
+         <div id="bloques_extras"></div>
+      </script>
+
+      <!--Este es template Catalgo-->
+      <script id="catalogo_template" type="text/template">
+         <h1>Estes es Catalogo</h1>
+         <div id="lateral"></div>
+         <div id="cuerpo">
+            <div id="filtros"></div>
+            <div id="bloques_extras"></div>                        
+         </div>
+      </script>
+
+      <!--Este es Template de Carro-->
+      <script id="carro_template" type="text/template">
+         <h1>este es Carro</h1>
+         <div id="carro_cuerpo"></div>
+         <div id="bloques_extras"></div>
+      </script>
+
+      <!--Este es Template de single_producto-->
+      <script id="single_producto_template" type="text/template">
+         <h1>Este es Single Product</h1>
+         <div id="galeria"></div>
+         <div id="datos"></div>
+         <div id="descripcion"></div>
+         <div id="recomendados"></div>
+      </script>
+
+   {% endverbatim %}
+{% endblock %}

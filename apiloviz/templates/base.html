@@ -1,0 +1,63 @@
+{% load static from staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>
+		Loviz DelCarpio :: lovizdelcarpio.com donde encontras los mejores pantuflas, botas, sandalias
+	</title>
+
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<meta name="created" content="{% now "jS M Y h:i" %}" />
+    <meta name="description" content="Loviz DelCarpio® , Encontraras lo mejor en pantuflas, sandalias, botas, flats y demas. Envio Gratis para todo el peru por compras mayores a S/.60.00" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="https://s3-us-west-2.amazonaws.com/lovizfront/img/logodelcarpio2_1.ico" />    
+    {% block stilos%}
+    	<link href='http://fonts.googleapis.com/css?family=Playfair+Display|Great+Vibes|Pathway+Gothic+One|Open+Sans' rel='stylesheet' type='text/css'>
+	    <link rel="stylesheet" href="{% static "css/normalize.css/" %}" />
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	    <link rel="stylesheet" href="{% static "css/iconos.css/" %}" />
+	    <link rel="stylesheet" href="{% static "css/estilos.css/" %}" />
+    {% endblock%}
+    {% block extrastyles %}{% endblock %}
+    {% block extrahead %}{% endblock %}
+
+</head>
+<body id="{% block body_id %}default{% endblock %}" class="{% block body_class %}default{% endblock %}">
+	{% block layout %}
+	{% endblock %}
+	{% block tracking %}
+	{% endblock %}
+	{% block templatesjs %}{% endblock %}
+
+	{%block scripts%}
+    <!--
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//underscorejs.org/underscore-min.js"></script>
+    <script src="{% static "js/vendor/backbone-min.js/" %}"></script>
+
+    -->
+    <script src="{% static "js/vendor/jquery.js/" %}"></script>
+    <script src="{% static "js/vendor/underscore.js/" %}"></script>
+	<script src="//backbonejs.org/backbone.js"></script>        
+	<script src="{% static "js/vendor/swig.js/" %}"></script>
+
+
+	<script src="{% static "js/vendor/jquery.cookie.js/" %}"></script>
+	<script src="{% static "js/vendor/jquery.storageapi.min.js/" %}"></script>
+	<script src="{% static "js/vendor/jquery.zoom.js/" %}"></script>
+
+	<script src="{% static "js/init.js/" %}"></script>
+	<!--Models-->
+
+	<!--Collections-->
+	<!--Views-->
+	<script src="{% static "js/backbone/views/tienda/tienda.js/" %}"></script>
+	<script src="{% static "js/backbone/views/carro/carro.js/" %}"></script>
+	<!--routers-->
+	<script src="{% static "js/backbone/routers/base.js/" %}"></script>
+
+	<script src="{% static "js/main.js/" %}"></script>
+	{%endblock%}
+</body>
+</html>
