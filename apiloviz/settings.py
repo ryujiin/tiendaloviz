@@ -41,7 +41,7 @@ INSTALLED_APPS = (
     #apps de terceros
     'rest_framework',
     'rest_framework.authtoken',
-    'easy_thumbnails',
+    'sorl.thumbnail',
     'gunicorn',
     #mis apps
     'carro',
@@ -112,6 +112,8 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
     #'social.apps.django_app.context_processors.backends',
     #'social.apps.django_app.context_processors.login_redirect',
 #)
+THUMBNAIL_QUALITY = '80'
+THUMBNAIL_FORMAT = 'JPEG'
 
 SOUTH_MIGRATION_MODULES = {
     'easy_thumbnails': 'easy_thumbnails.south_migrations',

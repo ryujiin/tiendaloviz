@@ -31,7 +31,7 @@ class Bloque(models.Model):
 		super(Bloque, self).save(*args, **kwargs)
 
 class Carrusel(models.Model):
-	pagina = models.ForeignKey('Pagina',blank=True,null=True)
+	pagina = models.ForeignKey('Pagina',blank=True,null=True,related_name='carruseles')
 	titulo = models.CharField(max_length=120,blank=True,null=True)
 	nombre_interno = models.CharField(max_length=120,unique=True,blank=True,null=True)
 	activo = models.BooleanField(default=True)
@@ -66,6 +66,10 @@ class Pagina(models.Model):
 		super(Pagina, self).save(*args, **kwargs)
 
 	def get_num_bloques(self):
+		num = Bloque.objects.filter(pagina=self.pk).count()
+		return num
+
+	def get_num_carrusel(self):
 		num = Bloque.objects.filter(pagina=self.pk).count()
 		return num
 

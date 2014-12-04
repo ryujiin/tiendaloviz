@@ -13,6 +13,7 @@ $(document).ready(function(){
 
     //Colecciones de tienda
     window.collections.bloques = new Loviz.Collections.Bloques();
+    window.collections.productos = new Loviz.Collections.Productos();
 
     //Vistas de pagina
     window.views.pagina = new Loviz.Views.Pagina({
@@ -20,9 +21,12 @@ $(document).ready(function(){
     });
     window.views.carro = new Loviz.Views.Carro();
 
-    Backbone.history.start({
-        pushState:true,
-    });
+    //buscar
+    window.collections.productos.fetch().done(function () {
+        Backbone.history.start({
+            pushState:true,
+        });    
+    })    
 
     //Funcion para el CRF
     function getCookie(name){

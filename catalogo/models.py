@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 #from sorl.thumbnail import get_thumbnail
 from django.conf import settings
-from easy_thumbnails.files import get_thumbnailer
+from sorl.thumbnail import get_thumbnail
 
 # Create your models here.
 class Producto(models.Model):
@@ -33,7 +33,7 @@ class Producto(models.Model):
 		super(Producto, self).save(*args, **kwargs)
 
 	def get_thum(self):
-		img = get_thumbnailer(self.imagen, '450x350', quality=80)
+		img = get_thumbnail(self.imagen, '450x350', quality=80)
 		return img
 
 	def get_en_oferta(self):
@@ -184,9 +184,9 @@ class ProductoImagen(models.Model):
 		ordering = ["orden"]
 
 	def get_thum_medium(self):
-		img = get_thumbnailer(self.foto, '740x550', quality=80)
+		img = get_thumbnail(self.foto, '740x550', quality=80)
 		return img
 
 	def get_thum(self):
-		img = get_thumbnailer(self.foto, '150x50', quality=80)
+		img = get_thumbnail(self.foto, '150x50', quality=80)
 		return img

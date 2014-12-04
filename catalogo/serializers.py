@@ -8,9 +8,9 @@ class ProductoListaSerializer(serializers.ModelSerializer):
 	estilo= serializers.CharField(read_only=True)
 	color= serializers.CharField(read_only=True)
 	en_oferta = serializers.SerializerMethodField('get_oferta')
-	precio = serializers.SerializerMethodField('get_precio')
+	precio = serializers.SerializerMethodField('get_elprecio')
 	precio_mostrar = serializers.SerializerMethodField('get_precio_descuento')
-	genero = serializers.SerializerMethodField('get_genero')
+	genero = serializers.SerializerMethodField('get_el_genero')
 	class Meta:
 		model=Producto
 		fields =('id','nombre','full_name','marca','categoria','estilo','genero','color','slug','activo','thum','en_oferta','precio','precio_mostrar')
@@ -20,15 +20,15 @@ class ProductoListaSerializer(serializers.ModelSerializer):
 		return img
 
 	def get_oferta(self,obj):
-		return obj.get_en_oferta
+		return obj.get_en_oferta()
 
-	def get_precio(self,obj):
-		return obj.get_precio_lista
+	def get_elprecio(self,obj):
+		return obj.get_precio_lista()
 
 	def get_precio_descuento(self,obj):
-		return obj.get_precio_oferta_lista
+		return obj.get_precio_oferta_lista()
 
-	def get_genero(self,obj):
+	def get_el_genero(self,obj):
 		return obj.categoria.genero.slug
 
 class ProductoVariacionSerializer(serializers.ModelSerializer):

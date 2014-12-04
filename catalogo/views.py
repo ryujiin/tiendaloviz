@@ -23,7 +23,7 @@ class CatalogoViewsets(viewsets.ReadOnlyModelViewSet):
 	serializer_class = ProductoListaSerializer
 
 	def get_queryset(self):
-		queryset = Producto.objects.all()
+		queryset = Producto.objects.all().order_by('-pk')
 		return queryset
 
 ##Catalogo##
