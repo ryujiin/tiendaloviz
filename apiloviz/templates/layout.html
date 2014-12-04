@@ -127,6 +127,21 @@
          </div>
       </script>
 
+      <script id="carrusel_cuerpo_derecha_template" type="text/template">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-9 lista">                  
+               </div>
+               <div class="col-md-3">
+                  <h2>{{titulo}}</h2>
+                  <div class="cuerpo">
+                     <p>{{cuerpo}}</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </script>
+
       <script id="producto_lista_template" type="text/template">
          <span class="glyphicon glyphicon-search"></span>
             <a class="interno" href="/producto/{{slug}}/">
@@ -138,10 +153,10 @@
                     <div class="nombre">{{nombre}} {{color}}</div>
                 </div>
                 <div class="precios">
-                    {%if en_oferta%}
+                    {%if en_oferta %}
                     <span class="old_precio">S/. {{precio}}</span>
                     {%endif%}
-                    <span class="precio {%if en_oferta%}en_oferta{% endif %}">S/. {{precio_venta}}</span>
+                    <span class="precio {%if en_oferta%}en_oferta{% endif %}">S/. {{precio_mostrar}}</span>
                 </div>
             </a>
             <div class="estrellas">

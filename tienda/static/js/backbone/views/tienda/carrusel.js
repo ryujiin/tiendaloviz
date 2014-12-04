@@ -30,6 +30,7 @@ Loviz.Views.Carrusel = Backbone.View.extend({
 		if (this.num_carrusel<6) {
 			var producto = new Loviz.Views.Producto({ model: produ });
 			this.$('.lista').append(producto.render().el);
+			producto.$el.addClass('col-md-4')
 			this.num_carrusel++
 		};
 	}
