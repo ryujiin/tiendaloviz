@@ -31,16 +31,20 @@ Loviz.Views.Carrusel = Backbone.View.extend({
 					coleccion = coleccion.where({en_oferta:true})
 				};
 			}
-			coleccion.forEach(this.addproducto,this);
-			
+			coleccion.forEach(this.addproducto,this);			
 		};
+		this.poner_carrusel();
 	},
 	addproducto:function (produ) {
 		if (this.num_carrusel<6) {
 			var producto = new Loviz.Views.Producto({ model: produ });
 			this.$('.lista').append(producto.render().el);
-			producto.$el.addClass('col-md-4')
 			this.num_carrusel++
 		};
+	},
+	poner_carrusel:function () {
+		this.$('.lista').owlCarousel({
+			items:3,
+		});
 	}
 })

@@ -45,3 +45,15 @@ class UserSerializer(serializers.ModelSerializer):
 		user = super(UserSerializer, self).restore_object(attrs, instance)
 		user.set_password(attrs['password'])
 		return user
+
+from django.utils.timesince import timesince
+
+class ComentairoSerializer(serializers.ModelSerializer):
+	creado = serializers.SerializerMethodField('get_tiempo_creado')
+	class Meta:
+		model = Comentario
+		fields = ('id','verificado','valoracion','comentario','creado','producto','variacion','usuario',)
+
+	def get_tiempo_creado(self,obj):
+		time = timesince(obj.creado)
+		return time

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from models import *
-from serializers import PerfilUSerSerializer,UsuarioSerializer,UserSerializer
+from serializers import PerfilUSerSerializer,UsuarioSerializer,UserSerializer,ComentairoSerializer
 from django.contrib.auth.models import User, Group
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -42,11 +42,17 @@ from .permissions import IsStaffOrTargetUser
 
 class UsuarioViewSet(viewsets.ModelViewSet):
 	serializer_class = UserSerializer
-	model = User
+	queryset = User.objects.all()
 
 	def get_permissions(self):
 		return (AllowAny() if self.request.method == 'POST'
 			else IsStaffOrTargetUser()),
+
+class ComentarioViewSet(viewsets.ReadOnlyModelViewSet):
+	serializer_class = ComentairoSerializer
+
+	def get_queryset(self):
+		return Comentario.objects.all()
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required

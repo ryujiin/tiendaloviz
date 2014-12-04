@@ -5,7 +5,7 @@ from django.conf import settings
 
 from rest_framework import routers
 from catalogo.views import *
-from cliente.views import UsuarioViewSet
+from cliente.views import UsuarioViewSet,ComentarioViewSet
 from carro.views import LineasViewsets
 from ubigeo.views import RegionViewset
 from tienda.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset
@@ -16,6 +16,7 @@ router.register(r'catalogo', CatalogoViewsets,'catalogo')
 router.register(r'productoSingle', Producto_singleViewstes,'productosingle')
 router.register(r'usuario',UsuarioViewSet)
 router.register(r'lineas',LineasViewsets,'lineas')
+router.register(r'cliente/comentario',ComentarioViewSet,'comentairos')
 router.register(r'ubigeo',RegionViewset,'ubigeo')
 
 ##Catalogo##

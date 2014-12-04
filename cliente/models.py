@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User as User
+from catalogo.models import Producto,ProductoVariacion
 
 # Create your models here.
 class Cliente(models.Model):
@@ -18,3 +19,12 @@ class Direccion(models.Model):
 	distrito = models.CharField(max_length=100,blank=True,null=True)
 	direccion = models.CharField(max_length=100,blank=True,null=True)
 	codigo_postal = models.CharField(max_length=20,blank=True,null=True)
+
+class Comentario(models.Model):
+	producto = models.ForeignKey(Producto)
+	variacion = models.ForeignKey(ProductoVariacion,blank=True,null=True)
+	usuario = models.ForeignKey(User, null=True,blank=True)
+	verificado = models.BooleanField(default=False)
+	valoracion = models.PositiveIntegerField(default=0)
+	comentario = models.TextField()
+	creado = models.DateTimeField(auto_now_add=True)
