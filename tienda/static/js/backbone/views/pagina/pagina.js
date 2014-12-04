@@ -15,18 +15,16 @@ Loviz.Views.Pagina = Backbone.View.extend({
 	},
 	rellenar_pag:function () {
 		this.llenar_bloques();
+		this.llenar_carruseles();
 	},
 	llenar_bloques:function () {
 		var self=this;
 		var id = this.model.toJSON().id
-		this.coleccion_bloques = new Loviz.Collections.Bloques()
-		this.coleccion_bloques.fetch({
-			data:$.param({pagina:id})
-		}).done(function () {
-			self.coleccion_bloques.forEach(self.addbloque,self);
-		});
+		this.model.toJSON().bloques.forEach(self.addbloque,self);
 	},
 	addbloque:function (bloque) {
-		var views_bloque = new Loviz.Views.Bloque({model:bloque});
-	}
+		var modelo = new Loviz.Models.Bloque();
+		modelo.set(bloque)
+		var views_bloque = new Loviz.Views.Bloque({model:modelo});
+	},
 })

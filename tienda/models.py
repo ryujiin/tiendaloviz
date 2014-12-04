@@ -42,6 +42,17 @@ class Carrusel(models.Model):
 	filtro2=models.CharField(max_length=120,unique=True,blank=True,null=True)
 	filtro3=models.CharField(max_length=120,unique=True,blank=True,null=True)
 	css = models.CharField(max_length=120,blank=True,null=True)
+	template = models.CharField(max_length=120,blank=True,null=True)	
+
+	def save(self, *args, **kwargs):
+		if not self.nombre_interno:
+			self.nombre_interno ="%s %s" %(self.pagina,self.titulo)
+		self.nombre_interno = slugify(self.nombre_interno)
+		super(Carrusel, self).save(*args, **kwargs)
+
+	def __unicode__(self):
+		return self.nombre_interno
+
 
 class Pagina(models.Model):
 	titulo = models.CharField(max_length=120,blank=True,null=True)
@@ -53,6 +64,10 @@ class Pagina(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.slug)
 		super(Pagina, self).save(*args, **kwargs)
+
+	def get_num_bloques(self):
+		num = Bloque.objects.filter(pagina=self.pk).count()
+		return num
 
 	def __unicode__(self):
 		return "%s - %s" %(self.titulo,self.slug)

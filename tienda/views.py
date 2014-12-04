@@ -32,6 +32,15 @@ class BloqueViewsets(viewsets.ReadOnlyModelViewSet):
 			queryset = Bloque.objects.filter(pagina=pagina)
 		return queryset
 		
+class CarruselViewset(viewsets.ReadOnlyModelViewSet):
+	serializer_class = CarruselSerializer
+
+	def get_queryset(self):
+		queryset = Carrusel.objects.all()
+		pagina = self.request.QUERY_PARAMS.get('pagina', None)
+		if pagina is not None:
+			queryset = Carrusel.objects.filter(pagina=pagina)
+		return queryset
 
 class PaginaViewsApi(APIView):
 	def get_object(self):
@@ -45,23 +54,3 @@ class PaginaViewsApi(APIView):
 		pagina = self.get_object()
 		serializer = PaginaSerializer(pagina)
 		return Response(serializer.data,status=status.HTTP_200_OK)
-
-class PaginaDetailViews(APIView):
-	def get_object(self,pk):
-		try:
-			return Carro.objects.get(pk=pk)
-		except Carro.DoesNotExist:
-			raise Http404
-
-	def get(self, request, pk, format=None):
-		carro = self.get_object(pk)
-		serializer = CarroSerializer(carro)
-		return Response(serializer.data)
-
-	def put(self, request, pk, format=None):
-		carro = self.get_object(pk)
-		serializer = CarroSerializer(carro,data=request.DATA)
-		if serializer.is_valid():
-			serializer.save()
-			return Response (serializer.data)
-		return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
