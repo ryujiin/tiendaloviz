@@ -22,8 +22,17 @@ Loviz.Views.Carrusel = Backbone.View.extend({
 	},
 	llenar_carrusel:function () {
 		this.num_carrusel = 0
-		if (this.model.toJSON().modelo = 'Producto') {
-			window.collections.productos.forEach(this.addproducto,this);
+		var modelo = this.model.toJSON().modelo;
+		var filtro = this.model.toJSON().filtro1; 
+		if (modelo = 'Producto') {
+			var coleccion = window.collections.productos
+			if (filtro!=='') {
+				if (filtro==='oferta') {
+					coleccion = coleccion.where({en_oferta:true})
+				};
+			}
+			coleccion.forEach(this.addproducto,this);
+			
 		};
 	},
 	addproducto:function (produ) {

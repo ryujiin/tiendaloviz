@@ -10,15 +10,10 @@ Loviz.Views.Producto = Backbone.View.extend({
     },
     
     render: function () {
-        debugger;
         var album = this.model.toJSON()
         var html = this.template(album);
         this.$el.html(html);
         return this;
-    },
-    quicktime_producto:function  () {
-        console.log(this.quick + ' abrir quick');
-        this.quick=true;
     },
     navegar_producto : function () {
         if (this.quick = false) {
