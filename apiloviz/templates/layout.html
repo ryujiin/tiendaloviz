@@ -128,8 +128,29 @@
       </script>
 
       <script id="producto_lista_template" type="text/template">
-         <img src="{{thum}}" alt="">
-         <h1>{{nombre}}</h1>
+         <span class="glyphicon glyphicon-search"></span>
+            <a class="interno" href="/producto/{{slug}}/">
+                <figure>
+                    <img src="{{thum}}" alt="{{full_name}} {{marca}}">
+                </figure>
+                <div class="nombre_producto">
+                    <div class="estilo">{{categoria}} {{estilo}}</div>
+                    <div class="nombre">{{nombre}} {{color}}</div>
+                </div>
+                <div class="precios">
+                    {%if en_oferta%}
+                    <span class="old_precio">S/. {{precio}}</span>
+                    {%endif%}
+                    <span class="precio {%if en_oferta%}en_oferta{% endif %}">S/. {{precio_venta}}</span>
+                </div>
+            </a>
+            <div class="estrellas">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+            </div>
       </script>
    {% endverbatim %}
 {% endblock %}
