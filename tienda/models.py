@@ -38,9 +38,8 @@ class Carrusel(models.Model):
 	cuerpo = models.TextField(blank=True,null=True)
 	seccion = models.ForeignKey('SeccionesPagina',blank=True,null=True)
 	modelo = models.CharField(max_length=120,blank=True,null=True)
-	filtro1=models.CharField(max_length=120,blank=True,null=True)
-	filtro2=models.CharField(max_length=120,blank=True,null=True)
-	filtro3=models.CharField(max_length=120,blank=True,null=True)
+	filtro=models.CharField(max_length=120,blank=True,null=True)
+	items_mostrar=models.CharField(max_length=120,blank=True,null=True)
 	css = models.CharField(max_length=120,blank=True,null=True)
 	template = models.CharField(max_length=120,blank=True,null=True)	
 

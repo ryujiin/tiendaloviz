@@ -144,6 +144,12 @@
          </div>
       </script>
 
+      <script id="carrusel_centro_template" type="text/template">
+        <h3>{{titulo}}</h3>
+        <div class="lista">
+        </div>
+      </script>
+      <!--Componentes Listas de la web-->
       <script id="producto_lista_template" type="text/template">
          <span class="glyphicon glyphicon-search"></span>
             <a class="interno" href="/producto/{{slug}}/">
@@ -168,6 +174,22 @@
                 <span class="glyphicon glyphicon-star"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
             </div>
+      </script>
+
+      <script id="comentario_lista_template" type="text/template">
+        <div class="coment_usuario">
+          <figure>
+            <img src="https://lh3.googleusercontent.com/-vxtOFsB6c08/UtWelvFRt3I/AAAAAAAAHpU/VgWmi3EqqaQ/s200-no/anonymous_200.gif" alt="">
+          </figure>
+          <a href="/usuario/{{usuario}}">{{nombre}}</a>
+          <div class="tiempo">Hace {{creado}}</div>
+        </div>
+        <div class="coment_cuerpo">{{comentario}}</div>
+        <div class="coment_producto">
+          <figure>
+            <img src="{{img_producto}}" alt="">
+          </figure>
+        </div>
       </script>
    {% endverbatim %}
 {% endblock %}

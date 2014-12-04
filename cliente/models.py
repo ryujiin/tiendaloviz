@@ -28,3 +28,8 @@ class Comentario(models.Model):
 	valoracion = models.PositiveIntegerField(default=0)
 	comentario = models.TextField()
 	creado = models.DateTimeField(auto_now_add=True)
+	email_invitado = models.CharField(max_length=100,blank=True,null=True)
+
+	def get_usuario_id(self):
+		if self.usuario:
+			return self.usuario.pk

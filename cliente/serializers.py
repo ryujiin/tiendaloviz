@@ -50,10 +50,19 @@ from django.utils.timesince import timesince
 
 class ComentairoSerializer(serializers.ModelSerializer):
 	creado = serializers.SerializerMethodField('get_tiempo_creado')
+	nombre = serializers.SerializerMethodField('get_nombre_user')
+	img_producto = serializers.SerializerMethodField('get_img')
 	class Meta:
 		model = Comentario
-		fields = ('id','verificado','valoracion','comentario','creado','producto','variacion','usuario',)
+		fields = ('id','verificado','valoracion','comentario','creado','producto','variacion','usuario','nombre','img_producto')
 
 	def get_tiempo_creado(self,obj):
 		time = timesince(obj.creado)
 		return time
+
+	def get_nombre_user(self,obj):
+		if obj.usuario:
+			return obj.usuario.username
+
+	def get_img(self,obj):
+		return obj.producto.get_thum().url

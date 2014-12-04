@@ -52,7 +52,7 @@ class ComentarioViewSet(viewsets.ReadOnlyModelViewSet):
 	serializer_class = ComentairoSerializer
 
 	def get_queryset(self):
-		return Comentario.objects.all()
+		return Comentario.objects.all().order_by('-pk')
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required

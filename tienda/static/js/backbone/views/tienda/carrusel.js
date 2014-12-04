@@ -21,19 +21,28 @@ Loviz.Views.Carrusel = Backbone.View.extend({
 		this.render();
 	},
 	llenar_carrusel:function () {
-		this.num_carrusel = 0
+		this.num_carrusel = 0;
+		var self = this;
+		var coleccion;
 		var modelo = this.model.toJSON().modelo;
 		var filtro = this.model.toJSON().filtro1; 
-		if (modelo = 'Producto') {
-			var coleccion = window.collections.productos
+		if (modelo == 'Producto') {
+			coleccion = window.collections.productos
 			if (filtro!=='') {
 				if (filtro==='oferta') {
 					coleccion = coleccion.where({en_oferta:true})
 				};
 			}
-			coleccion.forEach(this.addproducto,this);			
-		};
-		this.poner_carrusel();
+			coleccion.forEach(this.addproducto,this);
+			this.poner_carrusel();
+		}else if(modelo=="Comentario"){
+			coleccion = new Loviz.Collections.Comentarios()
+			coleccion.fetch().done(function () {
+				coleccion.forEach(self.addComentario,self);
+				self.poner_carrusel();
+			});
+		}
+		
 	},
 	addproducto:function (produ) {
 		if (this.num_carrusel<6) {
@@ -43,8 +52,17 @@ Loviz.Views.Carrusel = Backbone.View.extend({
 		};
 	},
 	poner_carrusel:function () {
+		var num_items = this.model.toJSON().items_mostrar
+		num_items = parseInt(num_items)
 		this.$('.lista').owlCarousel({
-			items:3,
+			items:num_items,
 		});
+	},
+	addComentario:function (coment) {
+		if (this.num_carrusel<4) {
+			var comentario = new Loviz.Views.Comentario_lista({model:coment});
+			this.$('.lista').append(comentario.render().el);			
+			this.num_carrusel++
+		};
 	}
 })

@@ -22,6 +22,7 @@ class Migration(migrations.Migration):
                 ('valoracion', models.PositiveIntegerField(default=0)),
                 ('comentario', models.TextField()),
                 ('creado', models.DateTimeField(auto_now_add=True)),
+                ('email', models.CharField(max_length=100, null=True, blank=True)),
                 ('producto', models.ForeignKey(to='catalogo.Producto')),
                 ('usuario', models.ForeignKey(blank=True, to=settings.AUTH_USER_MODEL, null=True)),
                 ('variacion', models.ForeignKey(blank=True, to='catalogo.ProductoVariacion', null=True)),

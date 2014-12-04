@@ -11,7 +11,7 @@ class CarruselSerializer(serializers.ModelSerializer):
 	seccion = serializers.CharField(read_only=True)
 	class Meta:
 		model = Carrusel
-		fields = ('id','titulo','pagina','nombre_interno','cuerpo','seccion','css','template','modelo','filtro1','filtro2','filtro3')
+		fields = ('id','titulo','pagina','nombre_interno','cuerpo','seccion','css','template','modelo','filtro','items_mostrar')
 
 class PaginaSerializer(serializers.ModelSerializer):
 	bloques = BloqueSerializer(many=True)
