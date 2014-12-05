@@ -10,4 +10,5 @@ admin.site.register(Bloque)
 admin.site.register(Pagina,PaginaAdmin)
 admin.site.register(SeccionesPagina)
 admin.site.register(Carrusel)
+admin.site.register(TemplatePagina)
 

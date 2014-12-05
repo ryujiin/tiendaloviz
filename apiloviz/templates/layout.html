@@ -1,45 +1,95 @@
 {% extends "base.html" %}
 
 {%block layout%}
-	<header>
-      <div id="banner_top">
-         <p>Envio Gratis a Todo el Perú por compras mayores a S/.60.00</p>
+	<header class="container-fluid">
+    <section class="header_banner">
+      <div id="baner_top">Envio Gratis a Todo el Perú por compras mayores a S/.60.00</div>
+    </section>
+    <section class="header_utilis">
+      <div class="row">
+        <div id="menu_top_ayuda" class="col-md-7"></div>
+        <div id="menu_top_buscar" class="col-md-3"></div>
+        <div id="menu_top_usuario" class="col-md-2"></div>
       </div>
-      <div id="menu_top">
-         <div id="menu_top_ayudas">
-            <ul>
-               <li>x</li>
-               <li><span class="glyphicon glyphicon-earphone"></span>(01)556-3314</li>
-               <li><a href=""><span class="glyphicon glyphicon-headphones"></span>Soporte en Vivo</a></li>
-               <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></li>
+    </section>
+    <section class="header_principal">
+      <div class="contenedor row">
+        <div class="col-md-3" id="logo"></div>
+        <div class="col-md-7" id="navegacion"></div>
+        <div class="col-md-col-2" id="mini_carrito"></div>
+      </div>
+    </section>
+    <section class="header_banner">
+      <div id="banner_header"></div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div id="banner_top" class="bloque text-center">
+         
+      </div>
+      <div id="menu_top" class="container-fluid">
+        <div class="row">
+          <div id="menu_top_ayudas" class="col-md-4 bloque">
+            <ul class="menu">
+              <li>x</li>
+              <li><span class="glyphicon glyphicon-earphone"></span>(01)556-3314</li>
+              <li><a href=""><span class="glyphicon glyphicon-headphones"></span>Soporte en Vivo</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></li>
             </ul>
-         </div>
-         <div id="menu_top_buscar">
+          </div>
+          <div id="menu_top_buscar" class="col-md-4 bloque">
             <span class="glyphicon glyphicon-search"></span>
             <input type="text" class="buscador">
-         </div>
-         <div id="menu_top_usuario">
-            <ul>
-               <li><a class="link" href="/user/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
+          </div>
+          <div id="menu_top_usuario" class="col-md-4 bloque">
+            <ul class="menu">
+              <li><a class="link" href="/user/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
             </ul>
-         </div>
+          </div>
+        </div>
       </div>
-      <div id="menu_principal">
-         <div id="logo">
+      <div id="menu_principal" class="container-fluid">
+        <div class="contenedor row">
+          <div id="logo" class="col-md-3">
             <h1><a class="link" href="/">LovizDelCarpio</a></h1>
-         </div>
-         <div id="navegacion">
-            <ul>
-               <li><a class="link" href="/pagina/mujeres/">Mujeres</a></li>
-               <li><a href="/pagina/hombres/">Hombres</a></li>               
-               <li><a href="">Kids</a></li>
-               <li><a class="link" href="/catalogo/ofertas/">Ofertas</a></li>
-               <li><a href="">Sobre LovizDelcarpio</a></li>
-            </ul>
-         </div>
-         <div id="minicarro">
-            <a class="link" href="/carro/"><span class="glyphicon glyphicon-shopping-cart"></span><span class="num">0</span></a>
-         </div>
+           </div>
+           <div id="navegacion" class="col-md-8">
+              <ul class="menu">
+                 <li><a class="link" href="/pagina/mujeres/">Mujeres</a></li>
+                 <li><a href="/pagina/hombres/">Hombres</a></li>               
+                 <li><a href="">Kids</a></li>
+                 <li><a class="link" href="/catalogo/ofertas/">Ofertas</a></li>
+                 <li><a href="">Sobre LovizDelcarpio</a></li>
+              </ul>
+           </div>
+           <div id="minicarro" class="col-md-1">
+              <a class="link" href="/carro/"><span class="glyphicon glyphicon-shopping-cart"></span><span class="num">0</span></a>
+           </div>
+        </div>
       </div>
       <div id="banner_header">
          <div>Comenzaron las Fiestas</div>
@@ -112,7 +162,7 @@
          </a>
       </script>
 
-      <script id="carrusel_cuerpo_template" type="text/template">
+      <script id="carrusel_cuerpo_left_template" type="text/template">
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-3">

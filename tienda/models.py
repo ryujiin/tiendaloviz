@@ -4,8 +4,13 @@ from catalogo.models import Categoria
 
 
 class Menu(models.Model):
-	nombre = models.CharField(max_length=120,blank=True,null=True)
+	titulo = models.CharField(max_length=120,blank=True,null=True)
+	nombre_interno = models.CharField(max_length=120,unique=True)
 	seccion = models.ForeignKey('SeccionesPagina',blank=True,null=True)
+	css = models.CharField(max_length=120,blank=True,null=True)
+	pagina = models.ForeignKey('Pagina',blank=True,null=True,related_name='menus')
+	template = models.ForeignKey('TemplatePagina',blank=True,null=True)
+
 
 def url_imagen_pr(self,filename):
 	url = "bloque/imagen/%s" % (filename)
@@ -13,18 +18,18 @@ def url_imagen_pr(self,filename):
 
 class Bloque(models.Model):
 	titulo = models.CharField(max_length=120,blank=True,null=True)
-	nombre_interno = models.CharField(max_length=120,unique=True,blank=True,null=True)
+	nombre_interno = models.CharField(max_length=120,unique=True)
 	pagina = models.ForeignKey('Pagina',blank=True,null=True,related_name='bloques')
 	activo = models.BooleanField(default=True)
 	cuerpo = models.TextField(blank=True,null=True)
 	seccion = models.ForeignKey('SeccionesPagina',blank=True,null=True)
 	foto = models.ImageField(upload_to=url_imagen_pr,blank=True,null=True)
-	template = models.CharField(max_length=120,blank=True,null=True)
+	template = models.ForeignKey('TemplatePagina',blank=True,null=True)
 	link = models.CharField(max_length=120,blank=True,null=True)
 	css = models.CharField(max_length=120,blank=True,null=True)
 
 	def __unicode__(self):
-		return self.nombre_interno
+		return "%s - %s" %(self.pagina,self.nombre_interno)
 
 	def save(self, *args, **kwargs):
 		self.nombre_interno = slugify(self.nombre_interno)
@@ -41,7 +46,7 @@ class Carrusel(models.Model):
 	filtro=models.CharField(max_length=120,blank=True,null=True)
 	items_mostrar=models.CharField(max_length=120,blank=True,null=True)
 	css = models.CharField(max_length=120,blank=True,null=True)
-	template = models.CharField(max_length=120,blank=True,null=True)	
+	template = models.ForeignKey('TemplatePagina',blank=True,null=True)
 
 	def save(self, *args, **kwargs):
 		if not self.nombre_interno:
@@ -56,9 +61,9 @@ class Carrusel(models.Model):
 class Pagina(models.Model):
 	titulo = models.CharField(max_length=120,blank=True,null=True)
 	slug = models.CharField(max_length=120,unique=True,blank=True,null=True)
-	menu = models.ForeignKey('Menu',blank=True,null=True)
 	activo = models.BooleanField(default=True)
 	cuerpo = models.TextField(blank=True,null=True)
+	template = models.ForeignKey('TemplatePagina',blank=True,null=True)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.slug)
@@ -77,7 +82,26 @@ class Pagina(models.Model):
 
 class SeccionesPagina(models.Model):
 	nombre = models.CharField(max_length=120)
-	parte = models.CharField(max_length=120,blank=True,null=True)
+	nombre_interno = models.CharField(max_length=120,unique=True,blank=True,null=True)
 
 	def __unicode__(self):
-		return self.nombre
+		return self.nombre_interno
+
+	def save(self,*args,**kwargs):
+		if not self.nombre_interno:
+			self.nombre_interno = self.nombre
+		self.nombre_interno=slugify(self.nombre_interno)
+		super(SeccionesPagina, self).save(*args, **kwargs)
+
+class TemplatePagina(models.Model):
+	nombre = models.CharField(max_length=120)
+	nombre_interno = models.CharField(max_length=120,unique=True,blank=True,null=True)
+
+	def __unicode__(self):
+		return self.nombre_interno
+
+	def save(self,*args,**kwargs):
+		if not self.nombre_interno:
+			self.nombre_interno = self.nombre
+		self.nombre_interno=slugify(self.nombre_interno)
+		super(TemplatePagina, self).save(*args, **kwargs)

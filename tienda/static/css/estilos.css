@@ -1,1 +1,14 @@
 .contenedor{max-width:1200px;margin:0 auto}
+#banner_top{background:#111;color:#fff}
+.bloque{padding:2px}
+body a{color:#111}
+body img{width:100%}
+body .text_imprenta{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
+body .text_cursiva{font-family:'Great Vibes',cursive}
+ul.menu{padding:0;margin:0;}
+ul.menu li{list-style:none;display:inline-block;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
+#logo{font-family:'Great Vibes',cursive;}
+#logo h1{padding:0;margin:0}
+#logo a:hover{color:#111;text-decoration:none}
+#menu_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4}
+#navegacion li a{padding:10px;display:inline-block}
