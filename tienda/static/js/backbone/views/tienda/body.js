@@ -12,7 +12,7 @@ Loviz.Views.Body = Backbone.View.extend({
 		var self = this;
 		this.$el = $el;
 		this.cargar_bloques();
-		this.cargar_menus();
+		//this.cargar_menus();
 	},
 	link_intero:function (e) {
 		e.preventDefault();

@@ -8,7 +8,7 @@ from catalogo.views import *
 from cliente.views import UsuarioViewSet,ComentarioViewSet
 from carro.views import LineasViewsets
 from ubigeo.views import RegionViewset
-from cmsloviz.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset
+from cmsloviz.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset,MenuViewsets
 
 router = routers.DefaultRouter()
 
@@ -32,6 +32,7 @@ router.register(r'categorias', CategoriaViewsets,'categorias')
 router.register(r'tienda/pagina',PaginaViewsets,'paginas');
 router.register(r'tienda/bloques',BloqueViewsets,'bloques');
 router.register(r'tienda/carruseles',CarruselViewset,'carruseles');
+router.register(r'tienda/menus',MenuViewsets,'menus');
 
 urlpatterns = patterns('',
     # Examples:

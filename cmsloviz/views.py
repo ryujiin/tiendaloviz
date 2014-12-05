@@ -34,6 +34,19 @@ class BloqueViewsets(viewsets.ReadOnlyModelViewSet):
 		if cms is not None:
 			queryset = Bloque.objects.filter(pagina__isnull=True)
 		return queryset
+
+class MenuViewsets(viewsets.ReadOnlyModelViewSet):
+	serializer_class = MenuSerialirzer
+
+	def get_queryset(self):
+		queryset = Menu.objects.all()
+		pagina = self.request.QUERY_PARAMS.get('pagina', None)
+		cms = self.request.QUERY_PARAMS.get('cms', None)
+		if pagina is not None:
+			queryset = Menu.objects.filter(pagina=pagina)
+		if cms is not None:
+			queryset = Menu.objects.filter(pagina__isnull=True)
+		return queryset
 		
 class CarruselViewset(viewsets.ReadOnlyModelViewSet):
 	serializer_class = CarruselSerializer

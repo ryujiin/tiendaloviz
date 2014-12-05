@@ -17,7 +17,7 @@ class Menu(models.Model):
 class Link(models.Model):
 	titulo = models.CharField(max_length=120,blank=True,null=True)
 	css = models.CharField(max_length=120,blank=True,null=True)
-	menu = models.ForeignKey('Menu')
+	menu = models.ForeignKey('Menu',related_name='links')
 	icono = models.CharField(max_length=120,blank=True,null=True)
 	enlace = models.CharField(max_length=120,blank=True,null=True)
 

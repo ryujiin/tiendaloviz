@@ -20,3 +20,13 @@ class PaginaSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Pagina
 		fields=('id','titulo','slug','activo','cuerpo','bloques','carruseles')
+
+class LinkSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Link	
+
+class MenuSerialirzer(serializers.ModelSerializer):
+	links =LinkSerializer(many=True)
+	class Meta:
+		model = Menu
+		fields = ('id','titulo','css','seccion','pagina','template','links')
