@@ -8,7 +8,7 @@ from catalogo.views import *
 from cliente.views import UsuarioViewSet,ComentarioViewSet
 from carro.views import LineasViewsets
 from ubigeo.views import RegionViewset
-from tienda.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset
+from cmsloviz.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset
 
 router = routers.DefaultRouter()
 
@@ -52,7 +52,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^', include('tienda.urls')),
+    url(r'^', include('cmsloviz.urls')),
 
 )
 if settings.DEBUG:

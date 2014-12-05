@@ -7,12 +7,6 @@ f_cusrsiva = 'Great Vibes', cursive;
 	max-width 1200px
 	margin 0 auto
 
-#banner_top
-	background #111
-	color #fff
-.bloque
-	padding 2px
-
 //Estilos
 body
 	a
@@ -24,14 +18,14 @@ body
 		text-transform uppercase
 	.text_cursiva
 		font-family f_cusrsiva
-ul.menu
-	padding 0
-	margin 0
-	li
-		list-style none
-		display inline-block
-		font-family f_imprenta
-		text-transform uppercase
+.bloque
+	padding 2px
+	&.sin-titulo
+		.titulo
+			display none
+.contraste1
+	background #111
+	color #fff
 #logo
 	font-family f_cusrsiva
 	h1
@@ -50,4 +44,11 @@ ul.menu
 		a
 			padding 10px
 			display inline-block
-		
+ul.menu
+	padding 0
+	margin 0
+	li
+		list-style none
+		display inline-block
+		font-family f_imprenta
+		text-transform uppercase

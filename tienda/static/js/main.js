@@ -6,7 +6,7 @@ $(document).ready(function(){
     window.routers.base = new Loviz.Routers.Base();   
 
     //Vista Tienda
-    window.views.tienda = new Loviz.Views.Tienda( $('body') );
+    window.views.tienda = new Loviz.Views.Body( $('body') );
 
     //Modelos de tienda
     window.models.pagina = new Loviz.Models.Pagina();

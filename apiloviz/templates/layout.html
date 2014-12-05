@@ -1,25 +1,25 @@
 {% extends "base.html" %}
 
 {%block layout%}
-	<header class="container-fluid">
+	<header>
     <section class="header_banner">
-      <div id="baner_top">Envio Gratis a Todo el Perú por compras mayores a S/.60.00</div>
+      <div id="baner_top"></div>
     </section>
-    <section class="header_utilis">
+    <section class="header_utilis container-fluid">
       <div class="row">
         <div id="menu_top_ayuda" class="col-md-7"></div>
         <div id="menu_top_buscar" class="col-md-3"></div>
         <div id="menu_top_usuario" class="col-md-2"></div>
       </div>
     </section>
-    <section class="header_principal">
+    <section class="header_principal container-fluid">
       <div class="contenedor row">
         <div class="col-md-3" id="logo"></div>
         <div class="col-md-7" id="navegacion"></div>
         <div class="col-md-col-2" id="mini_carrito"></div>
       </div>
     </section>
-    <section class="header_banner">
+    <section class="header_banner container-fluid">
       <div id="banner_header"></div>
     </section>
 
@@ -46,21 +46,8 @@
 
 
 
-
-
-      <div id="banner_top" class="bloque text-center">
-         
-      </div>
       <div id="menu_top" class="container-fluid">
         <div class="row">
-          <div id="menu_top_ayudas" class="col-md-4 bloque">
-            <ul class="menu">
-              <li>x</li>
-              <li><span class="glyphicon glyphicon-earphone"></span>(01)556-3314</li>
-              <li><a href=""><span class="glyphicon glyphicon-headphones"></span>Soporte en Vivo</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-question-sign"></span>Ayuda</a></li>
-            </ul>
-          </div>
           <div id="menu_top_buscar" class="col-md-4 bloque">
             <span class="glyphicon glyphicon-search"></span>
             <input type="text" class="buscador">
@@ -240,6 +227,22 @@
             <img src="{{img_producto}}" alt="">
           </figure>
         </div>
+      </script>
+
+      <script id="bloque_template" type="text/template">
+        <h2 class="titulo">{{titulo}}</h2>
+        <div class="cuerpo_bloque">{{cuerpo}}</div>
+      </script>
+
+      <script id="menu_template" type="text/template">
+        <h2 class="titulo">
+          {{titulo}}
+        </h2>
+        <ul class="links">
+          {%for link in links%}
+          <li class="{{link.css}}"><a href="{{link.enlace}}">{{link.titulo}}</a></li>
+          {%endfor%}
+        </ul>
       </script>
    {% endverbatim %}
 {% endblock %}

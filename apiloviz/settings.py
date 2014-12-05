@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'carro',
     'cliente',
     'catalogo',
+    'cmsloviz',
     'ubigeo',
     'tienda',
 )
