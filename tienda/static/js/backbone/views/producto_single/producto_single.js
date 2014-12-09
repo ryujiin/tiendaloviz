@@ -16,7 +16,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 	    var html = this.template(producto);
 	    this.$el.html(html);
 	    this.generar_galeria();
-	    //this.crear_relacionados();
+	    this.add_comentarios();
 	},
 	generar_galeria:function () {
 		var galeria = new Loviz.Views.Galeria_producto_single({
@@ -87,5 +87,34 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 				self.$('.productos').append(pro_rela.render().el);	
 			};			
 		});
+	},
+	add_comentarios:function () {
+		var self = this;
+		var coleccion = new Loviz.Collections.Comentarios();
+		coleccion.fetch({
+			data:$.param({producto:this.model.id})
+		}).done(function () {
+			self.add_estrellas(coleccion);
+		})
+	},
+	add_estrellas:function (coleccion) {
+		var num = coleccion.length
+		var valor = 0
+		coleccion.forEach(function (modelo) {
+			valor = valor + modelo.toJSON().valoracion;
+		});
+		var estrellas = Math.round(valor/num)
+		var model_estrella = new Loviz.Models.Estrellas();
+		var view_estrella = new Loviz.Views.Estrellas({model:model_estrella});
+		var estre_array = {};
+		for (var i = 0; i < 5; i++) {
+			if (estrellas>i) {
+				estre_array['estrella'+i]=true;
+			}else{
+				estre_array['estrella'+i]=false;
+			}
+		};
+		model_estrella.set({num_coment : num,valor_coment : valor , estrellas : estre_array});
+		this.$("#estrellas").append(view_estrella.$el);
 	}
 });

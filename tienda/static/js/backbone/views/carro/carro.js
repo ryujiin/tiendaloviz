@@ -7,7 +7,8 @@ Loviz.Views.Carro = Backbone.View.extend({
 		var self = this;
 	},
 	render:function () {
-		var html = this.template();
+		var modelo = this.model.toJSON();
+		var html = this.template(modelo);
 	    this.$el.html(html);
 	},
 })

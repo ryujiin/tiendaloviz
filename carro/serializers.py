@@ -4,10 +4,10 @@ from django.conf import settings
 from catalogo.models import Producto
 
 class CarroSerializer(serializers.ModelSerializer):
-	lineas = serializers.SerializerMethodField('get_lineas')
-	total = serializers.SerializerMethodField('get_total')
-	subtotal = serializers.SerializerMethodField('get_subtotal')
-	envio = serializers.SerializerMethodField('get_envio')
+	lineas = serializers.SerializerMethodField()
+	total = serializers.SerializerMethodField()
+	subtotal = serializers.SerializerMethodField()
+	envio = serializers.SerializerMethodField()
 	class Meta:
 		model = Carro
 		fields = ('id','propietario','estado','sesion_carro','lineas','total','subtotal','envio')
@@ -29,12 +29,12 @@ class CarroSerializer(serializers.ModelSerializer):
 		return obj.envio_carro()
 
 class LineaSerializer(serializers.ModelSerializer):
-	thum = serializers.SerializerMethodField('get_thum')
-	nombre = serializers.SerializerMethodField('get_nombre')
-	talla = serializers.SerializerMethodField('get_talla')
-	precio = serializers.SerializerMethodField('get_precio')
-	subtotal = serializers.SerializerMethodField('get_subtotal')
-	oferta = serializers.SerializerMethodField('get_oferta')
+	thum = serializers.SerializerMethodField()
+	nombre = serializers.SerializerMethodField()
+	talla = serializers.SerializerMethodField()
+	precio = serializers.SerializerMethodField()
+	subtotal = serializers.SerializerMethodField()
+	oferta = serializers.SerializerMethodField()
 	class Meta:
 		model = LineaCarro
 		fields = ('id','carro','producto','variacion','cantidad','thum','nombre','talla','precio','subtotal','oferta')
@@ -47,7 +47,7 @@ class LineaSerializer(serializers.ModelSerializer):
 		return obj.producto.full_name
 
 	def get_talla(self,obj):
-		return obj.variacion.talla
+		return obj.variacion.talla.pk
 
 	def get_precio(self,obj):
 		precio = obj.variacion.get_precio_venta()

@@ -18,7 +18,9 @@ $(document).ready(function(){
     //Carro
     window.models.carro = new Loviz.Models.Carro();
     window.views.mini_carro = new Loviz.Views.Mini_carro({model:window.models.carro});
-    window.views.carro = new Loviz.Views.Carro();
+    window.views.carro = new Loviz.Views.Carro({
+        model:window.models.carro
+    });
 
     //Colecciones de tienda
     window.collections.bloques = new Loviz.Collections.Bloques();

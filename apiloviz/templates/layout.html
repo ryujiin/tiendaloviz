@@ -22,6 +22,7 @@
         <div class="col-md-col-2" id="mini_carro"></div>
       </div>
     </section>
+    <div id="linea_addcart"></div>
     <section class="header_banner">
       <div id="banner_header"></div>
     </section>
@@ -73,15 +74,38 @@
 
       <!--Este es Template de Carro-->
       <script id="carro_template" type="text/template">
-         <h1>este es Carro</h1>
-         <div id="carro_cuerpo"></div>
+         <h1>Su carrito de compras</h1>
+         <div id="carro_cuerpo">
+            <h3>Tu tienes <span>{{lineas}}</span> producto en tu carrito de compras</h3>
+            {%if lineas != 0 %}
+              <div class="lineas_productos">wpefwfoj</div>
+            {%endif%}
+         </div>
          <div id="bloques_extras"></div>
       </script>
 
       <script id="mini_carro_template" type="text/template">
         <a class="link" href="/carro/">
-          <span class="glyphicon glyphicon-shopping-cart"></span>Carrito<span class="number">{{lineas}}</span>
+          <span class="glyphicon glyphicon-shopping-cart"></span>Carrito <span class="number">{{lineas}}</span>
         </a>
+      </script>
+
+      <script id="carro_linea_template" type="text/template">
+        <td class="img"><img src="{{thum}}" alt=""></td>
+        <td class="name">{{nombre}}</td>
+        <td class="tall">{{talla}}</td>
+        <td class="precio">S/. {{precio}}</td>
+        <td class="cantidad"><span class="up"></span><span class="numero">{{cantidad}}</span><span class="down"></span></td>
+        <td class="total">S/. {{subtotal}}</td>
+        <td class="accion"><span class="icon-trashcan"></span></td>
+      </script>
+
+      <script id="linea_addcart_template" type="text/template">
+        <img src="https://apiloviz.s3.amazonaws.com/cache/f0/56/f0567e5d0c8de7b2cc49c90fc77ff622.jpg" alt="">
+        <div class="nombre_produ">
+          <h4>PANTUFLA GATITO ESTAMPADO</h4>
+          <p>Añadido al carrito</p>
+        </div>
       </script>
 
 
@@ -106,15 +130,44 @@
                 {%endfor%}
               </div>
               <div class="reviews">
-                <div class="estrellas">
-                  aca iran las estrellas 
+                <div id="estrellas">
                 </div>
                 <span>Escribe tu comentario</span>
               </div>
               <div class="descripcion">
                 <label for="">Descripcion</label>
-                <p>{{descripcion}}</p>
+                {{descripcion|striptags}}
               </div>
+              <div class="color_selection">
+                <label for="">Color Seleccionado:</label><span class="color">{{color}}</span>
+                <div class="colores">
+                  <a class="interno" href="#" class="nolink">
+                    {%for img in imagenes_producto%}
+                      {%if loop.first%}
+                        <img src="{{img.imagen_thum}}" alt="">
+                      {%endif%}
+                    {%endfor%}
+                  </a>
+                  {%for pariente in parientes%}
+                    <a class="interno" href="/producto/{{pariente.slug}}/">
+                      <img src="{{pariente.thum}}" alt="">
+                    </a>
+                  {%endfor%}
+                  </div>
+                </div>
+                <div class="formulario_producto">
+                  <div>
+                    <select name="talla" id="" class="talla">
+                      <option value=''>Selecciona una talla</option>
+                      {%for varia in variaciones%}
+                        <option value="{{varia.id}}">{{varia.talla}}</option>
+                      {%endfor%}
+                    </select>
+                  </div>
+                  <div>
+                    <button class="addcart"><span class="icon-cart2"></span> Agregar al Carrito</button>
+                  </div>
+                </div>
             </div>
           </div>          
         </div>
@@ -267,6 +320,16 @@
             </li>
           {%endfor%}
         </ul>
+      </script>
+
+      <script id="estrellas_template" type="text/template">
+        {%for estrella in estrellas%}
+          {%if estrella %}
+            <span class="glyphicon glyphicon-star"></span>
+          {% else %}
+            <span class="glyphicon glyphicon-star-empty"></span>  
+          {%endif%}
+        {%endfor%}
       </script>
    {% endverbatim %}
 {% endblock %}

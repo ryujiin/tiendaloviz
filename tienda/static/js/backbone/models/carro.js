@@ -52,7 +52,6 @@ Loviz.Models.Carro = Backbone.Model.extend({
         }
     },
     fucionar_carro:function(carro_id){
-        debugger;
         var self = this;
         $.localStorage.remove('carro');
         var user = $.sessionStorage.get('usuario');
