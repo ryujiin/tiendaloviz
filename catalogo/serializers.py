@@ -48,9 +48,9 @@ class ProductoVariacionSerializer(serializers.ModelSerializer):
 
 
 class ImgProductoSerializer(serializers.ModelSerializer):
-	imagen = serializers.SerializerMethodField('get_imagen')
-	imagen_medium = serializers.SerializerMethodField('get_imagen_medium')
-	imagen_thum = serializers.SerializerMethodField('get_imagen_thum')
+	imagen = serializers.SerializerMethodField()
+	imagen_medium = serializers.SerializerMethodField()
+	imagen_thum = serializers.SerializerMethodField()
 	class Meta:
 		model = ProductoImagen
 		fields =('imagen','imagen_medium','imagen_thum','orden')
@@ -73,7 +73,7 @@ class ParienteSerialiezer(serializers.ModelSerializer):
 		fields = ('id','nombre','full_name','marca','thum','slug')
 
 	def get_img_thum(self,obj):
-		img = obj.get_thum
+		img = obj.get_thum().url
 		return img
 
 class ProductoSingleSereializer(serializers.ModelSerializer):
@@ -82,28 +82,29 @@ class ProductoSingleSereializer(serializers.ModelSerializer):
 	color= serializers.CharField(read_only=True)
 	variaciones = ProductoVariacionSerializer(many=True)
 	imagenes_producto = ImgProductoSerializer(many=True)
-	thum = serializers.SerializerMethodField('get_thum')
+	thum = serializers.SerializerMethodField('get_thum_img')
 	variaciones = ProductoVariacionSerializer(many=True)
 	parientes = ParienteSerialiezer(many=True)
 
-	en_oferta = serializers.SerializerMethodField('get_oferta')
-	precio = serializers.SerializerMethodField('get_precio')
+	en_oferta = serializers.SerializerMethodField('get_oferta_lista')
+	precio = serializers.SerializerMethodField('get_precio_lista')
 	precio_venta = serializers.SerializerMethodField('get_precio_descuento')
+	genero = serializers.SerializerMethodField()
 
 	class Meta:
 		model = Producto
-		fields = ('id','nombre','full_name','marca','categoria','estilo','color','slug','activo','descripcion','thum',
+		fields = ('id','nombre','full_name','marca','genero','categoria','estilo','color','slug','activo','descripcion','thum',
 				'en_oferta','precio','precio_venta',
 				'imagenes_producto','variaciones','parientes')
 
-	def get_thum(self,obj):
+	def get_thum_img(self,obj):
 		thum = obj.get_thum().url
 		return thum
 
-	def get_oferta(self,obj):
-		return obj.get_en_oferta
+	def get_oferta_lista(self,obj):
+		return obj.get_en_oferta()
 
-	def get_precio(self,obj):
+	def get_precio_lista(self,obj):
 		precio= obj.get_precio_lista()
 		precio ="%0.2f" %(precio)
 		return precio
@@ -112,6 +113,10 @@ class ProductoSingleSereializer(serializers.ModelSerializer):
 		precio= obj.get_precio_oferta_lista()
 		precio ="%0.2f" %(precio)
 		return precio
+
+	def get_genero(self,obj):
+		genero = obj.categoria.genero.nombre
+		return genero
 
 class CategoriaSerializer(serializers.ModelSerializer):
 	genero = serializers.CharField(read_only=True)

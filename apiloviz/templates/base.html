@@ -50,27 +50,39 @@
 
 	<script src="{% static "js/init.js/" %}"></script>
 	<!--Models-->
+	<script src="{% static "js/backbone/models/carro.js/" %}"></script>
+	<script src="{% static "js/backbone/models/usuario.js/" %}"></script>
 	<script src="{% static "js/backbone/models/pagina/pagina.js/" %}"></script>
 	<script src="{% static "js/backbone/models/tienda/bloque.js/" %}"></script>
 	<script src="{% static "js/backbone/models/tienda/carrusel.js/" %}"></script>
 	<script src="{% static "js/backbone/models/tienda/comentario.js/" %}"></script>
+	<script src="{% static "js/backbone/models/tienda/menu.js/" %}"></script>
 	<script src="{% static "js/backbone/models/catalogo/producto.js/" %}"></script>
+	<script src="{% static "js/backbone/models/catalogo/producto_single.js/" %}"></script>
 	<!--Collections-->
 	<script src="{% static "js/backbone/collections/pagina/paginas.js/" %}"></script>
 	<script src="{% static "js/backbone/collections/tienda/bloques.js/" %}"></script>
 	<script src="{% static "js/backbone/collections/tienda/carruseles.js/" %}"></script>
 	<script src="{% static "js/backbone/collections/tienda/comentarios.js/" %}"></script>
+	<script src="{% static "js/backbone/collections/tienda/menus.js/" %}"></script>
 	<script src="{% static "js/backbone/collections/catalogo/productos.js/" %}"></script>
+	<script src="{% static "js/backbone/collections/catalogo/producto_single.js/" %}"></script>
 
 	<!--Views-->
 	<script src="{% static "js/backbone/views/carro/carro.js/" %}"></script>
+		<script src="{% static "js/backbone/views/carro/mini_carro.js/" %}"></script>
 	<script src="{% static "js/backbone/views/pagina/pagina.js/" %}"></script>
 	<script src="{% static "js/backbone/views/usuario/usuario.js/" %}"></script>
+		<script src="{% static "js/backbone/views/usuario/mini_usuario.js/" %}"></script>
 	<script src="{% static "js/backbone/views/tienda/body.js/" %}"></script>
 		<script src="{% static "js/backbone/views/tienda/bloque.js/" %}"></script>
 		<script src="{% static "js/backbone/views/tienda/carrusel.js/" %}"></script>
+		<script src="{% static "js/backbone/views/tienda/menu.js/" %}"></script>
 		<script src="{% static "js/backbone/views/tienda/lista_comentario.js/" %}"></script>
-	<script src="{% static "js/backbone/views/catalogo/producto.js/" %}"></script>
+	<script src="{% static "js/backbone/views/catalogo/catalogo.js/" %}"></script>
+		<script src="{% static "js/backbone/views/catalogo/producto.js/" %}"></script>
+	<script src="{% static "js/backbone/views/producto_single/producto_single.js/" %}"></script>
+		<script src="{% static "js/backbone/views/producto_single/galeria.js/" %}"></script>
 	<!--routers-->
 	<script src="{% static "js/backbone/routers/base.js/" %}"></script>
 

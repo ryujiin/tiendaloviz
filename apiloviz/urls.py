@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^api/cliente/', include('cliente.urls')),
     url(r'^api/carro/', include('carro.urls')),
     url(r'^api/tienda/pagina/$',PaginaViewsApi.as_view()),
+    url(r'^api/productoSingle/$',Producto_singleView.as_view()),
     url(r'^ajax/login/', 'cliente.views.ingresar', name='ingresar_ajax'),
     url(r'^ajax/salir/', 'cliente.views.salir', name='salir'),
 

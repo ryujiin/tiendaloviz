@@ -1,15 +1,17 @@
 .contenedor{max-width:1200px;margin:0 auto}
+#banner_header{height:400px;background-color:#f9f9f9}
 body a{color:#111}
 body img{width:100%}
 body .text_imprenta{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
 body .text_cursiva{font-family:'Great Vibes',cursive}
-.bloque{padding:2px;}
-.bloque.sin-titulo .titulo{display:none}
+.bloque{padding:2px}
 .contraste1{background:#111;color:#fff}
 #logo{font-family:'Great Vibes',cursive;}
 #logo h1{padding:0;margin:0}
 #logo a:hover{color:#111;text-decoration:none}
 #menu_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4}
-#navegacion li a{padding:10px;display:inline-block}
+#navegacion li a{padding:10px;display:inline-block;font-size:1.1em}
+.parallax{width:100%;background-position:center top;overflow:hidden;position:relativa;background-attachment:fixed;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;background-position:center center;background-repeat:no-repeat}
 ul.menu{padding:0;margin:0;}
 ul.menu li{list-style:none;display:inline-block;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
+.sin-titulo .titulo{display:none}

@@ -11,15 +11,29 @@ $(document).ready(function(){
     //Modelos de tienda
     window.models.pagina = new Loviz.Models.Pagina();
 
+    //Usuario
+    window.models.usuario = new Loviz.Models.Usuario();
+    window.views.mini_usuario = new Loviz.Views.Mini_usuario({model:window.models.usuario});    
+
+    //Carro
+    window.models.carro = new Loviz.Models.Carro();
+    window.views.mini_carro = new Loviz.Views.Mini_carro({model:window.models.carro});
+    window.views.carro = new Loviz.Views.Carro();
+
     //Colecciones de tienda
     window.collections.bloques = new Loviz.Collections.Bloques();
     window.collections.productos = new Loviz.Collections.Productos();
+    window.collections.productos_single = new Loviz.Collections.Productos_single();
+
+    //Catalogo
+    window.views.catalogo = new Loviz.Views.Catalogo({
+        collection:window.collections.productos
+    });
 
     //Vistas de pagina
     window.views.pagina = new Loviz.Views.Pagina({
         model:window.models.pagina
     });
-    window.views.carro = new Loviz.Views.Carro();
 
     //buscar
     window.collections.productos.fetch().done(function () {

@@ -27,6 +27,8 @@ class LinkSerializer(serializers.ModelSerializer):
 
 class MenuSerialirzer(serializers.ModelSerializer):
 	links =LinkSerializer(many=True)
+	seccion = serializers.CharField(read_only=True)	
+	template = serializers.CharField(read_only=True)	
 	class Meta:
 		model = Menu
 		fields = ('id','titulo','css','seccion','pagina','template','links')

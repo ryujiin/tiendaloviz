@@ -12,7 +12,7 @@ Loviz.Views.Body = Backbone.View.extend({
 		var self = this;
 		this.$el = $el;
 		this.cargar_bloques();
-		//this.cargar_menus();
+		this.cargar_menus();
 	},
 	link_intero:function (e) {
 		e.preventDefault();
@@ -111,5 +111,17 @@ Loviz.Views.Body = Backbone.View.extend({
 	},
 	crear_bloque:function (bloque) {
 		var views_bloque = new Loviz.Views.Bloque({model:bloque});
+	},
+	cargar_menus:function () {
+		var self = this;
+		this.coleccion_menus = new Loviz.Collections.Menus();
+		this.coleccion_menus.fetch({
+			data:$.param({cms:'slug'})
+		}).done(function () {
+			self.coleccion_menus.forEach(self.crear_menu,self)
+		})
+	},
+	crear_menu:function (menu) {
+		var views_menu = new Loviz.Views.Menu({model:menu});
 	}
 });

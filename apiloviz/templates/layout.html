@@ -8,79 +8,23 @@
     <section class="header_utilis container-fluid">
       <div class="row">
         <div id="menu_top_ayuda" class="col-md-7"></div>
-        <div id="menu_top_buscar" class="col-md-3"></div>
+        <div id="menu_top_buscar" class="col-md-3">
+          <span class="glyphicon glyphicon-search"></span>
+          <input type="text" class="buscador">
+        </div>
         <div id="menu_top_usuario" class="col-md-2"></div>
       </div>
     </section>
     <section class="header_principal container-fluid">
       <div class="contenedor row">
-        <div class="col-md-3" id="logo"></div>
+        <div class="col-md-3" id="logo"><h1><a class="link" href="/">LovizDelCarpio</a></h1></div>
         <div class="col-md-7" id="navegacion"></div>
-        <div class="col-md-col-2" id="mini_carrito"></div>
+        <div class="col-md-col-2" id="mini_carro"></div>
       </div>
     </section>
-    <section class="header_banner container-fluid">
+    <section class="header_banner">
       <div id="banner_header"></div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <div id="menu_top" class="container-fluid">
-        <div class="row">
-          <div id="menu_top_buscar" class="col-md-4 bloque">
-            <span class="glyphicon glyphicon-search"></span>
-            <input type="text" class="buscador">
-          </div>
-          <div id="menu_top_usuario" class="col-md-4 bloque">
-            <ul class="menu">
-              <li><a class="link" href="/user/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div id="menu_principal" class="container-fluid">
-        <div class="contenedor row">
-          <div id="logo" class="col-md-3">
-            <h1><a class="link" href="/">LovizDelCarpio</a></h1>
-           </div>
-           <div id="navegacion" class="col-md-8">
-              <ul class="menu">
-                 <li><a class="link" href="/pagina/mujeres/">Mujeres</a></li>
-                 <li><a href="/pagina/hombres/">Hombres</a></li>               
-                 <li><a href="">Kids</a></li>
-                 <li><a class="link" href="/catalogo/ofertas/">Ofertas</a></li>
-                 <li><a href="">Sobre LovizDelcarpio</a></li>
-              </ul>
-           </div>
-           <div id="minicarro" class="col-md-1">
-              <a class="link" href="/carro/"><span class="glyphicon glyphicon-shopping-cart"></span><span class="num">0</span></a>
-           </div>
-        </div>
-      </div>
-      <div id="banner_header">
-         <div>Comenzaron las Fiestas</div>
-      </div>
    </header>
    <section id="contenido">
    </section>
@@ -113,12 +57,18 @@
 
       <!--Este es template Catalgo-->
       <script id="catalogo_template" type="text/template">
-         <h1>Estes es Catalogo</h1>
-         <div id="lateral"></div>
-         <div id="cuerpo">
-            <div id="filtros"></div>
-            <div id="bloques_extras"></div>                        
-         </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-2">
+              <aside class="lateral"></aside>
+            </div>
+            <div class="col-md-10">
+              <div id="filtros"></div>
+              <div class="productos"></div>
+              <div id="bloques_extras"></div>                          
+            </div>
+          </div>
+        </div>
       </script>
 
       <!--Este es Template de Carro-->
@@ -128,14 +78,66 @@
          <div id="bloques_extras"></div>
       </script>
 
-      <!--Este es Template de single_producto-->
-      <script id="single_producto_template" type="text/template">
-         <h1>Este es Single Product</h1>
-         <div id="galeria"></div>
-         <div id="datos"></div>
-         <div id="descripcion"></div>
-         <div id="recomendados"></div>
+      <script id="mini_carro_template" type="text/template">
+        <a class="link" href="/carro/">
+          <span class="glyphicon glyphicon-shopping-cart"></span>Carrito<span class="number">{{lineas}}</span>
+        </a>
       </script>
+
+
+      <!--Este es Template de single_producto-->
+      <script id="producto_single_template" type="text/template">
+        <div class="container-fluid">
+          <div class="contenedor row">
+            <div id="galerias" class="col-md-8">
+              <div id="producto_galeria"></div>
+            </div>
+            <div id="datos" class="col-md-4">
+              <p>{{genero}}</p>
+              <h1 class="titulo">{{full_name}} - <i>{{marca}}</i></h1>
+              <div class="precios_single">
+                {%for varia in variaciones %}
+                <div class="variacion {%if loop.first%}visible{%endif%} {{varia.id}}">
+                  {%if varia.oferta > 0 %}
+                  <span class="old_precio">S/. {{varia.precio}}</span>
+                  {%endif%}
+                  <span class="precio">S/. {{varia.precio_venta}}</span>
+                </div>
+                {%endfor%}
+              </div>
+              <div class="reviews">
+                <div class="estrellas">
+                  aca iran las estrellas 
+                </div>
+                <span>Escribe tu comentario</span>
+              </div>
+              <div class="descripcion">
+                <label for="">Descripcion</label>
+                <p>{{descripcion}}</p>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </script>
+
+      <script id="producto_single_galeria_template" type="text/template">
+        <div class="col-md-2 thum">
+          {%for img in imagenes_producto%}
+            <a class="interno" href="" data-bigimga="{{img.imagen}}">
+              <img src="{{img.imagen_thum}}" alt="">
+            </a>
+          {%endfor%}
+        </div>
+        <div class="col-md-10 imagenes">
+          {%for img in imagenes_producto%}
+            {%if loop.first%}
+              <img class="imagen_normal" src="{{img.imagen}}" alt="">
+            {%endif%}
+          {%endfor%}
+        </div>
+      </script>
+
+      <!--fin de los templates de los productos Singles-->
 
       <!--Este es Template de Componentes-->
       <script id="banner_template" type="text/template">
@@ -148,6 +150,17 @@
             </div>
          </a>
       </script>
+
+      <!--Usaurio Inicio de Template-->
+      <script id="mini_usuario_template" type="text/template">
+        {%if username %}
+          <a class="link" href="/perfil/"><span class="glyphicon glyphicon-user"></span> {{username}}</a>
+        {%else%}
+          <a class="login_face" href="/login/facebook/">Ingresar con <span class=""></span></a>
+          <a class="link" href="/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a>
+        {%endif%}
+      </script>
+      <!--Fin de Vistas de Usuario-->
 
       <script id="carrusel_cuerpo_left_template" type="text/template">
          <div class="container-fluid">
@@ -189,7 +202,7 @@
       <!--Componentes Listas de la web-->
       <script id="producto_lista_template" type="text/template">
          <span class="glyphicon glyphicon-search"></span>
-            <a class="interno" href="/producto/{{slug}}/">
+            <a class="link" href="/producto/{{slug}}/">
                 <figure>
                     <img src="{{thum}}" alt="{{full_name}} {{marca}}">
                 </figure>
@@ -229,6 +242,10 @@
         </div>
       </script>
 
+      <script id="bloque_limpio" type="text/template">
+        {{cuerpo}}
+      </script>
+
       <script id="bloque_template" type="text/template">
         <h2 class="titulo">{{titulo}}</h2>
         <div class="cuerpo_bloque">{{cuerpo}}</div>
@@ -238,9 +255,16 @@
         <h2 class="titulo">
           {{titulo}}
         </h2>
-        <ul class="links">
+        <ul class="menu links">
           {%for link in links%}
-          <li class="{{link.css}}"><a href="{{link.enlace}}">{{link.titulo}}</a></li>
+            <li>
+              <a class="{{link.css}}" href="{{link.enlace}}">
+                {%if link.icono%}
+                  <span class="{{link.icono}}"></span>
+                {%endif%}
+                {{link.titulo}}
+              </a>
+            </li>
           {%endfor%}
         </ul>
       </script>

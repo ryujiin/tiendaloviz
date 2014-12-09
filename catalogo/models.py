@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 #from sorl.thumbnail import get_thumbnail
 from django.conf import settings
 from sorl.thumbnail import get_thumbnail
+#from cliente.models import Comentario
 
 # Create your models here.
 class Producto(models.Model):
@@ -22,6 +23,7 @@ class Producto(models.Model):
 	descripcion = models.TextField(blank=True,null=True)
 	creado = models.DateTimeField(auto_now_add=True)
 	imagen = models.ImageField(upload_to="uploads/catalogo/producto/imagen/")
+	video = models.CharField(max_length=120, blank=True,null=True)
 
 	def __unicode__(self):
 		return self.full_name
@@ -74,7 +76,10 @@ class Producto(models.Model):
 	def get_parientes(self):
 		parientes = self.parientes.all()
 		return parientes
-			
+
+	def get_num_estrellas(self):
+		num_entrellas = Comentario.objects.filter(producto=self)
+		return num_entrellas
 
 class Color(models.Model):
 	nombre = models.CharField(max_length=100)
@@ -184,9 +189,9 @@ class ProductoImagen(models.Model):
 		ordering = ["orden"]
 
 	def get_thum_medium(self):
-		img = get_thumbnail(self.foto, '740x550', quality=80)
+		img = get_thumbnail(self.foto, '740x600', quality=80)
 		return img
 
 	def get_thum(self):
-		img = get_thumbnail(self.foto, '150x50', quality=80)
+		img = get_thumbnail(self.foto, '150x100', quality=80)
 		return img
