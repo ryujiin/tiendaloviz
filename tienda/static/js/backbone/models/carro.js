@@ -8,7 +8,7 @@ Loviz.Models.Carro = Backbone.Model.extend({
     },
 	initialize : function () {
         //En el modelo usuario hay un condicional cuando falla la busqueda
-        //this.listenToOnce(window.models.usuario, "change", this.buscar_carro, this);
+        this.listenToOnce(window.models.usuario, "change", this.buscar_carro, this);
 	},
     defaults:{
         "propietario": null, 

@@ -78,7 +78,23 @@
          <div id="carro_cuerpo">
             <h3>Tu tienes <span>{{lineas}}</span> producto en tu carrito de compras</h3>
             {%if lineas != 0 %}
-              <div class="lineas_productos">wpefwfoj</div>
+              <div class="lineas_productos">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Ref. de producto</th>
+                            <th>talla</th>
+                            <th>Precio</th>
+                            <th>Cantidad</th>
+                            <th>subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="lineas_carro">
+                    </tbody>
+                </table>
+              </div>
             {%endif%}
          </div>
          <div id="bloques_extras"></div>
