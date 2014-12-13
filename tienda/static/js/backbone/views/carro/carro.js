@@ -11,6 +11,7 @@ Loviz.Views.Carro = Backbone.View.extend({
 		var html = this.template(modelo);
 	    this.$el.html(html);
 	    this.addLineas();
+	    this.addTotal();
 	},
 	addLineas:function () {
 		var lineas = this.model.toJSON().lineas;
@@ -27,5 +28,8 @@ Loviz.Views.Carro = Backbone.View.extend({
 	addLinea:function (linea) {
 		var viewLinea = new Loviz.Views.Linea_carro({model:linea});
 		this.$('#lineas_carro').append(viewLinea.render().el)
+	},
+	addTotal:function(){
+		var viewTotal = new Loviz.Views.Carro_total({model:this.model});
 	}
 })

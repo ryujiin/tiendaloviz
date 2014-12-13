@@ -17,6 +17,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 	    this.$el.html(html);
 	    this.generar_galeria();
 	    this.add_comentarios();
+	    this.$el.addClass('producto_single');
 	},
 	generar_galeria:function () {
 		var galeria = new Loviz.Views.Galeria_producto_single({

@@ -7,19 +7,18 @@
     </section>
     <section class="header_utilis container-fluid">
       <div class="row">
-        <div id="menu_top_ayuda" class="col-md-7"></div>
-        <div id="menu_top_buscar" class="col-md-3">
+        <div id="menu_top_ayuda" class="enlinea"></div>
+        <div id="menu_top_usuario" class="pull-right"></div>
+        <div id="menu_top_buscar" class="pull-right">
           <span class="glyphicon glyphicon-search"></span>
-          <input type="text" class="buscador">
         </div>
-        <div id="menu_top_usuario" class="col-md-2"></div>
       </div>
     </section>
     <section class="header_principal container-fluid">
       <div class="contenedor row">
         <div class="col-md-3" id="logo"><h1><a class="link" href="/">LovizDelCarpio</a></h1></div>
         <div class="col-md-7" id="navegacion"></div>
-        <div class="col-md-col-2" id="mini_carro"></div>
+        <div class="pull-right" id="mini_carro"></div>
       </div>
     </section>
     <div id="linea_addcart"></div>
@@ -39,7 +38,8 @@
 	{% verbatim %}
       <!--Este es template Pagina-->
       <script id="pagina_template" type="text/template">
-         <div class="banners">
+        <div class="contenedor">
+          <div class="banners">
             <div class="contenedor">
                <div class="container-fluid">
                   <div id="banners" class="row">
@@ -47,18 +47,22 @@
                </div>
             </div>
          </div>
+         <div id="breadcrumb">           
+         </div>
          <div class="carruseles">
             <div id="carruseles" class="contenedor">
             </div>
          </div>
-         <h1>{{titulo}}</h1>
+         <h1 class="titulo">{{titulo}}</h1>
          <div id="cuerpo">{{cuerpo}}</div>
          <div id="bloques_extras"></div>
+        </div>
       </script>
 
       <!--Este es template Catalgo-->
       <script id="catalogo_template" type="text/template">
-        <div class="container-fluid">
+        <div class="contenedor">
+          <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
               <aside class="lateral"></aside>
@@ -70,11 +74,13 @@
             </div>
           </div>
         </div>
+        </div>
       </script>
 
       <!--Este es Template de Carro-->
       <script id="carro_template" type="text/template">
-         <h1>Su carrito de compras</h1>
+        <div class="contenedor">
+          <h1 class="titulo">Su carrito de compras</h1>
          <div id="carro_cuerpo">
             <h3>Tu tienes <span>{{lineas}}</span> producto en tu carrito de compras</h3>
             {%if lineas != 0 %}
@@ -95,14 +101,34 @@
                     </tbody>
                 </table>
               </div>
+              <div id="tabla_carro">
+              </div>
             {%endif%}
          </div>
          <div id="bloques_extras"></div>
+        </div>
+      </script>
+
+      <script id="carro_tabla_total_template" type="text/template">
+            <table>
+                <tr>
+                    <td><label for="">Subtotal</label></td>
+                    <td>S/. {{subtotal}}</td>
+                </tr>
+                <tr>
+                    <td><label for="">Envio estimado</label></td>
+                    <td>S/. --.--?</td>
+                </tr>
+                <tr>
+                    <td><label for="">Total</label></td>
+                    <td>S/. {{total}}</td>
+                </tr>
+            </table>
       </script>
 
       <script id="mini_carro_template" type="text/template">
         <a class="link" href="/carro/">
-          <span class="glyphicon glyphicon-shopping-cart"></span>Carrito <span class="number">{{lineas}}</span>
+          <span class="glyphicon glyphicon-shopping-cart"></span>Carrito <span class="badge number">{{lineas}}</span>
         </a>
       </script>
 
@@ -129,10 +155,10 @@
       <script id="producto_single_template" type="text/template">
         <div class="container-fluid">
           <div class="contenedor row">
-            <div id="galerias" class="col-md-8">
+            <div id="galerias" class="col-md-7">
               <div id="producto_galeria"></div>
             </div>
-            <div id="datos" class="col-md-4">
+            <div id="datos" class="col-md-5">
               <p>{{genero}}</p>
               <h1 class="titulo">{{full_name}} - <i>{{marca}}</i></h1>
               <div class="precios_single">
@@ -173,7 +199,7 @@
                 </div>
                 <div class="formulario_producto">
                   <div>
-                    <select name="talla" id="" class="talla">
+                    <select name="talla" id="" class="talla form-control">
                       <option value=''>Selecciona una talla</option>
                       {%for varia in variaciones%}
                         <option value="{{varia.id}}">{{varia.talla}}</option>
@@ -181,7 +207,7 @@
                     </select>
                   </div>
                   <div>
-                    <button class="addcart"><span class="icon-cart2"></span> Agregar al Carrito</button>
+                    <button class="addcart btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</button>
                   </div>
                 </div>
             </div>
@@ -270,7 +296,7 @@
       </script>
       <!--Componentes Listas de la web-->
       <script id="producto_lista_template" type="text/template">
-         <span class="glyphicon glyphicon-search"></span>
+         <span class="icono glyphicon glyphicon-search"></span>
             <a class="link" href="/producto/{{slug}}/">
                 <figure>
                     <img src="{{thum}}" alt="{{full_name}} {{marca}}">
@@ -281,7 +307,7 @@
                 </div>
                 <div class="precios">
                     {%if en_oferta %}
-                    <span class="old_precio">S/. {{precio}}</span>
+                    <span class="old_precio"><s>S/. {{precio}}</s></span>
                     {%endif%}
                     <span class="precio {%if en_oferta%}en_oferta{% endif %}">S/. {{precio_mostrar}}</span>
                 </div>
@@ -346,6 +372,27 @@
             <span class="glyphicon glyphicon-star-empty"></span>  
           {%endif%}
         {%endfor%}
+      </script>
+
+      <script id="bread_template" type="text/template">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+      </script>
+
+      <script id="filtro_template" type="text/template">
+        <h2 class="titulo">{{titulo}}</h2>
+        <div class="filtros"></div>
+      </script>
+
+      <script id="filtro_link_template" type="text/template">
+        {%if filtro === true%}
+          <a data-nombre='categoria_slug' data-valor='{{slug}}' class="link_filtro" href="!#{{slug}}">
+            <span class="icon-stop"></span>{{nombre}}</a>
+        {%else%}
+          <a data-nombre='{{filtro}}' data-valor='{{nombre}}' class="link_filtro" href="!#{{slug}}">
+            <span class="icon-stop"></span>{{nombre}}</a>
+        {%endif%}
       </script>
    {% endverbatim %}
 {% endblock %}

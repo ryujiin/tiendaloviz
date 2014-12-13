@@ -1,17 +1,41 @@
 .contenedor{max-width:1200px;margin:0 auto}
 #banner_header{height:400px;background-color:#f9f9f9}
 body a{color:#111}
+body .bloque{padding:2px}
 body img{width:100%}
-body .text_imprenta{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
+body .enlinea{display:inline-block}
+body .titulo,body .text_imprenta{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
 body .text_cursiva{font-family:'Great Vibes',cursive}
-.bloque{padding:2px}
-.contraste1{background:#111;color:#fff}
+body .visible{display:block !important}
+body .contraste1{background:#111;color:#fff}
+#banner_header.banner{height:100px !important}
+#contenido{padding:10px 0}
+.header_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4;}
+.header_principal #mini_carro .number{background:#333}
+.header_utilis #menu_top_ayuda li,.header_utilis #menu_top_usuario li{border-right:1px solid #f4f4f4}
+.header_utilis #menu_top_ayuda a,.header_utilis #menu_top_usuario a{padding:5px 10px;letter-spacing:1px;display:inline-block}
+.header_utilis #menu_top_buscar span{padding:6px 10px}
+.header_utilis #menu_top_usuario a{border-left:1px solid #f4f4f4}
 #logo{font-family:'Great Vibes',cursive;}
 #logo h1{padding:0;margin:0}
 #logo a:hover{color:#111;text-decoration:none}
-#menu_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4}
+#menu_top_ayuda li a{padding:0 5px}
+#mini_carro{padding:10px}
 #navegacion li a{padding:10px;display:inline-block;font-size:1.1em}
 .parallax{width:100%;background-position:center top;overflow:hidden;position:relativa;background-attachment:fixed;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;background-position:center center;background-repeat:no-repeat}
+.producto_single .precios_single .variacion{display:none}
+.productos .producto{text-align:center;position:relative;}
+.productos .producto:hover .icono{display:block}
+.productos .producto:hover .estrellas{opacity:1}
+.productos .producto a{font-size:1.2em}
+.productos .producto a:hover{color:#333}
+.productos .producto .icono{position:absolute;top:5px;display:none;right:25px}
+.productos .producto .estrellas{opacity:0}
+.productos .producto .nombre_producto{text-transform:uppercase;font-family:'Pathway Gothic One',sans-serif;}
+.productos .producto .nombre_producto .nombre{font-weight:bold}
+.productos .producto .precios .old_precio{font-size:.8em}
+.productos .producto .precios .en_oferta{color:#f7727a}
+.productos .producto .precios .precio{font-weight:600}
 ul.menu{padding:0;margin:0;}
 ul.menu li{list-style:none;display:inline-block;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
 .sin-titulo .titulo{display:none}

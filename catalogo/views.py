@@ -12,7 +12,7 @@ from rest_framework import status
 from rest_framework import viewsets
 
 class CategoriaViewsets(viewsets.ReadOnlyModelViewSet):
-	model = Categoria
+	queryset = Categoria.objects.all()
 	serializer_class = CategoriaSerializer	
 
 class ProductoListaViewsets(viewsets.ModelViewSet):
@@ -44,22 +44,27 @@ class CatalogoViewsets(viewsets.ReadOnlyModelViewSet):
 	serializer_class = ProductoListaSerializer
 
 	def get_queryset(self):
-		queryset = Producto.objects.all().order_by('-pk')
+		queryset = Producto.objects.filter(activo=True).order_by('-pk')
 		return queryset
 
 ##Catalogo##
 
-class ColorViewsets(viewsets.ReadOnlyModelViewSet):
-	model = Color
+from serializers import ColoresSerializers,EstilosSerializers,TallaSerializers
 
-class GeneroViewsets(viewsets.ReadOnlyModelViewSet):
-	model = Genero
+class ColorViewsets(viewsets.ReadOnlyModelViewSet):
+	queryset = Color
+
+class ColorViewsets(viewsets.ReadOnlyModelViewSet):
+	queryset = Color.objects.all()
+	serializer_class = ColoresSerializers
 
 class TallaViewsets(viewsets.ReadOnlyModelViewSet):
-	model = Talla
+	queryset = Talla.objects.all()
+	serializer_class = TallaSerializers
 
 class SeccionViewsets(viewsets.ReadOnlyModelViewSet):
 	model = Seccion
 
 class EstiloViewsets(viewsets.ReadOnlyModelViewSet):
-	model = Estilo
+	queryset = Estilo.objects.all();
+	serializer_class = EstilosSerializers
