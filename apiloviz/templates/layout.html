@@ -388,10 +388,10 @@
       <script id="filtro_link_template" type="text/template">
         {%if filtro === true%}
           <a data-nombre='categoria_slug' data-valor='{{slug}}' class="link_filtro" href="!#{{slug}}">
-            <span class="icon-stop"></span>{{nombre}}</a>
+            <span class="icon-stop"></span>{{nombre}} ({{num}})</a>
         {%else%}
           <a data-nombre='{{filtro}}' data-valor='{{nombre}}' class="link_filtro" href="!#{{slug}}">
-            <span class="icon-stop"></span>{{nombre}}</a>
+            <span class="icon-stop"></span>{{nombre}} ({{num}})</a>
         {%endif%}
       </script>
 

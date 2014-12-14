@@ -14,8 +14,8 @@ Loviz.Views.Categoria_filtros = Backbone.View.extend({
         this.addFiltros();
     },
     add_filtro:function (filtro) {
+        filtro.set('filtro',true);        
         var link = new Loviz.Views.Filtro_link({ model: filtro });
-        filtro.set('filtro',true);
         this.$('.filtros').append(link.render().el);
     },
     addFiltros:function () {
