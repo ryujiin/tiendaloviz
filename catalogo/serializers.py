@@ -146,7 +146,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
 		return obj.genero.slug
 
 	def get_filtro(self,obj):
-		return 'categoria'
+		return 'categoria_slug'
 
 class ColoresSerializers(serializers.ModelSerializer):
 	filtro = serializers.SerializerMethodField()	

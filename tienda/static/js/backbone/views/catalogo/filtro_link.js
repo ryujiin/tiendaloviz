@@ -7,14 +7,18 @@ Loviz.Views.Filtro_link = Backbone.View.extend({
     template: swig.compile($("#filtro_link_template").html()),
     
     initialize: function () {
-        this.quick =false;
+        this.get_numero_items();
+
+        this.listenTo(this.model, "change", this.render, this);
     },
     
     render: function () {
-        this.get_numero_items();
         var album = this.model.toJSON();
         var html = this.template(album);
         this.$el.html(html);
+        if (this.model.toJSON().num===0) {
+            this.$el.hide();
+        };
         return this;
     },
     filtrar:function (e) {
@@ -30,18 +34,27 @@ Loviz.Views.Filtro_link = Backbone.View.extend({
         window.views.catalogo.filtro[nombre] = valor;
         window.views.catalogo.$('.productos').empty().fadeIn();
         window.views.catalogo.mostrar_productos();
+
+        window.views.catalogo.filtros_link.forEach(function(link){
+            link.get_numero_items();
+        })
+
+        var url = e.currentTarget.pathname+'?'+nombre+'='+valor
+        Backbone.history.navigate(url);
     },
     get_numero_items:function () {
+        debugger;
         var filtro = $.extend({},window.views.catalogo.filtro)
         var num;
-        if (this.model.toJSON().filtro===true) {
-            filtro['categoria_slug']=this.model.toJSON().slug;
+        if (this.model.toJSON().categoria===true) {
+            filtro[this.model.toJSON().filtro]=this.model.toJSON().slug
             num = window.views.catalogo.collection.where(filtro).length
-            debugger;
         }else{
             filtro[this.model.toJSON().filtro]=this.model.toJSON().nombre
             num = window.views.catalogo.collection.where(filtro).length
         }
+        debugger;
+
         this.model.set('num',num);
-    }
+    },
 });

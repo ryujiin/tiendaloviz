@@ -15,6 +15,7 @@ Loviz.Views.Filtro_bloque = Backbone.View.extend({
     },
     add_filtro:function (filtro) {
         var link = new Loviz.Views.Filtro_link({ model: filtro });
+        window.views.catalogo.filtros_link.push(link);
         this.$('.filtros').append(link.render().el);
     },
 });

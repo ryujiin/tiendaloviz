@@ -34,6 +34,7 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 		producto.$el.addClass('col-md-4')
 	},
 	crear_filtros:function (slug) {
+		this.filtros_link = [];
 		if (slug==='ofertas') {
 			this.filtro_categoria('mujeres');
 			this.filtro_categoria('hombres');
