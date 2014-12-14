@@ -28,6 +28,7 @@ Loviz.Views.Filtro_link = Backbone.View.extend({
 
         var nombre = this.$('a').data('nombre');
         var valor = this.$('a').data('valor');
+
         
         window.views.catalogo.$('#filtros').append(this.etiqueta.render().el)
 
@@ -36,24 +37,27 @@ Loviz.Views.Filtro_link = Backbone.View.extend({
         window.views.catalogo.mostrar_productos();
 
         window.views.catalogo.filtros_link.forEach(function(link){
-            link.get_numero_items();
+            link.get_numero_items(true);
         })
 
         var url = e.currentTarget.pathname+'?'+nombre+'='+valor
         Backbone.history.navigate(url);
     },
-    get_numero_items:function () {
-        debugger;
+    get_numero_items:function (repaso) {
         var filtro = $.extend({},window.views.catalogo.filtro)
         var num;
-        if (this.model.toJSON().categoria===true) {
-            filtro[this.model.toJSON().filtro]=this.model.toJSON().slug
-            num = window.views.catalogo.collection.where(filtro).length
-        }else{
+        if (repaso===true) {
             filtro[this.model.toJSON().filtro]=this.model.toJSON().nombre
             num = window.views.catalogo.collection.where(filtro).length
+        }else{
+            if (this.model.toJSON().categoria===true) {
+                filtro[this.model.toJSON().filtro]=this.model.toJSON().slug
+                num = window.views.catalogo.collection.where(filtro).length
+            }else{
+                filtro[this.model.toJSON().filtro]=this.model.toJSON().nombre
+                num = window.views.catalogo.collection.where(filtro).length
+            }
         }
-        debugger;
 
         this.model.set('num',num);
     },
