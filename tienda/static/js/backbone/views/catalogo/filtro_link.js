@@ -18,8 +18,14 @@ Loviz.Views.Filtro_link = Backbone.View.extend({
     },
     filtrar:function (e) {
         e.preventDefault();
+        
+        this.etiqueta = new Loviz.Views.Etiqueta_filtro({model:this.model});
+
         var nombre = this.$('a').data('nombre');
         var valor = this.$('a').data('valor');
+        
+        window.views.catalogo.$('#filtros').append(this.etiqueta.render().el)
+
         window.views.catalogo.filtro[nombre] = valor;
         window.views.catalogo.$('.productos').empty().fadeIn();
         window.views.catalogo.mostrar_productos();

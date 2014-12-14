@@ -44,7 +44,6 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 		}
 		this.filtro_add('Estilos');		
 		this.filtro_add('Colores');
-		this.filtro_add('Tallas');
 	},
 	filtro_categoria:function (genero) {
 		var categoria = new Loviz.Views.Categoria_filtros({collection:this.categorias});

@@ -35,7 +35,7 @@ Loviz.Routers.Base = Backbone.Router.extend({
 	},
 	usuario : function () {		
 	},
-	catalogo : function (slug,categria) {
+	catalogo : function (slug) {
 		window.views.catalogo.render();
 		window.views.catalogo.mostrar_productos(slug);
 		window.views.catalogo.crear_filtros(slug);
