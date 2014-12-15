@@ -6,6 +6,7 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		'user/:slug/':'usuario',
 		'catalogo/':'catalogo',
 		'catalogo/:slug/':'catalogo',
+		'categoria/:slug/':'catalogo_categoria',
 		'producto/:slug/':'producto_single',
 		'*notFound': 'notFound',
 	},
@@ -40,7 +41,11 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		window.views.catalogo.mostrar_productos(slug);
 		window.views.catalogo.crear_filtros(slug);
 	},
-	categria:function (categria) {
+	catalogo_categoria:function (slug) {
+		window.views.catalogo.render();
+		window.views.catalogo.mostrar_productos(slug);
+		window.views.catalogo.crear_filtros(slug);
+		console.log('categoria '+ categoria)
 	},
 	producto_single : function (slug) {
 		var modelo = window.collections.productos_single.findWhere({slug:slug})
