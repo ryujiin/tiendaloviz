@@ -65,7 +65,11 @@
           <div class="container-fluid">
           <div class="row">
             <div class="col-md-2">
-              <aside class="lateral"></aside>
+              <aside class="lateral">
+                <div class="clear_filtros contraste1 text-center clickeable">
+                  Limpiar Filtros
+                </div>
+              </aside>
             </div>
             <div class="col-md-10">
               <div id="filtros"></div>
@@ -79,21 +83,22 @@
 
       <!--Este es Template de Carro-->
       <script id="carro_template" type="text/template">
-        <div class="contenedor">
+        <div class="contenedor container-fluid">
           <h1 class="titulo">Su carrito de compras</h1>
          <div id="carro_cuerpo">
-            <h3>Tu tienes <span>{{lineas}}</span> producto en tu carrito de compras</h3>
+            <h3 class="subtitulo"></h3>
+            <button type="button" class="btn btn-default pull-right">Procesar mi compra</button>
             {%if lineas != 0 %}
               <div class="lineas_productos">
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Ref. de producto</th>
-                            <th>talla</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>subtotal</th>
+                            <th class="text-center">talla</th>
+                            <th class="text-center">Precio</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">subtotal</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -101,7 +106,9 @@
                     </tbody>
                 </table>
               </div>
-              <div id="tabla_carro">
+              <div class="row">
+                <div class="col-md-6"></div>
+                <div id="tabla_carro" class="col-md-6"></div>
               </div>
             {%endif%}
          </div>
@@ -109,8 +116,12 @@
         </div>
       </script>
 
+      <script id="num_lineas_carro_template" type="text/template">
+        Usted tiene <span>{{lineas}}</span> producto(s) en tu carrito de compras
+      </script>
+
       <script id="carro_tabla_total_template" type="text/template">
-            <table>
+            <table class="table">
                 <tr>
                     <td><label for="">Subtotal</label></td>
                     <td>S/. {{subtotal}}</td>
@@ -134,12 +145,19 @@
 
       <script id="carro_linea_template" type="text/template">
         <td class="img"><img src="{{thum}}" alt=""></td>
-        <td class="name">{{nombre}}</td>
-        <td class="tall">{{talla}}</td>
-        <td class="precio">S/. {{precio}}</td>
-        <td class="cantidad"><span class="up"></span><span class="numero">{{cantidad}}</span><span class="down"></span></td>
-        <td class="total">S/. {{subtotal}}</td>
-        <td class="accion"><span class="icon-trashcan"></span></td>
+        <td class="name">
+          <div>{{nombre}}</div>
+        </td>
+        <td class="tall text-center">{{talla}}</td>
+        <td class="precio text-center">S/. {{precio}}</td>
+        <td class="cantidad text-center">
+          <span class="down boton-cantidad icon-arrow-down"></span>          
+          <span class="numero">{{cantidad}}</span>
+          <span class="up boton-cantidad icon-arrow-up"></span>
+          <input type="hidden" class="cantidad_num" value="{{cantidad}}">
+        </td>
+        <td class="total text-center">S/. {{subtotal}}</td>
+        <td class="accion text-center"><span class="icon-trashcan"></span></td>
       </script>
 
       <script id="linea_addcart_template" type="text/template">

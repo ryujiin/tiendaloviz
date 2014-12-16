@@ -5,6 +5,8 @@ Loviz.Views.Catalogo = Backbone.View.extend({
     template: swig.compile($("#catalogo_template").html()),
 
 	events: {
+		'click .bloque_filtro input':'mostrar_clear_filtro',
+		'click .clear_filtros':'borrar_filtros',
 	},
 	initialize : function () {
 		var self = this;
@@ -13,6 +15,7 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 	render:function () {
 		var html = this.template();
         this.$el.html(html);
+        this.$('.clear_filtros').hide();
 	},
 	mostrar_productos:function (slug) {
 		var coleccion = this.collection;
@@ -62,5 +65,15 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 
 		coleccion.fetch();
 		this.$('.lateral').append(filtro.$el);
-	}
+	},
+	mostrar_clear_filtro:function (argument) {
+        $('.clear_filtros').fadeIn();
+    },
+    borrar_filtros:function () {
+    	this.$('.bloque_filtro input').prop('checked',false);
+    	this.lista_producto.forEach(function (producto) {    		
+    		producto.$el.show();
+    	});
+    	this.$('.clear_filtros').hide();
+    }
 });

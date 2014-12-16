@@ -72,5 +72,6 @@ Loviz.Views.Filtro_bloque = Backbone.View.extend({
 
         })
         
-    }
+    },
+
 });

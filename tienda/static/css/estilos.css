@@ -8,8 +8,23 @@ body .titulo,body .text_imprenta{font-family:'Pathway Gothic One',sans-serif;tex
 body .text_cursiva{font-family:'Great Vibes',cursive}
 body .visible{display:block !important}
 body .contraste1{background:#111;color:#fff}
+body .clickeable{cursor:pointer}
 #banner_header.banner{height:100px !important}
+.btn-default{color:#fff;background:#111;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase;font-size:1.2em;}
+.btn-default:hover{background:#2dbab2;color:#111}
 #contenido{padding:10px 0}
+.carro .titulo{text-align:center}
+.carro .subtitulo{font:italic 21px Georgia,"Times New Roman",serif;}
+.carro .subtitulo span{font-weight:bold}
+.carro .lineas_productos .table{border-bottom:1px solid #111;}
+.carro .lineas_productos .table thead{text-transform:uppercase}
+.carro .lineas_productos .table .cantidad .boton-cantidad{cursor:pointer}
+.carro .lineas_productos .table .cantidad .numero{border:1px solid #ccc;padding:5px 20px}
+.carro .lineas_productos .table .img{width:160px}
+.carro .lineas_productos .table .name{font-size:20px}
+.carro .table{font-family:'Pathway Gothic One',sans-serif}
+.carro #tabla_carro .table{font-size:1.3em;}
+.carro #tabla_carro .table label{text-transform:uppercase;font-weight:normal}
 .header_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4;}
 .header_principal #mini_carro .number{background:#333}
 .header_utilis #menu_top_ayuda li,.header_utilis #menu_top_usuario li{border-right:1px solid #f4f4f4}

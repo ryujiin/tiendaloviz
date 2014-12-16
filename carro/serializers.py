@@ -47,7 +47,7 @@ class LineaSerializer(serializers.ModelSerializer):
 		return obj.producto.full_name
 
 	def get_talla(self,obj):
-		return obj.variacion.talla.pk
+		return obj.variacion.talla.nombre
 
 	def get_precio(self,obj):
 		precio = obj.variacion.get_precio_venta()

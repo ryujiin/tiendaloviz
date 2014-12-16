@@ -63,7 +63,7 @@ class CarritoDetailViews(APIView):
 
 
 class LineasViewsets(viewsets.ModelViewSet):
-	model = LineaCarro
+	queryset = LineaCarro.objects.all()
 	serializer_class = LineaSerializer
 
 	def list(self,request):

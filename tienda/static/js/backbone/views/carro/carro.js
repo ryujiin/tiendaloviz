@@ -5,6 +5,7 @@ Loviz.Views.Carro = Backbone.View.extend({
 	},
 	initialize: function () {
 		var self = this;
+	    this.listenTo(this.model, "change", this.verificar, this);
 	},
 	render:function () {
 		var modelo = this.model.toJSON();
@@ -12,6 +13,13 @@ Loviz.Views.Carro = Backbone.View.extend({
 	    this.$el.html(html);
 	    this.addLineas();
 	    this.addTotal();
+	    this.$el.addClass('carro');	    
+	    var num_lineas = new Loviz.Views.Num_lineas_carro({model:this.model});
+	},
+	verificar:function () {
+		if (this.model.toJSON().lineas===0) {
+			this.render();
+		};
 	},
 	addLineas:function () {
 		var lineas = this.model.toJSON().lineas;
