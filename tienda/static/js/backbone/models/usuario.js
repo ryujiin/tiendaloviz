@@ -9,6 +9,7 @@ Loviz.Models.Usuario = Backbone.Model.extend({
 		this.fetch()
 		.done(function () {
 			$.sessionStorage.set('usuario',self.id);
+			self.direcciones = new Loviz.Collections.Direcciones();
 		}).fail(function () {
 			self.set('texto','no hay usuario')
 		})

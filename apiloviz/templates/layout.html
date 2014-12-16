@@ -87,7 +87,7 @@
           <h1 class="titulo">Su carrito de compras</h1>
          <div id="carro_cuerpo">
             <h3 class="subtitulo"></h3>
-            <button type="button" class="btn btn-default pull-right">Procesar mi compra</button>
+            
             {%if lineas != 0 %}
               <div class="lineas_productos">
                 <table class="table">
@@ -118,6 +118,7 @@
 
       <script id="num_lineas_carro_template" type="text/template">
         Usted tiene <span>{{lineas}}</span> producto(s) en tu carrito de compras
+        <button type="button" class="btn btn-default pull-right">Procesar mi compra</button>
       </script>
 
       <script id="carro_tabla_total_template" type="text/template">
@@ -128,7 +129,7 @@
                 </tr>
                 <tr>
                     <td><label for="">Envio estimado</label></td>
-                    <td>S/. --.--?</td>
+                    <td>S/. {{envio}}</td>
                 </tr>
                 <tr>
                     <td><label for="">Total</label></td>
@@ -151,21 +152,33 @@
               <div class="input form-group">
                   <label for="" class="col-sm-3 control-label">Departamento</label>                        
                   <div class="col-sm-9">
+                    {%if slug_depa%}
+                      <p class="text-uppercase">{{slug_depa}}</p>
+                    {%else%}
                     <select name="departamento" id="departamento_envio" class="form-control">
-                        <option>Por favor Seleccione</option>
+                          <option>Por favor Seleccione</option>
                     </select>
+                    {%endif%}
                   </div>
               </div>
               <div class="input form-group">
                   <label for="" class="col-sm-3 control-label">Provincia</label>
                   <div class="col-sm-9">
+                    {%if slug_provi%}
+                      <p class="text-uppercase">{{slug_provi}}</p>
+                    {%else%}
                     <select name="provincia" id="provincia_envio" class="form-control"></select>                   
+                    {%endif%}
                   </div>
               </div>
               <div class="input form-group">
                   <label for="" class="col-sm-3 control-label">Distrito</label>
                   <div class="col-sm-9">
+                    {%if slug_distri%}
+                      <p class="text-uppercase">{{slug_distri}}</p>
+                    {%else%}
                     <select name="distrito" id="distrito_envio" class="form-control"></select>                     
+                    {%endif%}
                   </div>
               </div>
           </form>

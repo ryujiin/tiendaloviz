@@ -15,7 +15,8 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
   },
 
   render: function () {
-    var html = this.template();
+    var modelo = this.model.toJSON();
+    var html = this.template(modelo);
     this.$el.html(html);
     this.mostrarse();
   },

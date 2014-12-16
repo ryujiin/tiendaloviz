@@ -26,7 +26,10 @@ class CarroSerializer(serializers.ModelSerializer):
 		return "%0.2f" %(subtotal)
 
 	def get_envio(self,obj):
-		return obj.envio_carro()
+		envio = obj.envio_carro()
+		if envio !='Envio Gratis!':
+			envio = "%0.2f" %(envio)
+		return envio
 
 class LineaSerializer(serializers.ModelSerializer):
 	thum = serializers.SerializerMethodField()

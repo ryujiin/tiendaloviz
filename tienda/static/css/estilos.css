@@ -16,6 +16,7 @@ body .clickeable{cursor:pointer}
 .carro .titulo{text-align:center}
 .carro .subtitulo{font:italic 21px Georgia,"Times New Roman",serif;}
 .carro .subtitulo span{font-weight:bold}
+.carro .subtitulo button{font-size:.9em}
 .carro .lineas_productos .table{border-bottom:1px solid #111;}
 .carro .lineas_productos .table thead{text-transform:uppercase}
 .carro .lineas_productos .table .cantidad .boton-cantidad{cursor:pointer}

@@ -6,6 +6,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from catalogo.models import *
+from cliente.models import Direccion
 from django.contrib.auth.models import User as User
 
 # Create your models here.
@@ -54,6 +55,16 @@ class Carro(models.Model):
 
 	def envio_carro(self):
 		envio = 0
+		if self.propietario:
+			direcciones = Direccion.objects.filter(usuario=self.propietario)[:1]
+			for direccion in direcciones:
+				#este precio es para lima
+				if direccion.provincia.id==28692:
+					envio = 6
+				else:
+					envio = 13
+		if self.total_carro()>60:
+			envio = 'Envio Gratis!'
 		return envio
 
 	def save(self, *args, **kwargs):
