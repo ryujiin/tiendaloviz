@@ -391,7 +391,7 @@
             <span class="icon-stop"></span>{{nombre}} ({{num}})</a>
         {%else%}
           <label>
-            <input type="checkbox" value="{{slug}}" data-nombre='{{filtro}}' data-valor='{{nombre}}'>
+            <input type="radio" name="{{filtro}}" id="{{slug}}" value="{{slug}}" data-nombre='{{filtro}}' data-valor='{{nombre}}'>
             {{nombre}} ({{num}})
           </label>
         {%endif%}

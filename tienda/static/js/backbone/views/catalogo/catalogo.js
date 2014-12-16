@@ -16,6 +16,7 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 	},
 	mostrar_productos:function (slug) {
 		var coleccion = this.collection;
+		this.lista_producto=[];
 		if (slug==='en-oferta') {
 			this.filtro={en_oferta:true}
 		}else if(slug==='nuevos'){
@@ -33,7 +34,8 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 	addOne: function (produ) {
 		var producto = new Loviz.Views.Producto({ model: produ });
 		this.$('.productos').append(producto.render().el);
-		producto.$el.addClass('col-md-4')
+		producto.$el.addClass('col-md-4');
+		this.lista_producto.push(producto);
 	},
 	crear_filtros:function (slug) {
 		this.filtros_link = [];
@@ -57,7 +59,7 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 		var coleccion = new Loviz.Collections.Filtros();
 		coleccion.filtro = filtro
 		var filtro = new Loviz.Views.Filtro_bloque({collection:coleccion});
-		
+
 		coleccion.fetch();
 		this.$('.lateral').append(filtro.$el);
 	}

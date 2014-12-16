@@ -1,7 +1,8 @@
 Loviz.Views.Filtro_bloque = Backbone.View.extend({
     className: 'bloque_filtro',
     events: {
-        'click input' : 'listaFiltros',
+        //'click input' : 'listaFiltros',
+        'click input' : 'ocultar_nocoiciden',
     },
     template: swig.compile($("#filtro_template").html()),
     
@@ -34,6 +35,42 @@ Loviz.Views.Filtro_bloque = Backbone.View.extend({
             delete window.views.catalogo.filtro.estilo;
             window.views.catalogo.mostrar_productos();
         };
+        
+    },
+    ocultar_nocoiciden:function () {
+        window.views.catalogo.lista_producto.forEach(function (producto) {
+            producto.$el.hide();
+        });
+        var con_estilo = false;
+        $('.lateral input:checked').each(function (index,value) {
+            var nombre = $(value).data('nombre');
+            var valor = $(value).data('valor');
+            if (nombre==='estilo') {
+                window.views.catalogo.lista_producto.forEach(function (producto) {
+                    if(producto.model.toJSON().estilo===valor){
+                        producto.$el.show().addClass('seleccionado');
+                    }
+                });
+                con_estilo=true;
+            }
+            if (nombre==='color') {
+                if (con_estilo===false) {
+                    window.views.catalogo.lista_producto.forEach(function (producto) {
+                        if(producto.model.toJSON().color===valor){
+                            producto.$el.show();
+                        }
+                    })                    
+                }else{
+                    window.views.catalogo.lista_producto.forEach(function (producto) {
+                        if(producto.model.toJSON().color!==valor){
+                            producto.$el.hide();
+                        }
+                    })                    
+                }
+                
+            };
+
+        })
         
     }
 });
