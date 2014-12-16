@@ -2,6 +2,8 @@ Loviz.Routers.Base = Backbone.Router.extend({
 	routes : {
 		"" : "root",
 		'carro/':'carro',
+		'comprar/':'comprar',
+		'ingresar/':'ingresar',
 		'pagina/:slug/':'pagina',
 		'user/:slug/':'usuario',
 		'catalogo/':'catalogo',
@@ -34,7 +36,16 @@ Loviz.Routers.Base = Backbone.Router.extend({
 	},
 	pagina: function () {
 	},
+	comprar:function () {
+		window.views.comprar = new Loviz.Views.Comprar();
+	},
 	usuario : function () {		
+	},
+	ingresar:function () {
+		window.views.usuario = new Loviz.Views.Usuario();
+		window.views.usuario.titulo ='Identificarse o crear una cuenta';
+		window.views.usuario.render();
+		window.views.usuario.rellenar('ingresar');
 	},
 	catalogo : function (slug) {
 		window.views.catalogo.render();

@@ -17,7 +17,7 @@ Loviz.Views.Header_banner = Backbone.View.extend({
         this.$el.html(html);
 	},
 	aparecer:function (e) {
-		if (e==='carro'|| e==='producto_single') {
+		if (e==='carro'|| e==='producto_single' || e==='comprar' || e==='ingresar') {
 			this.$el.hide();
 		}else{
 			this.$el.show();

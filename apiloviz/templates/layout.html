@@ -87,7 +87,6 @@
           <h1 class="titulo">Su carrito de compras</h1>
          <div id="carro_cuerpo">
             <h3 class="subtitulo"></h3>
-            
             {%if lineas != 0 %}
               <div class="lineas_productos">
                 <table class="table">
@@ -118,7 +117,7 @@
 
       <script id="num_lineas_carro_template" type="text/template">
         Usted tiene <span>{{lineas}}</span> producto(s) en tu carrito de compras
-        <button type="button" class="btn btn-default pull-right">Procesar mi compra</button>
+        <button type="button" class="btn btn-default pull-right procesar">Procesar mi compra</button>
       </script>
 
       <script id="carro_tabla_total_template" type="text/template">
@@ -136,10 +135,12 @@
                     <td>S/. {{total}}</td>
                 </tr>
             </table>
+            <button type="button" class="btn btn-default pull-right procesar">Procesar mi compra</button>
       </script>
 
       <script id="formulario_envio_template" type="text/template">
           <p>Selecciona el Lugar de envio para calcular costo</p>
+          <button class="btn btn-default btn-xs modificar">Modificar Direccion</button>
           <form role="form" class="form-horizontal">
               <div class="iput form-group">
                   <label for="" class="col-sm-3 control-label">Pais</label>
@@ -190,6 +191,13 @@
         </a>
       </script>
 
+      <script id="comprar_bloque_template" type="text/template">
+        <h3>{{titulo}}</h3>
+        <div class="cuerpo">
+          
+        </div>
+      </script>
+
       <script id="carro_linea_template" type="text/template">
         <td class="img"><img src="{{thum}}" alt=""></td>
         <td class="name">
@@ -212,6 +220,75 @@
         <div class="nombre_produ">
           <h4>PANTUFLA GATITO ESTAMPADO</h4>
           <p>Añadido al carrito</p>
+        </div>
+      </script>
+
+      <!--Comprar pagina-->
+      <script id="comprar_template" type="text/template">
+        <div class="container-fluid">
+          <div class="contenedor row">
+            <h3 class="subtitulo">
+              Bienvenido a la pasarela de pago
+            </h3>
+            <div class="bloques">             
+              <div class="bloque seccion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span class="badge">1</span>Identificar Cliente
+                    <span class="icon-check pull-right"></span>
+                  </div>
+                  <div class="panel-body">
+                    Panel content
+                  </div>
+                </div>
+              </div>
+              <div class="bloque seccion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span class="badge">2</span>Direccion de Envio
+                    <span class="icon-check pull-right"></span>
+                  </div>
+                  <div class="panel-body">
+                    Panel content
+                  </div>
+                </div>
+              </div>
+              <div class="bloque seccion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span class="badge">3</span>Metodos de Pago
+                    <span class="icon-check pull-right"></span>
+                  </div>
+                  <div class="panel-body">
+                    Panel content
+                  </div>
+                </div>
+              </div>
+              <div class="bloque seccion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span class="badge">4</span>Resumen de pedido
+                    <span class="icon-check pull-right"></span>
+                  </div>
+                  <div class="panel-body">
+                    Panel content
+                  </div>
+                </div>
+              </div>
+              <div class="bloque seccion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span class="badge">5</span>Completas Pedido
+                    <span class="icon-check pull-right"></span>
+                  </div>
+                  <div class="panel-body">
+                    <p>Al realizar su pedido, usted se compromete a las Políticas de privacidad y condiciones de uso.</p>
+                    <button class="btn btn-default">Pagar mi Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </script>
 
@@ -319,6 +396,59 @@
           <a class="login_face" href="/login/facebook/">Ingresar con <span class=""></span></a>
           <a class="link" href="/ingresar/"><span class="glyphicon glyphicon-user"></span> Ingresar</a>
         {%endif%}
+      </script>
+
+      <script id="usuario_login_bloque_template" type="text/template">
+        <div class="panel panel-default">
+          <div class="panel-heading">Ingresar a su cuenta</div>
+          <div class="panel-body">
+            <p>Si usted es un usuario registrado, por favor, introduzca su email y contraseña.</p>
+            <form role="form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Recordarme
+                </label>
+              </div>
+              <p><a href="/">¿Has olvidado tu contraseña?</a></p>
+              <button type="submit" class="btn btn-default">Ingresar</button>
+            </form>
+          </div>
+        </div>
+      </script>
+
+      <script id="usuario_crear_bloque_template" type="text/template">
+        <div class="panel panel-default">
+          <div class="panel-heading">Nuevo Cliente</div>
+          <div class="panel-body">
+            <p>Al crear una cuenta en LovizdelCarpio.com tu proceso de compra es más rápido porque tus datos ya están registrados en nuestra tienda, además podrás hacer un seguimiento de tus pedidos y estar informado de las últimas novedades.</p>
+            <button class="btn btn-default aparecer">Crear Cuenta</button>
+            <div class="formulario">
+              <form role="form">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Correo Electronico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Repetir Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-default crear">Crear Cuenta</button>
+            </form>
+            </div>
+          </div>
+        </div>
       </script>
       <!--Fin de Vistas de Usuario-->
 

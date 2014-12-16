@@ -2,6 +2,7 @@ Loviz.Views.Carro = Backbone.View.extend({
 	el:$('#contenido'),
 	template : swig.compile($("#carro_template").html()),
 	events :{
+		'click .procesar':'go_procesar',
 	},
 	initialize: function () {
 		var self = this;
@@ -15,9 +16,10 @@ Loviz.Views.Carro = Backbone.View.extend({
 	    this.addTotal();
 	    this.$el.addClass('carro');	    
 	    var num_lineas = new Loviz.Views.Num_lineas_carro({model:this.model});
-	    var formu_envio = new Loviz.Views.Formu_envio({
-	    	model:window.models.usuario.direcciones.first()
-	    });
+	    var formu_envio = new Loviz.Views.Formu_envio();
+	    if (window.models.usuario.direcciones) {
+	    	formu_envio.model=window.models.usuario.direcciones.first();
+	    };
 	},
 	verificar:function () {
 		if (this.model.toJSON().lineas===0) {
@@ -42,5 +44,8 @@ Loviz.Views.Carro = Backbone.View.extend({
 	},
 	addTotal:function(){
 		var viewTotal = new Loviz.Views.Carro_total({model:this.model});
+	},
+	go_procesar:function () {
+		window.routers.base.navigate('/comprar/', {trigger:true});
 	}
 })

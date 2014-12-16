@@ -7,6 +7,7 @@ $(document).ready(function(){
 
     //Vista Tienda
     window.views.tienda = new Loviz.Views.Body( $('body') );
+    galleta = window.views.tienda.obt_galleta();
     window.views.banner_header = new Loviz.Views.Header_banner({
         model:new Loviz.Models.Banner_header()
     });

@@ -49,7 +49,9 @@ class Carro(models.Model):
 
 	def total_carro(self):
 		subtotal = self.subtotal_carro()
-		envio = 0
+		envio = self.envio_carro()
+		if envio == 'Envio Gratis!':
+			envio=0
 		total = subtotal + envio
 		return total
 
@@ -63,7 +65,7 @@ class Carro(models.Model):
 					envio = 6
 				else:
 					envio = 13
-		if self.total_carro()>60:
+		if self.subtotal_carro()>60:
 			envio = 'Envio Gratis!'
 		return envio
 

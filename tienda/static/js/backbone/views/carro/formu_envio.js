@@ -4,7 +4,7 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     'change #departamento_envio':'seleccionar_provincia',
     'change #provincia_envio':'seleccionar_distrito',
     'change #distrito_envio':'enviar_formu',
-
+    'click .modificar': 'modificar_direccion',
   },
   initialize: function () {
     this.$el = $('#formu_envio');
@@ -15,8 +15,12 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
   },
 
   render: function () {
-    var modelo = this.model.toJSON();
-    var html = this.template(modelo);
+    if (this.model) {
+      var modelo = this.model.toJSON();
+      var html = this.template(modelo);  
+    }else{
+      var html = this.template();
+    }
     this.$el.html(html);
     this.mostrarse();
   },
@@ -52,11 +56,16 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     })
   },
   enviar_formu:function () {
+    var model_direccion;
     var departamento = $('#departamento_envio').val()
     var provincia = $('#provincia_envio').val()
     var distrito = $('#distrito_envio').val()
     if (window.models.usuario.toJSON().id>0) {
-      var model_direccion = new Loviz.Models.Direccion();
+      if (this.model) {
+        model_direccion = this.model;
+      }else{
+        model_direccion = new Loviz.Models.Direccion();
+      }
       model_direccion.set({
         tipo:'envio',
         departamento:departamento,
@@ -64,8 +73,9 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
         distrito:distrito,
         usuario:window.models.usuario.toJSON().id
       });
-      model_direccion.save();
-      debugger;
+      model_direccion.save().done(function () {
+        window.models.carro.fetch();
+      });
     }else{
       debugger;
     }
@@ -77,5 +87,17 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     }else{
       this.$el.show()
     }
+  },
+  modificar_direccion:function () {
+    this.model.set({
+      departamento:null,
+      distrito:null,
+      provincia:null,
+      slug_depa:null,
+      slug_distri:null,
+      slug_provi:null,
+    });
+    this.render();
+    this.buscar_region();
   }
 });

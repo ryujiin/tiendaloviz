@@ -8,4 +8,6 @@ urlpatterns = patterns('',
 	url(r'^producto/',HomeView.as_view() , name='producto'),
 	url(r'^user/',HomeView.as_view() , name='perfil'),
 	url(r'^pagina/',HomeView.as_view() , name='perfil'),
+	url(r'^comprar/',HomeView.as_view() , name='perfil'),
+	url(r'^ingresar/',HomeView.as_view() , name='perfil'),
 )
