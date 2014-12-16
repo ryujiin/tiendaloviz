@@ -6,7 +6,6 @@ Loviz.Views.Num_lineas_carro = Backbone.View.extend({
 		this.$el = $(".carro .subtitulo");
 	    this.listenTo(this.model, "change", this.render, this);
 		this.render();
-		debugger;
 	},
 	render:function () {
 		var carro = this.model.toJSON()

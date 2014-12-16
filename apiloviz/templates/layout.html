@@ -107,7 +107,7 @@
                 </table>
               </div>
               <div class="row">
-                <div class="col-md-6"></div>
+                <div id="formu_envio" class="col-md-6"></div>
                 <div id="tabla_carro" class="col-md-6"></div>
               </div>
             {%endif%}
@@ -135,6 +135,40 @@
                     <td>S/. {{total}}</td>
                 </tr>
             </table>
+      </script>
+
+      <script id="formulario_envio_template" type="text/template">
+          <p>Selecciona el Lugar de envio para calcular costo</p>
+          <form role="form" class="form-horizontal">
+              <div class="iput form-group">
+                  <label for="" class="col-sm-3 control-label">Pais</label>
+                  <div class="col-sm-9">
+                    <select name="pais" id="pais_envio" class="form-control">
+                      <option value="PE" selected>Peru</option>
+                    </select>
+                  </div>                  
+              </div>
+              <div class="input form-group">
+                  <label for="" class="col-sm-3 control-label">Departamento</label>                        
+                  <div class="col-sm-9">
+                    <select name="departamento" id="departamento_envio" class="form-control">
+                        <option>Por favor Seleccione</option>
+                    </select>
+                  </div>
+              </div>
+              <div class="input form-group">
+                  <label for="" class="col-sm-3 control-label">Provincia</label>
+                  <div class="col-sm-9">
+                    <select name="provincia" id="provincia_envio" class="form-control"></select>                   
+                  </div>
+              </div>
+              <div class="input form-group">
+                  <label for="" class="col-sm-3 control-label">Distrito</label>
+                  <div class="col-sm-9">
+                    <select name="distrito" id="distrito_envio" class="form-control"></select>                     
+                  </div>
+              </div>
+          </form>
       </script>
 
       <script id="mini_carro_template" type="text/template">

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User as User
 from catalogo.models import Producto,ProductoVariacion
+from ubigeo.models import *
 
 # Create your models here.
 class Cliente(models.Model):
@@ -14,9 +15,9 @@ class Direccion(models.Model):
 	TIPO = (('envio','Direccion de envio'),('facturacion','Direccion de Facturacion'))
 	usuario = models.ForeignKey(User,related_name='direcciones', null=True,blank=True)
 	tipo = models.CharField(max_length=100,blank=True,null=True,choices=TIPO)
-	departamento = models.CharField(max_length=100,blank=True,null=True)
-	provincia = models.CharField(max_length=100,blank=True,null=True)
-	distrito = models.CharField(max_length=100,blank=True,null=True)
+	departamento = models.ForeignKey(Ubigeo,max_length=100,blank=True,null=True,related_name='departamento')
+	provincia = models.ForeignKey(Ubigeo,max_length=100,blank=True,null=True,related_name='provincia')
+	distrito = models.ForeignKey(Ubigeo,max_length=100,blank=True,null=True,related_name='direccion')
 	direccion = models.CharField(max_length=100,blank=True,null=True)
 	codigo_postal = models.CharField(max_length=20,blank=True,null=True)
 

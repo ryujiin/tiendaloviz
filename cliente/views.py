@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from models import *
-from serializers import PerfilUSerSerializer,UsuarioSerializer,UserSerializer,ComentairoSerializer
+from serializers import PerfilUSerSerializer,UsuarioSerializer,UserSerializer,ComentairoSerializer,DireccionSerilizer
 from django.contrib.auth.models import User, Group
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
@@ -57,6 +57,16 @@ class ComentarioViewSet(viewsets.ReadOnlyModelViewSet):
 		if producto is not None:
 			queryset = Comentario.objects.filter(producto=producto)
 		return queryset
+
+class DireccionViewsets(viewsets.ModelViewSet):
+	serializer_class = DireccionSerilizer
+	permission_classes = (IsAuthenticated,)
+
+	def get_queryset(self):
+		if self.request.user.is_authenticated():
+			queryset = Direccion.objects.filter(usuario=self.request.user)
+			return queryset
+		
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required

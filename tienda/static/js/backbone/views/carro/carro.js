@@ -15,6 +15,7 @@ Loviz.Views.Carro = Backbone.View.extend({
 	    this.addTotal();
 	    this.$el.addClass('carro');	    
 	    var num_lineas = new Loviz.Views.Num_lineas_carro({model:this.model});
+	    var formu_envio = new Loviz.Views.Formu_envio();
 	},
 	verificar:function () {
 		if (this.model.toJSON().lineas===0) {
