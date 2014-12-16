@@ -12,9 +12,10 @@ class ProductoListaSerializer(serializers.ModelSerializer):
 	precio_mostrar = serializers.SerializerMethodField('get_precio_descuento')
 	genero = serializers.SerializerMethodField('get_el_genero')
 	categoria_slug = serializers.SerializerMethodField()
+	es_nuevo = serializers.SerializerMethodField()
 	class Meta:
 		model=Producto
-		fields =('id','nombre','full_name','marca','categoria','estilo','genero','color','slug','activo','thum','en_oferta','precio','precio_mostrar','categoria_slug')
+		fields =('id','nombre','full_name','marca','categoria','estilo','genero','color','slug','activo','thum','en_oferta','precio','precio_mostrar','categoria_slug','es_nuevo')
 
 	def get_img_thum(self,obj):
 		img = obj.get_thum().url
@@ -34,6 +35,9 @@ class ProductoListaSerializer(serializers.ModelSerializer):
 
 	def get_categoria_slug(self,obj):
 		return obj.categoria.slug
+
+	def get_es_nuevo(self,obj):
+		return True
 
 class ProductoVariacionSerializer(serializers.ModelSerializer):
 	talla = serializers.CharField(read_only=True)

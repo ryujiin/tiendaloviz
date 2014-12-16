@@ -16,8 +16,10 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 	},
 	mostrar_productos:function (slug) {
 		var coleccion = this.collection;
-		if (slug==='ofertas') {
+		if (slug==='en-oferta') {
 			this.filtro={en_oferta:true}
+		}else if(slug==='nuevos'){
+			this.filtro = {es_nuevo:true};
 		}else if(slug==='hombres'){
 			this.filtro = {genero:'hombres'};
 		}else if (slug==='mujeres') {
@@ -35,16 +37,15 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 	},
 	crear_filtros:function (slug) {
 		this.filtros_link = [];
-		if (slug==='ofertas') {
-			this.filtro_categoria('mujeres');
-			this.filtro_categoria('hombres');
-		}else if (slug === 'hombres') {
+		this.filtro_add('Estilos');		
+		this.filtro_add('Colores');
+	},
+	crear_filtro_categoria:function (slug) {
+		if (slug === 'hombres') {
 			this.filtro_categoria('hombres');			
 		}else if (slug === 'mujeres') {
 			this.filtro_categoria('mujeres');			
 		}
-		this.filtro_add('Estilos');		
-		this.filtro_add('Colores');
 	},
 	filtro_categoria:function (genero) {
 		var categoria = new Loviz.Views.Categoria_filtros({collection:this.categorias});
@@ -56,6 +57,7 @@ Loviz.Views.Catalogo = Backbone.View.extend({
 		var coleccion = new Loviz.Collections.Filtros();
 		coleccion.filtro = filtro
 		var filtro = new Loviz.Views.Filtro_bloque({collection:coleccion});
+		
 		coleccion.fetch();
 		this.$('.lateral').append(filtro.$el);
 	}

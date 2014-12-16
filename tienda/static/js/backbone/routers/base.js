@@ -7,6 +7,7 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		'catalogo/':'catalogo',
 		'catalogo/:slug/':'catalogo',
 		'categoria/:slug/':'catalogo_categoria',
+		'productos/:slug/':'catalogo_seccion',
 		'producto/:slug/':'producto_single',
 		'*notFound': 'notFound',
 	},
@@ -32,20 +33,25 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		window.views.carro.render()
 	},
 	pagina: function () {
-				
 	},
 	usuario : function () {		
 	},
 	catalogo : function (slug) {
 		window.views.catalogo.render();
 		window.views.catalogo.mostrar_productos(slug);
+		window.views.catalogo.crear_filtro_categoria(slug);
 		window.views.catalogo.crear_filtros(slug);
 	},
 	catalogo_categoria:function (slug) {
 		window.views.catalogo.render();
 		window.views.catalogo.mostrar_productos(slug);
 		window.views.catalogo.crear_filtros(slug);
-		console.log('categoria '+ categoria)
+		//console.log('categoria '+ categoria)
+	},
+	catalogo_seccion:function (slug) {
+		window.views.catalogo.render();
+		window.views.catalogo.mostrar_productos(slug);
+		window.views.catalogo.crear_filtros();	
 	},
 	producto_single : function (slug) {
 		var modelo = window.collections.productos_single.findWhere({slug:slug})
@@ -64,4 +70,4 @@ Loviz.Routers.Base = Backbone.Router.extend({
 	notFound:function () {
 		console.log('no hay pagina')
 	},
-})
+});

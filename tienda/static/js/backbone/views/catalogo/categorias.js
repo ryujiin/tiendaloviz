@@ -8,7 +8,7 @@ Loviz.Views.Categoria_filtros = Backbone.View.extend({
         // this.listenTo(this.collection, "add", this.add_filtro, this);
     },
     render: function () {
-        var json_filtro = {'titulo': 'para '+this.genero}
+        var json_filtro = {'titulo': 'Categorias'}
         var html = this.template(json_filtro);
         this.$el.html(html);
         this.addFiltros();
@@ -16,7 +16,7 @@ Loviz.Views.Categoria_filtros = Backbone.View.extend({
     add_filtro:function (filtro) {
         filtro.set('categoria',true);        
         var link = new Loviz.Views.Filtro_link({ model: filtro });
-        window.views.catalogo.filtros_link.push(link);
+        //window.views.catalogo.filtros_link.push(link);
         this.$('.filtros').append(link.render().el);
     },
     addFiltros:function () {
