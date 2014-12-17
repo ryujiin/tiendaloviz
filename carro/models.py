@@ -111,9 +111,8 @@ class LineaCarro(models.Model):
 			except ObjectDoesNotExist:
 				super(LineaCarro, self).save(*args, **kwargs)
 			else:
-				if self.pk!=coincidencias.pk:
-					coincidencias.delete()
-					self.cantidad = coincidencias.cantidad+self.cantidad
+				coincidencias.delete()
+				self.cantidad = coincidencias.cantidad+self.cantidad
 				super(LineaCarro, self).save(*args, **kwargs)
 
 class Prueba(models.Model):

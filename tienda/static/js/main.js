@@ -35,6 +35,10 @@ $(document).ready(function(){
     window.views.catalogo = new Loviz.Views.Catalogo({
         collection:window.collections.productos
     });
+    window.models.producto_single = new Loviz.Models.Producto_single();
+    window.views.producto_single = new Loviz.Views.Producto_single({
+        model:window.models.producto_single
+    });
 
     //Vistas de pagina
     window.views.pagina = new Loviz.Views.Pagina({
