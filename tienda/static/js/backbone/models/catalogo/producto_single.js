@@ -4,6 +4,8 @@ Loviz.Models.Producto_single = Backbone.Model.extend({
 		var self = this;
 		this.fetch({
 			data:$.param({slug:slug})
-		});
+		}).done(function (data) {
+			window.models.producto_single.set(data);
+		})
 	}
 });
