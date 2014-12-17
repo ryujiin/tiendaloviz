@@ -10,7 +10,7 @@ Loviz.Views.Linea_addcart = Backbone.View.extend({
 		var carro = this.model.toJSON()
 	    var html = this.template(carro);
 	    this.$el.html(html);
-	    //this.aparece();
+	    this.aparece();
 	},
 	aparece:function () {
 		this.$el.slideDown(300).delay(3000).slideUp(300);

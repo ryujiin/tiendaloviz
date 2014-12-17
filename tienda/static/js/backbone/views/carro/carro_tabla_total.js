@@ -9,6 +9,9 @@ Loviz.Views.Carro_total = Backbone.View.extend({
 	},
 	render:function () {
 		var carro = this.model.toJSON()
+		if (this.pagar==true) {
+			carro.pagar = true
+		};
 	    var html = this.template(carro);
 	    this.$el.html(html);
 	}

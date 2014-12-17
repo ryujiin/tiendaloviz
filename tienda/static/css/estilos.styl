@@ -39,7 +39,7 @@ body
 #banner_header
 	&.banner
 		height 100px!important
-.btn-default
+.btn-default.contraste1
 	color #fff
 	background #111
 	font-family f_imprenta
@@ -61,7 +61,7 @@ body
 			font-size 0.9em
 	.lineas_productos
 		.table
-			border-bottom 1px solid #111			
+			border-bottom 4px solid #111			
 			thead
 				text-transform uppercase
 			.cantidad
@@ -81,8 +81,17 @@ body
 			font-size 1.3em			
 			label
 				text-transform uppercase
-				font-weight normal		
-		
+				font-weight normal
+	.panel-body
+		#lineas_carro
+			.img
+				width 110px
+			.nombre
+				font-size 1.2em
+		#tabla_carro
+			.table
+				border-bottom none
+				
 .header_principal
 	padding 10px 0
 	border-top 1px solid #f4f4f4
@@ -113,6 +122,19 @@ body
 	a:hover
 		color #111
 		text-decoration none
+#linea_addcart
+	position absolute
+	width 300px
+	background #fff
+	box-shadow 0px 6px 4px rgba(0,0,0,0.5)
+	z-index 2
+	right 40px
+	text-align center
+	img
+		width 100px
+	.nombre_produ
+		font-family f_imprenta
+		text-transform uppercase
 #menu_top_ayuda
 	li
 		a

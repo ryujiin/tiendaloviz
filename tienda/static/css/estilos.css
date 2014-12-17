@@ -11,14 +11,14 @@ body .contraste1{background:#111;color:#fff}
 body .clickeable{cursor:pointer}
 body .subtitulo{font:italic 21px Georgia,"Times New Roman",serif}
 #banner_header.banner{height:100px !important}
-.btn-default{color:#fff;background:#111;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase;font-size:1.2em;}
-.btn-default:hover{background:#2dbab2;color:#111}
+.btn-default.contraste1{color:#fff;background:#111;font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase;font-size:1.2em;}
+.btn-default.contraste1:hover{background:#2dbab2;color:#111}
 #contenido{padding:10px 0}
 .carro .titulo{text-align:center}
 .carro .subtitulo{font:italic 21px Georgia,"Times New Roman",serif;}
 .carro .subtitulo span{font-weight:bold}
 .carro .subtitulo button{font-size:.9em}
-.carro .lineas_productos .table{border-bottom:1px solid #111;}
+.carro .lineas_productos .table{border-bottom:4px solid #111;}
 .carro .lineas_productos .table thead{text-transform:uppercase}
 .carro .lineas_productos .table .cantidad .boton-cantidad{cursor:pointer}
 .carro .lineas_productos .table .cantidad .numero{border:1px solid #ccc;padding:5px 20px}
@@ -27,6 +27,9 @@ body .subtitulo{font:italic 21px Georgia,"Times New Roman",serif}
 .carro .table{font-family:'Pathway Gothic One',sans-serif}
 .carro #tabla_carro .table{font-size:1.3em;}
 .carro #tabla_carro .table label{text-transform:uppercase;font-weight:normal}
+.carro .panel-body #lineas_carro .img{width:110px}
+.carro .panel-body #lineas_carro .nombre{font-size:1.2em}
+.carro .panel-body #tabla_carro .table{border-bottom:none}
 .header_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4;}
 .header_principal #mini_carro .number{background:#333}
 .header_utilis #menu_top_ayuda li,.header_utilis #menu_top_usuario li{border-right:1px solid #f4f4f4}
@@ -36,6 +39,9 @@ body .subtitulo{font:italic 21px Georgia,"Times New Roman",serif}
 #logo{font-family:'Great Vibes',cursive;}
 #logo h1{padding:0;margin:0}
 #logo a:hover{color:#111;text-decoration:none}
+#linea_addcart{position:absolute;width:300px;background:#fff;box-shadow:0 6px 4px rgba(0,0,0,0.5);z-index:2;right:40px;text-align:center;}
+#linea_addcart img{width:100px}
+#linea_addcart .nombre_produ{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase}
 #menu_top_ayuda li a{padding:0 5px}
 #mini_carro{padding:10px}
 #navegacion li a{padding:10px;display:inline-block;font-size:1.1em}

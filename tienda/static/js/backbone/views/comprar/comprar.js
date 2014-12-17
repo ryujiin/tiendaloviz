@@ -13,8 +13,26 @@ Loviz.Views.Comprar = Backbone.View.extend({
 		this.rellenar();
 	},
 	rellenar:function () {
-		//this.cheackout_login = new Loviz.Views.Comprar_bloque();
-		//this.cheackout_login.titulo = 'Identificar Cliente'
-		//this.$('.bloques').append(this.cheackout_login.render().el)
+		this.identificarse();
+		this.envio();
+		this.resumen();
+	},
+	identificarse:function  () {
+		if (window.models.usuario.id>0) {
+			this.$('.seccion.identificar .panel-body').hide();
+		};
+	},
+	envio:function () {
+		this.formu_envio = new Loviz.Views.Formu_envio();
+	    if (window.models.usuario.direcciones) {
+	    	this.formu_envio.model=window.models.usuario.direcciones.first();
+	    };
+	    this.formu_envio.render();
+	    this.$('.envio .panel-body').append(this.formu_envio.$el);
+	},
+	resumen:function () {
+		this.$('.resumen').addClass('carro');
+		window.views.carro.addLineas('pagar');
+		window.views.carro.addTotal('pagar');
 	}
 });

@@ -34,19 +34,24 @@ class CarroSerializer(serializers.ModelSerializer):
 class LineaSerializer(serializers.ModelSerializer):
 	thum = serializers.SerializerMethodField()
 	nombre = serializers.SerializerMethodField()
+	full_name = serializers.SerializerMethodField()
+	color = serializers.SerializerMethodField()
 	talla = serializers.SerializerMethodField()
 	precio = serializers.SerializerMethodField()
 	subtotal = serializers.SerializerMethodField()
 	oferta = serializers.SerializerMethodField()
 	class Meta:
 		model = LineaCarro
-		fields = ('id','carro','producto','variacion','cantidad','thum','nombre','talla','precio','subtotal','oferta')
+		fields = ('id','carro','producto','variacion','cantidad','thum','nombre','talla','precio','subtotal','oferta','color','full_name')
 
 	def get_thum(self,obj):
 		thum = obj.producto.get_thum().url
 		return thum
 
 	def get_nombre(self,obj):
+		return obj.producto.nombre
+
+	def get_full_name(self,obj):
 		return obj.producto.full_name
 
 	def get_talla(self,obj):
@@ -62,3 +67,6 @@ class LineaSerializer(serializers.ModelSerializer):
 
 	def get_oferta(self,obj):
 		return obj.variacion.oferta
+
+	def get_color(self,obj):
+		return obj.producto.color.nombre

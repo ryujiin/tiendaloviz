@@ -11,5 +11,8 @@ Loviz.Views.Num_lineas_carro = Backbone.View.extend({
 		var carro = this.model.toJSON()
 	    var html = this.template(carro);
 	    this.$el.html(html);
+	    if (carro.lineas===0) {
+	    	this.$el.addClass('text-center');
+	    };
 	}
 });

@@ -7,8 +7,6 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     'click .modificar': 'modificar_direccion',
   },
   initialize: function () {
-    this.$el = $('#formu_envio');
-    this.render();
     this.buscar_region();
     this.mostrarse();
     this.listenTo(window.models.carro, "change", this.mostrarse, this);
@@ -57,9 +55,10 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
   },
   enviar_formu:function () {
     var model_direccion;
-    var departamento = $('#departamento_envio').val()
-    var provincia = $('#provincia_envio').val()
-    var distrito = $('#distrito_envio').val()
+    var departamento = $('#departamento_envio').val();
+    var provincia = $('#provincia_envio').val();
+    var distrito = $('#distrito_envio').val();
+    var calle = $('#calle').val();
     if (window.models.usuario.toJSON().id>0) {
       if (this.model) {
         model_direccion = this.model;
@@ -71,6 +70,7 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
         departamento:departamento,
         provincia:provincia,
         distrito:distrito,
+        direccion:calle,
         usuario:window.models.usuario.toJSON().id
       });
       model_direccion.save().done(function () {

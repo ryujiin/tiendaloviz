@@ -117,7 +117,10 @@
 
       <script id="num_lineas_carro_template" type="text/template">
         Usted tiene <span>{{lineas}}</span> producto(s) en tu carrito de compras
-        <button type="button" class="btn btn-default pull-right procesar">Procesar mi compra</button>
+
+        {%if lineas!=0 %}
+          <button type="button" class="btn btn-default pull-right contraste1 procesar">Procesar mi compra</button>
+        {%endif%}
       </script>
 
       <script id="carro_tabla_total_template" type="text/template">
@@ -135,12 +138,16 @@
                     <td>S/. {{total}}</td>
                 </tr>
             </table>
-            <button type="button" class="btn btn-default pull-right procesar">Procesar mi compra</button>
+            {%if pagar != true %}
+              <button type="button" class="btn btn-default pull-right procesar contraste1">Procesar mi compra</button>
+            {%endif%}
       </script>
 
       <script id="formulario_envio_template" type="text/template">
-          <p>Selecciona el Lugar de envio para calcular costo</p>
-          <button class="btn btn-default btn-xs modificar">Modificar Direccion</button>
+          <p>
+            Selecciona el Lugar de envio para calcular costo
+            <button class="btn btn-default btn-xs modificar pull-right contrate1">Modificar Direccion</button>
+          </p>          
           <form role="form" class="form-horizontal">
               <div class="iput form-group">
                   <label for="" class="col-sm-3 control-label">Pais</label>
@@ -182,6 +189,16 @@
                     {%endif%}
                   </div>
               </div>
+              <div class="input form-group">
+                  <label for="" class="col-sm-3 control-label">Direccion de Envio</label>
+                  <div class="col-sm-9">
+                    {%if direccion%}
+                      <p class="text-uppercase">{{direccion}}</p>
+                    {%else%}
+                    <input id="calle" type="text" class="form-control" placeholder="Ingresa tu calle">
+                    {%endif%}
+                  </div>
+              </div>
           </form>
       </script>
 
@@ -194,14 +211,24 @@
       <script id="comprar_bloque_template" type="text/template">
         <h3>{{titulo}}</h3>
         <div class="cuerpo">
-          
         </div>
+      </script>
+
+      <script id="comprar_resumen_linea_template" type="text/template">
+        <td class="img"><img src="{{thum}}" alt=""></td>
+        <td class="nombre">
+          <div><strong>{{nombre}}</strong></div>
+          <div>Color:{{color}}</div>
+          <div>Talla:{{talla}}</div>
+          <div>Cantidad:{{cantidad}}</div>
+          <div>Subtotal:S/.{{subtotal}}</div>
+        </td>
       </script>
 
       <script id="carro_linea_template" type="text/template">
         <td class="img"><img src="{{thum}}" alt=""></td>
         <td class="name">
-          <div>{{nombre}}</div>
+          <div>{{full_name}}</div>
         </td>
         <td class="tall text-center">{{talla}}</td>
         <td class="precio text-center">S/. {{precio}}</td>
@@ -216,9 +243,9 @@
       </script>
 
       <script id="linea_addcart_template" type="text/template">
-        <img src="https://apiloviz.s3.amazonaws.com/cache/f0/56/f0567e5d0c8de7b2cc49c90fc77ff622.jpg" alt="">
+        <img src="{{thum}}" alt="">
         <div class="nombre_produ">
-          <h4>PANTUFLA GATITO ESTAMPADO</h4>
+          <h4>{{full_name}}</h4>
           <p>Añadido al carrito</p>
         </div>
       </script>
@@ -230,63 +257,89 @@
             <h3 class="subtitulo">
               Bienvenido a la pasarela de pago
             </h3>
-            <div class="bloques">             
-              <div class="bloque seccion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span class="badge">1</span>Identificar Cliente
-                    <span class="icon-check pull-right"></span>
-                  </div>
-                  <div class="panel-body">
-                    Panel content
-                  </div>
-                </div>
-              </div>
-              <div class="bloque seccion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span class="badge">2</span>Direccion de Envio
-                    <span class="icon-check pull-right"></span>
-                  </div>
-                  <div class="panel-body">
-                    Panel content
+            <div class="bloques row">
+              <div class="col-md-8">
+                <div class="bloque seccion envio">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <span class="badge">1</span> Direccion de Envio
+                      <span class="icon-check pull-right"></span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="bloque seccion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span class="badge">3</span>Metodos de Pago
-                    <span class="icon-check pull-right"></span>
+                <div class="bloque seccion pago">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <span class="badge">2</span> Metodos de Pago
+                      <span class="icon-check pull-right"></span>
+                    </div>
+                    <div class="panel-body">
+                      <div class="metodo">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            Pagar con Tarjeta
+                          </label>
+                        </div>
+                      </div>
+                      <div class="metodo">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            Pagar con Paypal
+                          </label>
+                        </div>
+                      </div>
+                      <div class="metodo">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            Pagar en efectivo  (contra entrega) 
+                          </label>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="panel-body">
-                    Panel content
+                </div>              
+                <div class="bloque seccion completo">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <span class="badge">3</span>Completas Pedido
+                      <span class="icon-check pull-right"></span>
+                    </div>
+                    <div class="panel-body">
+                      <p>Al realizar su pedido, usted se compromete a las Políticas de privacidad y condiciones de uso.</p>
+                      <button class="btn btn-default contraste1 pull-right">Pagar mi Order</button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="bloque seccion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span class="badge">4</span>Resumen de pedido
-                    <span class="icon-check pull-right"></span>
-                  </div>
-                  <div class="panel-body">
-                    Panel content
+              </div>  
+              <div class="col-md-4">
+                <div class="bloque seccion resumen">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <span class="badge">4</span>Resumen de pedido
+                      <span class="icon-check pull-right"></span>
+                    </div>
+                    <div class="panel-body lineas_productos">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>Ref. de producto</th>
+                          </tr>
+                        </thead>
+                        <tbody id="lineas_carro">
+                        </tbody>
+                      </table>
+                      <div id="fw" class="col-md-3"></div>
+                      <div id="tabla_carro" class="col-md-9"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="bloque seccion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span class="badge">5</span>Completas Pedido
-                    <span class="icon-check pull-right"></span>
-                  </div>
-                  <div class="panel-body">
-                    <p>Al realizar su pedido, usted se compromete a las Políticas de privacidad y condiciones de uso.</p>
-                    <button class="btn btn-default">Pagar mi Order</button>
-                  </div>
-                </div>
-              </div>
+              </div>  
             </div>
           </div>
         </div>
@@ -349,7 +402,7 @@
                     </select>
                   </div>
                   <div>
-                    <button class="addcart btn btn-default"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</button>
+                    <button class="addcart btn btn-default contraste1"><span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</button>
                   </div>
                 </div>
             </div>
@@ -418,7 +471,7 @@
                 </label>
               </div>
               <p><a href="/">¿Has olvidado tu contraseña?</a></p>
-              <button type="submit" class="btn btn-default">Ingresar</button>
+              <button type="submit" class="btn btn-default contraste1">Ingresar</button>
             </form>
           </div>
         </div>
@@ -429,7 +482,7 @@
           <div class="panel-heading">Nuevo Cliente</div>
           <div class="panel-body">
             <p>Al crear una cuenta en LovizdelCarpio.com tu proceso de compra es más rápido porque tus datos ya están registrados en nuestra tienda, además podrás hacer un seguimiento de tus pedidos y estar informado de las últimas novedades.</p>
-            <button class="btn btn-default aparecer">Crear Cuenta</button>
+            <button class="btn btn-default aparecer contraste1">Crear Cuenta</button>
             <div class="formulario">
               <form role="form">
               <div class="form-group">
@@ -444,7 +497,7 @@
                 <label for="exampleInputPassword1">Repetir Contraseña</label>
                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-default crear">Crear Cuenta</button>
+              <button type="submit" class="btn btn-default crear contraste1">Crear Cuenta</button>
             </form>
             </div>
           </div>
