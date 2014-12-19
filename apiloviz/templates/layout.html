@@ -106,7 +106,7 @@
                 </table>
               </div>
               <div class="row">
-                <div id="formu_envio" class="col-md-6"></div>
+                <div id="formu_envio" class="col-md-6 well"></div>
                 <div id="tabla_carro" class="col-md-6"></div>
               </div>
             {%endif%}
@@ -144,10 +144,10 @@
       </script>
 
       <script id="formulario_envio_template" type="text/template">
-          <p>
-            Selecciona el Lugar de envio para calcular costo
-            <button class="btn btn-default btn-xs modificar pull-right contrate1">Modificar Direccion</button>
-          </p>          
+          <p class="text-center">
+            Selecciona el Lugar de envio
+              <button class="btn btn-default btn-xs modificar pull-right contrate1">Modificar Direccion</button>
+          </p>
           <form role="form" class="form-horizontal">
               <div class="iput form-group">
                   <label for="" class="col-sm-3 control-label">Pais</label>
@@ -189,13 +189,13 @@
                     {%endif%}
                   </div>
               </div>
-              <div class="input form-group">
+              <div class="input form-group calle">
                   <label for="" class="col-sm-3 control-label">Direccion de Envio</label>
                   <div class="col-sm-9">
                     {%if direccion%}
                       <p class="text-uppercase">{{direccion}}</p>
                     {%else%}
-                    <input id="calle" type="text" class="form-control" placeholder="Ingresa tu calle">
+                    <input id="calle_envio" type="text" class="form-control" placeholder="Ingresa tu calle">
                     {%endif%}
                   </div>
               </div>
@@ -218,6 +218,8 @@
         <td class="img"><img src="{{thum}}" alt=""></td>
         <td class="nombre">
           <div><strong>{{nombre}}</strong></div>
+        </td>
+        <td>
           <div>Color:{{color}}</div>
           <div>Talla:{{talla}}</div>
           <div>Cantidad:{{cantidad}}</div>
@@ -263,9 +265,11 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <span class="badge">1</span> Direccion de Envio
-                      <span class="icon-check pull-right"></span>
                     </div>
                     <div class="panel-body">
+                      <div>
+                        <button type="button" class="btn btn-default contraste1 pull-right siguiente_envio">Siguente</button>               
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -273,45 +277,120 @@
                   <div class="panel panel-default">
                     <div class="panel-heading">
                       <span class="badge">2</span> Metodos de Pago
-                      <span class="icon-check pull-right"></span>
                     </div>
                     <div class="panel-body">
-                      <div class="metodo">
+                      <div id="metodo_tarjeta" class="metodo col-md-12">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
-                            Pagar con Tarjeta
+                            <input type="radio" name="metodo_pago" id="optionsRadios1" value="option1" data-metodo="metodo_tarjeta">
+                            Pagar con Tarjeta <span class="icon-credit-card"></span>
                           </label>
                         </div>
+                        <div class="cuerpo_metodo">
+                          <div class="col-md-9">
+                            <form action="" method="POST" id="payment-form">
+                              <span class="payment-errors"></span>
+                              <div class="form-group col-md-12">
+                                <label for="label_a">Numero de la tarjeta</label>
+                                <input type="text" class="form-control" placeholder="Numero de la tarjeta" maxlength="20" data-stripe="number">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="label_a">Numero de seguridad (CVC)</label>
+                                <input type="text" class="form-control" placeholder="XXX" maxlength="3" data-stripe="cvc">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="label_a">Fecha de vencimientos</label>
+                                <div class="col-md-6">
+                                  <select class="form-control" data-stripe="exp-month" required>
+                                    <option value disabled>Mes</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                  </select>
+                                </div>
+                                <div class="col-md-6">
+                                  <select class="form-control" data-stripe="exp-year" required>
+                                    <option value disabled>Año</option>
+                                    <option value="2014">2014</option>
+                                  </select>
+                                </div>
+                              </div>
+                              <div class="col-md-8">
+                                <p>Total en (soles) S/. 22.00 <span class="glyphicon glyphicon-resize-horizontal"></span> $14.00 </p>
+                              </div>
+                              <div class="col-md-4">
+                                <button class="btn btn-default contraste1 pago_stripe">Pagar mi Order</button>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="tutorial">
+                              Puedes pagar con cualquier tarjeta de credito o debito. <br>
+                              Tu pago se efectuara en dolares americanos (USD) al tipo de cambio de {{cambio}}.</br>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="metodo">
+                      <div id="metodo_paypal" class="metodo col-md-12">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            <input type="radio" name="metodo_pago" id="optionsRadios1" value="option1" data-metodo="metodo_paypal">
                             Pagar con Paypal
                           </label>
                         </div>
+                        <div class="cuerpo_metodo">
+                          Si deseas pagar con Paypal. Si cuentas con una cuenta paypal puedes utilizarla en nuestra tienda online. Si no la tienes, también puedes crearla para realizar pagos en diferentes tipos de tarjeta de crédito. Una vez conforme serás re dirigido a la página oficial de paypal para concretar tu transacción.
+                          <div class="col-md-6"></div>
+                          <div class="col-md-6">
+                            <button class="btn btn-default contraste1">Pagar mi Order</button>                          
+                          </div>
+                        </div>
                       </div>
-                      <div class="metodo">
+                      <div id="metodo_deposito" class="metodo col-md-12">
                         <div class="radio">
                           <label>
-                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                            <input type="radio" name="metodo_pago" id="optionsRadios1" value="option1" data-metodo="metodo_deposito">
+                            Deposito Bancario  (BCP)                             
+                          </label>
+                        </div>
+                        <div class="cuerpo_metodo"> 
+                            <p>
+                              Este servicio te permite pagar a nivel nacional realizando un depósito o transferencia de tu cuenta corriente o de ahorros directamente a nuestra cuenta. Para realizar el pago presencial debes:
+                            </p>
+                            Recuerda que tienes <b>48 horas</b> para efectuar el pago o tu pedido será cancelado automáticamente.
+                            <p><label for="">Numero de cuenta</label> 191-2078749-0-62</p>
+                            <p><label for="">Nombre de cuenta</label> Inversiones Lopez Del carpio EIRL</p>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                              <button class="btn btn-default contraste1">Pagar mi Order</button>                          
+                            </div>
+                        </div>
+                      </div>
+                      <div id="metodo_efectivo" class="metodo col-md-12">
+                        <div class="radio">
+                          <label>
+                            <input type="radio" name="metodo_pago" id="optionsRadios1" value="option1" data-metodo="metodo_efectivo">
                             Pagar en efectivo  (contra entrega) 
                           </label>
                         </div>
+                        <div class="cuerpo_metodo">
+                          <p>Este servicio solo esta habilitado para Lima Metropolitana y Callao.</p>
+                          <p>Es sencillo usted solo debe seleccionar este metodo de pago y pagar cuando llega a su casa u oficina</p>
+                          <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                              <button class="btn btn-default contraste1">Pagar mi Order</button>                          
+                            </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </div>              
-                <div class="bloque seccion completo">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <span class="badge">3</span>Completas Pedido
-                      <span class="icon-check pull-right"></span>
-                    </div>
-                    <div class="panel-body">
-                      <p>Al realizar su pedido, usted se compromete a las Políticas de privacidad y condiciones de uso.</p>
-                      <button class="btn btn-default contraste1 pull-right">Pagar mi Order</button>
                     </div>
                   </div>
                 </div>
@@ -319,16 +398,16 @@
               <div class="col-md-4">
                 <div class="bloque seccion resumen">
                   <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <span class="badge">4</span>Resumen de pedido
-                      <span class="icon-check pull-right"></span>
+                    <div class="panel-heading contraste1">
+                      Resumen de pedido
                     </div>
                     <div class="panel-body lineas_productos">
                       <table class="table">
                         <thead>
                           <tr>
                             <th></th>
-                            <th>Ref. de producto</th>
+                            <th>nombre. de producto</th>
+                            <th>datos</th>
                           </tr>
                         </thead>
                         <tbody id="lineas_carro">

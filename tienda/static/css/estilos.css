@@ -46,6 +46,8 @@ body .subtitulo{font:italic 21px Georgia,"Times New Roman",serif}
 #mini_carro{padding:10px}
 #navegacion li a{padding:10px;display:inline-block;font-size:1.1em}
 .parallax{width:100%;background-position:center top;overflow:hidden;position:relativa;background-attachment:fixed;background-size:cover;-moz-background-size:cover;-webkit-background-size:cover;background-position:center center;background-repeat:no-repeat}
+.panel-default .panel-heading{font-family:'Pathway Gothic One',sans-serif;text-transform:uppercase;}
+.panel-default .panel-heading.contraste1{background:#111;color:#fff}
 .producto_single .precios_single .variacion{display:none}
 .productos .producto{text-align:center;position:relative;}
 .productos .producto:hover .icono{display:block}

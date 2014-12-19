@@ -5,6 +5,8 @@ from models import *
 class HomeView(TemplateView):
 	template_name = "layout.html"
 
+class ComprarView(TemplateView):
+	template_name = "comprar.html"
 
 from rest_framework import viewsets
 from django.http import HttpResponse, Http404

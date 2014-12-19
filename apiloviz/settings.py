@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'cliente',
     'catalogo',
     'cmsloviz',
+    'pedido',
     'ubigeo',
     'tienda',
 )

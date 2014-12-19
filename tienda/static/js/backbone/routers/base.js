@@ -32,12 +32,18 @@ Loviz.Routers.Base = Backbone.Router.extend({
 		this.collection_pagina.add([window.models.pagina])
 	},
 	carro : function () {
+		window.app.page = 'carro';
 		window.views.carro.render()
 	},
 	pagina: function () {
 	},
 	comprar:function () {
-		window.views.comprar = new Loviz.Views.Comprar();
+		window.app.page = 'comprar'
+		if (window.views.comprar===undefined) {
+			window.views.comprar = new Loviz.Views.Comprar();
+		}else{
+			window.views.comprar.render();
+		}
 	},
 	usuario : function () {		
 	},

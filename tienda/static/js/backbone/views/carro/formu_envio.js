@@ -54,11 +54,12 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     })
   },
   enviar_formu:function () {
+    var self = this;
     var model_direccion;
     var departamento = $('#departamento_envio').val();
     var provincia = $('#provincia_envio').val();
     var distrito = $('#distrito_envio').val();
-    var calle = $('#calle').val();
+    var calle = $('#calle_envio').val();
     if (window.models.usuario.toJSON().id>0) {
       if (this.model) {
         model_direccion = this.model;
@@ -87,6 +88,9 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     }else{
       this.$el.show()
     }
+    if (window.app.page==='carro') {
+      this.$('.calle').hide();
+    };
   },
   modificar_direccion:function () {
     this.model.set({
@@ -96,8 +100,9 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
       slug_depa:null,
       slug_distri:null,
       slug_provi:null,
+      direccion:null,
     });
     this.render();
     this.buscar_region();
-  }
+  },
 });
