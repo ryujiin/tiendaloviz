@@ -195,3 +195,23 @@ class ProductoImagen(models.Model):
 	def get_thum(self):
 		img = get_thumbnail(self.foto, '150x100', quality=80)
 		return img
+
+class MaterialesProductos(models.Model):
+	producto = models.ForeignKey(Producto, related_name='materiales')
+	material = models.ForeignKey('Material',blank=True,null=True)
+	cantidad_docena = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+	unidad_medida = models.CharField(max_length=100,blank=True, null=True)
+	cantidad_par = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+	precio_docena = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+
+	def save(self, *args, **kwargs):
+		self.unidad_compra = self.material.unidad_compra
+		super(MaterialesProductos, self).save(*args, **kwargs)
+
+
+class Material(models.Model):
+	nombre = models.CharField(max_length=100)
+	unidad_compra = models.CharField(max_length=100,blank=True,null=True)
+	precio = models.DecimalField(max_digits=10,decimal_places=2,null=True,blank=True)
+	fecha = models.DateTimeField(auto_now_add=True)
+	foto = models.ImageField(upload_to='uploads/materiales/',blank=True,null=True)

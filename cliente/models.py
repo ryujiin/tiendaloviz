@@ -21,6 +21,9 @@ class Direccion(models.Model):
 	direccion = models.CharField(max_length=100,blank=True,null=True)
 	codigo_postal = models.CharField(max_length=20,blank=True,null=True)
 
+	def __unicode__(self):
+		return 'Direccion de %s, es %s %s %s' %(self.usuario,self.departamento,self.provincia,self.distrito)
+
 class Comentario(models.Model):
 	producto = models.ForeignKey(Producto)
 	variacion = models.ForeignKey(ProductoVariacion,blank=True,null=True)

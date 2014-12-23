@@ -8,8 +8,11 @@ class ProductoImagenInline(admin.TabularInline):
 class VariacionInline(admin.TabularInline):
 	model = ProductoVariacion
 
+class MaterialesInline(admin.TabularInline):
+	model = MaterialesProductos
+
 class ProductoAdmin(admin.ModelAdmin):
-	inlines = [ProductoImagenInline,VariacionInline]
+	inlines = [ProductoImagenInline,VariacionInline,MaterialesInline,]
 	filter_horizontal = ('parientes',)
 	list_display = ('full_name','nombre','slug','get_parientes')
 
@@ -21,3 +24,4 @@ admin.site.register(Categoria)
 admin.site.register(Seccion)
 admin.site.register(Estilo)
 admin.site.register(Genero)
+admin.site.register(Material)

@@ -1,6 +1,6 @@
 Loviz.Views.Filtro_link = Backbone.View.extend({
     tagName: 'div',
-    className: 'radio',
+    className: 'checkbox',
     events: {
     },
     template: swig.compile($("#filtro_link_template").html()),
