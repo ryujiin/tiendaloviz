@@ -10,6 +10,8 @@ from carro.views import LineasViewsets
 from ubigeo.views import RegionViewset
 from cmsloviz.views import HomeView,PaginaViewsets,PaginaViewsApi,BloqueViewsets,CarruselViewset,MenuViewsets
 
+from desboard.views import DesboardView
+
 router = routers.DefaultRouter()
 
 router.register(r'catalogo', CatalogoViewsets,'catalogo')
@@ -44,6 +46,8 @@ urlpatterns = patterns('',
     url(r'^api/productoSingle/$',Producto_singleView.as_view()),
     url(r'^ajax/login/', 'cliente.views.ingresar', name='ingresar_ajax'),
     url(r'^ajax/salir/', 'cliente.views.salir', name='salir'),
+    
+    url(r'^desboard/', DesboardView.as_view()),
 
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),

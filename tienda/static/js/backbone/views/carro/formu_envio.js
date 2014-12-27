@@ -10,6 +10,7 @@ Loviz.Views.Formu_envio = Backbone.View.extend({
     this.buscar_region();
     this.mostrarse();
     this.listenTo(window.models.carro, "change", this.mostrarse, this);
+    this.listenTo(this.model, "change", this.render, this);
   },
 
   render: function () {

@@ -23,10 +23,15 @@ Loviz.Views.Comprar = Backbone.View.extend({
 		this.metodos();
 	},
 	envio:function () {
-		this.formu_envio = new Loviz.Views.Formu_envio();
-	    if (window.models.usuario.direcciones) {
-	    	this.formu_envio.model=window.models.usuario.direcciones.first();
-	    };
+		if (window.models.usuario.direcciones.length!=0) {
+	    	this.formu_envio = new Loviz.Views.Formu_envio({
+	    		model:window.models.usuario.direcciones.first()
+	    	});
+	    }else{
+	    	this.formu_envio = new Loviz.Views.Formu_envio({
+	    		model:new Loviz.Models.Direccion()
+	    	});
+	    }
 	    this.formu_envio.render();
 	    this.$('.envio .panel-body').prepend(this.formu_envio.$el);
 	    this.$('.siguiente_envio').hide();

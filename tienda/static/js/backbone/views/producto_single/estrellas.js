@@ -1,4 +1,5 @@
 Loviz.Views.Estrellas = Backbone.View.extend({
+    className:'estrellas',
     events: {
     },
     template: swig.compile($("#estrellas_template").html()),

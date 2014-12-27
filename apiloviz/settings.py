@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'catalogo',
     'contabilidad',
     'cmsloviz',
+    'desboard',
     'pedido',
     'ubigeo',
     'tienda',
