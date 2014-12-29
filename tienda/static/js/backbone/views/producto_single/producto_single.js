@@ -11,9 +11,9 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 	initialize: function () {
 	    var self = this;
 	    this.listenTo(this.model, "change", this.render, this);
-	    this.num_relacionado = 0;
 	},
 	render: function () {
+		this.num_relacionado = 0;
 	    var producto = this.model.toJSON();
 	    var html = this.template(producto);
 	    this.$el.html(html);
@@ -77,7 +77,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 	},
 	crear_relacionados:function () {
 		var self = this
-		
+		debugger;
 		if (window.collections.productos.length===0) {
 			window.collections.productos.fetch().done(function () {
 				self.relacionados = window.collections.productos.shuffle();
@@ -85,9 +85,12 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		}else{
 			this.relacionados = window.collections.productos.shuffle();
 		}
+		debugger;
 		this.relacionados.forEach(this.addRelacionados,this);
+		debugger;
 	},
 	addRelacionados:function (produ) {
+		debugger;
 		var cate = this.model.toJSON().categoria;
 		var estilo = this.model.toJSON().estilo;
 		if (produ.toJSON().categoria === cate) {
