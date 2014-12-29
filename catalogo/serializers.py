@@ -98,12 +98,13 @@ class ProductoSingleSereializer(serializers.ModelSerializer):
 	precio = serializers.SerializerMethodField('get_precio_lista')
 	precio_venta = serializers.SerializerMethodField('get_precio_descuento')
 	genero = serializers.SerializerMethodField()
+	relacionados = serializers.PrimaryKeyRelatedField(many=True,read_only=True)
 
 	class Meta:
 		model = Producto
 		fields = ('id','nombre','full_name','marca','genero','categoria','estilo','color','slug','activo','descripcion','thum',
 				'en_oferta','precio','precio_venta',
-				'imagenes_producto','variaciones','parientes')
+				'imagenes_producto','variaciones','parientes','video','detalles','relacionados')
 
 	def get_thum_img(self,obj):
 		thum = obj.get_thum().url

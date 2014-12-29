@@ -21,9 +21,11 @@ class Producto(models.Model):
 	parientes = models.ManyToManyField('self',blank=True,null=True, related_name='colores')
 	activo = models.BooleanField(default=True)
 	descripcion = models.TextField(blank=True,null=True)
+	detalles = models.TextField(blank=True,null=True)
 	creado = models.DateTimeField(auto_now_add=True)
 	imagen = models.ImageField(upload_to="uploads/catalogo/producto/imagen/")
 	video = models.CharField(max_length=120, blank=True,null=True)
+	relacionados = models.ManyToManyField('self',blank=True,null=True,related_name='relacionados')
 
 	def __unicode__(self):
 		return self.full_name
@@ -80,6 +82,10 @@ class Producto(models.Model):
 	def get_num_estrellas(self):
 		num_entrellas = Comentario.objects.filter(producto=self)
 		return num_entrellas
+
+	def get_relacionados(self):
+		relacionados = Producto.objects.filter(categoria = self.categoria,estilo = self.estilo)
+		return relacionados
 
 class Color(models.Model):
 	nombre = models.CharField(max_length=100)

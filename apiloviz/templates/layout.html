@@ -433,31 +433,54 @@
         <div class="container-fluid">
           <div class="contenedor row">
             <div id="galerias" class="col-md-7">
-              <div id="producto_galeria"></div>
+              <ul class="nav nav-tabs">
+                <li role="presentation" class="active" data-tabs="#producto_galeria"><a href="#" >Galeria</a></li>
+                {%if video%}
+                <li role="presentation" data-tabs="#producto_video"><a href="#">Videos</a></li>
+                {%endif%}
+              </ul>
+              <div id="producto_galeria" class="tabs-seccion"></div>
+              {%if video%}
+              <div id="producto_video" class="tabs-seccion">
+                <iframe width="640" height="360" src="//www.youtube.com/embed/{{video}}" frameborder="0" allowfullscreen></iframe>
+              </div>
+              {%endif%}
             </div>
             <div id="datos" class="col-md-5">
               <div class="text_imprenta">{{genero}}</div>
               <h1 class="titulo">{{nombre}} - <i>{{marca}}</i></h1>
-              <div class="precios_single">
-                {%for varia in variaciones %}
-                <div class="variacion {%if loop.first%}visible{%endif%} {{varia.id}}">
-                  {%if varia.oferta > 0 %}
-                  <span class="old_precio"><del>S/.{{varia.precio}}</del></span>
-                  {%endif%}
-                  <span class="precio">S/. {{varia.precio_venta}}</span>
+              <div class="seccion_producto">
+                <div class="precios_single enlinea">
+                  {%for varia in variaciones %}
+                  <div class="variacion {%if loop.first%}visible{%endif%} {{varia.id}}">
+                    {%if varia.oferta > 0 %}
+                    <span class="old_precio"><del>S/.{{varia.precio}}</del></span>
+                    {%endif%}
+                    <span class="precio">S/. {{varia.precio_venta}}</span>
+                  </div>
+                  {%endfor%}
                 </div>
-                {%endfor%}
+                <div class="categoria enlinea">
+                  <label for="">Categoria:</label>
+                  <span class="text-uppercase">{{categoria}}</span>
+                </div>
+                <div class="estilo enlinea">
+                  <label for="">Estilo:</label>
+                  <span class="text-uppercase">
+                    {{estilo}}
+                  </span>                  
+                </div>
               </div>
-              <div class="reviews">
-                <span>Escribe tu comentario</span>
+              <div class="reviews seccion_producto">
+                <span class="escribe">Escribe tu comentario</span>
               </div>
-              <p><label for="">Categoria:</label> {{categoria}}</p>
-              <p><label for="">Estilo:</label> {{estilo}}</p>
-              <div class="descripcion">
+              <div class="descripcion seccion_producto">
                 <label for="">Descripcion</label>
-                {{descripcion|striptags}}
+                <p>
+                  {{descripcion|striptags}}                  
+                </p>
               </div>
-              <div class="color_selection">
+              <div class="color_selection seccion_producto">
                 <label for="">Color Seleccionado:</label><span class="color">{{color}}</span>
                 <div class="colores">
                   <a class="interno" href="#" class="nolink">
@@ -468,7 +491,7 @@
                     {%endfor%}
                   </a>
                   {%for pariente in parientes%}
-                    <a class="interno" href="/producto/{{pariente.slug}}/">
+                    <a class="link" href="/producto/{{pariente.slug}}/">
                       <img src="{{pariente.thum}}" alt="">
                     </a>
                   {%endfor%}
@@ -488,8 +511,16 @@
                   </div>
                 </div>
             </div>
-          </div>          
-        </div>
+            <div class="detalles col-md-9">
+              <h3 class="subtitulo">Informacion del Producto</h3>
+              {{detalles}}
+            </div>
+            <div class="relacionados col-md-3">
+              <h4 class="subtitulo">Los clientes que compraron este artículo también compraron</h4>
+              <div class="productos" id="relacionados"></div>
+            </div>
+          </div>
+        </div>          
       </script>
 
       <script id="producto_single_galeria_template" type="text/template">

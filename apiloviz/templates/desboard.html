@@ -1,5 +1,58 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="{% static "css/desboard.css/" %}" />
+{% endblock %}
 
 {%block layout%}
-enrique
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Loviz DelCarpio Desboard</a>
+    </div>
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="contenedor">
+	<div id="apps" class="text-center">
+		<div class="app cuentas">
+			<div class="app_cuadro">
+				<span class="glyphicon glyphicon-user"></span>
+				Cuentas
+			</div>			
+		</div>
+		<div class="app ventas">
+			<div class="app_cuadro">
+				<span class="glyphicon glyphicon-tag"></span>
+				Ventas</div>
+			</div>
+		<div class="app stock">
+			<div class="app_cuadro">
+				<span class="glyphiconglyphicon-list"></span>
+				Stocks</div>
+			</div>			
+		<div class="app compras">
+			<div class="app_cuadro">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
+				Compras</div>
+			</div>
+		<div class="app produccion">
+			<div class="app_cuadro">
+				<span class="glyphicon glyphicon-cog"></span>
+				Produccion</div>
+			</div>		
+		<div class="app calendario">
+			<div class="app_cuadro">				
+				<span class="glyphicon glyphicon-calendar"></span>
+				Calendario</div>
+			</div>
+		<div class="app tienda">
+			<div class="app_cuadro">
+				<span class="glyphicon glyphicon-globe"></span>Tienda
+			</div>
+		</div>
+	</div>
+</div>
 {%endblock%}

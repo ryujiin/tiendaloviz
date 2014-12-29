@@ -4,12 +4,14 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		'click .thum_gale a' : 'nuevo_galeria',
 		'click .addcart' : 'add_to_cart',
 		'change .talla' : 'talla_seleccionada',
+		'click .nav-tabs li' : 'tabs_navegacion',
 	},
 	template: swig.compile($("#producto_single_template").html()),
 
 	initialize: function () {
 	    var self = this;
 	    this.listenTo(this.model, "change", this.render, this);
+	    this.num_relacionado = 0;
 	},
 	render: function () {
 	    var producto = this.model.toJSON();
@@ -17,6 +19,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 	    this.$el.html(html);
 	    this.generar_galeria();
 	    this.add_comentarios();
+	    this.crear_relacionados();
 	    this.$el.removeClass();	    
 	    this.$el.addClass('producto_single');
 	},
@@ -73,23 +76,29 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		this.$('.precios .'+varia).addClass('visible');
 	},
 	crear_relacionados:function () {
-		var self = this;
-		if (window.collections.catalogo.length===0) {
-			window.collections.catalogo.fetch().done(function() {
-				self.agregar_relacionados();
+		var self = this
+		
+		if (window.collections.productos.length===0) {
+			window.collections.productos.fetch().done(function () {
+				self.relacionados = window.collections.productos.shuffle();
 			})
 		}else{
-			self.agregar_relacionados();
+			this.relacionados = window.collections.productos.shuffle();
 		}
+		this.relacionados.forEach(this.addRelacionados,this);
 	},
-	agregar_relacionados:function () {
-		var self = this;
-		window.collections.catalogo.forEach(function(modelo){
-			if (modelo.toJSON().id!==self.model.toJSON().id) {
-				var pro_rela = new Loviz.Views.ProductoLista({model:modelo});
-				self.$('.productos').append(pro_rela.render().el);	
+	addRelacionados:function (produ) {
+		var cate = this.model.toJSON().categoria;
+		var estilo = this.model.toJSON().estilo;
+		if (produ.toJSON().categoria === cate) {
+			if (this.num_relacionado<5) {
+				if (produ.id!=this.model.id) {
+					var producto = new Loviz.Views.Producto({ model: produ });
+					this.$('#relacionados').append(producto.render().el);	
+					this.num_relacionado++
+				};
 			};			
-		});
+		};		
 	},
 	add_comentarios:function () {
 		var self = this;
@@ -119,5 +128,12 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		};
 		model_estrella.set({num_coment : num,valor_coment : valor , estrellas : estre_array});
 		this.$(".reviews").append(view_estrella.$el);
+	},
+	tabs_navegacion:function (e) {
+		var div =$(e.currentTarget.dataset.tabs);
+		this.$('.nav-tabs li').removeClass('active');
+		$(e.currentTarget).addClass('active');
+		this.$('.tabs-seccion').hide();
+		div.show();
 	}
 });
