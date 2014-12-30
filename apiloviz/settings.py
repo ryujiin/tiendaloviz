@@ -14,12 +14,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 location = lambda x: os.path.join(
     os.path.dirname(os.path.realpath(__file__)), x)
 
+import config
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sk_%owfe9n*1t51y3vtqkji$)k%gwdew7()+dl09ss=ppu101b'
+SECRET_KEY = config.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

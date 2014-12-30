@@ -17,3 +17,5 @@ db.sqlite3
 
 apiloviz/local.py
 apiloviz/local.pyc
+apiloviz/config.pyc
+apiloviz/config.py
