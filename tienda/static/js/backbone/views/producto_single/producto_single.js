@@ -5,6 +5,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		'click .addcart' : 'add_to_cart',
 		'change .talla' : 'talla_seleccionada',
 		'click .nav-tabs li' : 'tabs_navegacion',
+		'click .reviews .escribe':'deslizarse_comentario',
 	},
 	template: swig.compile($("#producto_single_template").html()),
 
@@ -106,8 +107,8 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 			data:$.param({producto:this.model.id})
 		}).done(function () {
 			self.add_estrellas(coleccion);
-			var comentarios = new Loviz.Views.Comentarios({collection:coleccion});
-			self.$('#comentarios').append(comentarios.$el);
+			self.view_comentarios = new Loviz.Views.Comentarios({collection:coleccion});
+			self.$('#comentarios').append(self.view_comentarios.$el);
 		})
 	},
 	add_estrellas:function (coleccion) {
@@ -116,7 +117,8 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		coleccion.forEach(function (modelo) {
 			valor = valor + modelo.toJSON().valoracion;
 		});
-		var estrellas = Math.round(valor/num)
+		var promedio = parseFloat(valor/num).toFixed(1);
+		var estrellas = Math.round(promedio);
 		var model_estrella = new Loviz.Models.Estrellas();
 		var view_estrella = new Loviz.Views.Estrellas({model:model_estrella});
 		var estre_array = {};
@@ -127,7 +129,12 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 				estre_array['estrella'+i]=false;
 			}
 		};
-		model_estrella.set({num_coment : num,valor_coment : valor , estrellas : estre_array});
+		model_estrella.set({
+			num_coment : num,
+			valor_coment : valor ,
+			estrellas : estre_array,
+			promedio : promedio,
+		});
 		this.$(".reviews").append(view_estrella.$el);
 	},
 	tabs_navegacion:function (e) {
@@ -136,5 +143,13 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		$(e.currentTarget).addClass('active');
 		this.$('.tabs-seccion').hide();
 		div.show();
+	},
+	deslizarse_comentario:function () {
+		var id = '#comentarios';
+        console.log('si');
+        $('body,html').stop(true,true).animate({
+            scrollTop:$(id).offset().top
+        },1000);
+        this.view_comentarios.mostrar_formulario();
 	}
 });

@@ -19,7 +19,6 @@ Loviz.Views.Comentario_lista = Backbone.View.extend({
         var estrellas_valor = 0;
         var valor = this.model.toJSON().valoracion;
         this.$('.estrellitas span').each(function (i,v) {
-            console.log(i+', - ,'+ v);
             if (valor>estrellas_valor) {
                 $(v).addClass('activo');
             }else{

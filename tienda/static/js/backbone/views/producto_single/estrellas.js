@@ -1,6 +1,7 @@
 Loviz.Views.Estrellas = Backbone.View.extend({
     className:'estrellas',
     events: {
+        'click .escribe':'mostrar_formulario',
     },
     template: swig.compile($("#estrellas_template").html()),
     
@@ -14,4 +15,11 @@ Loviz.Views.Estrellas = Backbone.View.extend({
         this.$el.html(html);
         return this;
     },
+    mostrar_formulario:function () {
+        var id = '#comentarios';
+        console.log('si');
+        $('body,html').stop(true,true).animate({
+            scrollTop:$(id).offset().top
+        },1000);
+    }
 });
