@@ -76,8 +76,7 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		this.$('.precios .'+varia).addClass('visible');
 	},
 	crear_relacionados:function () {
-		var self = this
-		debugger;
+		var self = this;
 		if (window.collections.productos.length===0) {
 			window.collections.productos.fetch().done(function () {
 				self.relacionados = window.collections.productos.shuffle();
@@ -85,12 +84,9 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 		}else{
 			this.relacionados = window.collections.productos.shuffle();
 		}
-		debugger;
 		this.relacionados.forEach(this.addRelacionados,this);
-		debugger;
 	},
 	addRelacionados:function (produ) {
-		debugger;
 		var cate = this.model.toJSON().categoria;
 		var estilo = this.model.toJSON().estilo;
 		if (produ.toJSON().categoria === cate) {
@@ -110,6 +106,8 @@ Loviz.Views.Producto_single = Backbone.View.extend({
 			data:$.param({producto:this.model.id})
 		}).done(function () {
 			self.add_estrellas(coleccion);
+			var comentarios = new Loviz.Views.Comentarios({collection:coleccion});
+			self.$('#comentarios').append(comentarios.$el);
 		})
 	},
 	add_estrellas:function (coleccion) {

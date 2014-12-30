@@ -67,7 +67,7 @@ class ComentairoSerializer(serializers.ModelSerializer):
 	img_producto = serializers.SerializerMethodField('get_img')
 	class Meta:
 		model = Comentario
-		fields = ('id','verificado','valoracion','comentario','creado','producto','variacion','usuario','nombre','img_producto')
+		fields = ('id','verificado','valoracion','titulo_comentario','comentario','creado','producto','variacion','usuario','nombre','img_producto','email_invitado')
 
 	def get_tiempo_creado(self,obj):
 		time = timesince(obj.creado)

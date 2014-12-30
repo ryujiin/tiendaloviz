@@ -434,9 +434,13 @@
           <div class="contenedor row">
             <div id="galerias" class="col-md-7">
               <ul class="nav nav-tabs">
-                <li role="presentation" class="active" data-tabs="#producto_galeria"><a href="#" >Galeria</a></li>
+                <li role="presentation" class="active" data-tabs="#producto_galeria">                  
+                  <a href="#" ><span class="glyphicon glyphicon-picture"></span>Galeria</a>
+                </li>
                 {%if video%}
-                <li role="presentation" data-tabs="#producto_video"><a href="#">Videos</a></li>
+                <li role="presentation" data-tabs="#producto_video">
+                  <a href="#"><span class="glyphicon glyphicon-eye-open"></span>Videos</a>
+                </li>
                 {%endif%}
               </ul>
               <div id="producto_galeria" class="tabs-seccion"></div>
@@ -511,9 +515,17 @@
                   </div>
                 </div>
             </div>
-            <div class="detalles col-md-9">
-              <h3 class="subtitulo">Informacion del Producto</h3>
-              {{detalles}}
+            <div class="col-md-9">
+              <div class="detalles">
+                <h3 class="subtitulo">Informacion del Producto</h3>
+                {{detalles}}  
+              </div>
+              <div class="comentarios">
+                <h3 class="subtitulo">Comentarios de usuarios</h3>
+                <div id="comentarios">
+                  
+                </div>
+              </div>              
             </div>
             <div class="relacionados col-md-3">
               <h4 class="subtitulo">Los clientes que compraron este artículo también compraron</h4>
@@ -674,27 +686,88 @@
                 </div>
             </a>
             <div class="estrellas">
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+                <span data-valor="1" class="glyphicon glyphicon-star"></span>
+                <span data-valor="2" class="glyphicon glyphicon-star"></span>
+                <span data-valor="3" class="glyphicon glyphicon-star"></span>
+                <span data-valor="4" class="glyphicon glyphicon-star"></span>
+                <span data-valor="5" class="glyphicon glyphicon-star-empty"></span>
             </div>
       </script>
 
+      <script id="comentarios_template" type="text/template">
+        <div class="formulario">
+          <button type="button" class="btn btn-default boton-comentario leer">Leer Comentarios</button>
+          <form id="formulario_comentario" class="col-md-9">            
+            <div class="form-group puntuacion">
+              <label for="">Mi puntuacion</label>
+              <span class="formulario_estrellas">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-default 1" data-valor="1" data-texto='no esta bueno'>
+                    <span class="glyphicon glyphicon-star-empty "></span></button>
+                  <button type="button" class="btn btn-default 2" data-valor="2" data-texto='necesita algo mas especial'>
+                    <span class="glyphicon glyphicon-star-empty"></span></button>
+                  <button type="button" class="btn btn-default 3" data-valor="3" data-texto='normal'>
+                    <span class="glyphicon glyphicon-star-empty"></span></button>
+                  <button type="button" class="btn btn-default 4" data-valor="4" data-texto='Esta bueno'>
+                    <span  class="glyphicon glyphicon-star-empty"></span></button>
+                  <button type="button" class="btn btn-default 5" data-valor="5" data-texto='Perfecto!'>
+                    <span  class="glyphicon glyphicon-star-empty"></span></button>
+                </div>
+              </span>
+              <span class="texto-explicacion">Click para puntuar!</span>
+              <input type="hidden" id="valor_estrellas" data-contenedor="puntuacion">
+              <span class="glyphicon glyphicon-ok-sign pull-right verificar"></span>
+            </div>
+            <div class="form-group titulo_coment">
+              <label for="titulo_comentario">Titulo de tu Comentario *</label>
+              <input type="text" class="form-control" data-contenedor="titulo_coment" id="titulo_comentario" placeholder="Ejemplo: Exelente calidad!">
+              <span class="form-control-feedback verificado" aria-hidden="true"></span>
+            </div>
+            <div class="form-group comentario_texto">
+              <label for="comentario_texto">Tu Comentario *</label>
+              <textarea class="form-control" rows="3" id="comentario_texto" data-contenedor="comentario_texto"></textarea>
+              <span class="form-control-feedback verificado" aria-hidden="true"></span>
+            </div>
+            <div class="form-group email_comentario">
+              <label for="email_comentario">Correo Electronico *</label>
+              <input type="email" class="form-control" id="email_comentario" data-contenedor='email_comentario' placeholder="Ejemplo: tuemail@ejemplo.com">
+              <span class="form-control-feedback verificado" aria-hidden="true"></span>              
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        <div class="lista_comentarios">
+          <button type="button" class="btn btn-default boton-comentario escribir">Escribir Comentario</button>
+          <div id="lista_comentarios"></div>
+        </div>
+      </script>
+
       <script id="comentario_lista_template" type="text/template">
-        <div class="coment_usuario">
+        <div class="coment_usuario col-md-2 text-center">
           <figure>
             <img src="https://lh3.googleusercontent.com/-vxtOFsB6c08/UtWelvFRt3I/AAAAAAAAHpU/VgWmi3EqqaQ/s200-no/anonymous_200.gif" alt="">
           </figure>
-          <a href="/usuario/{{usuario}}">{{nombre}}</a>
+          <div class="nombre">
+            {%if usuario%}          
+              <a href="/usuario/{{usuario}}">{{nombre}}</a>
+            {%else%}
+              Anonimo
+            {%endif%}
+          </div>
           <div class="tiempo">Hace {{creado}}</div>
         </div>
-        <div class="coment_cuerpo">{{comentario}}</div>
-        <div class="coment_producto">
-          <figure>
-            <img src="{{img_producto}}" alt="">
-          </figure>
+        <div class="coment_cuerpo col-md-10">
+          <h3>{{titulo_comentario}}</h3>
+          <div class="texto">
+            <div class="estrellitas">
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+              <span class="glyphicon glyphicon-star"></span>
+            </div>
+            {{comentario}}            
+          </div>
         </div>
       </script>
 

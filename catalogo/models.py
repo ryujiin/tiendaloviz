@@ -17,7 +17,7 @@ class Producto(models.Model):
 	categoria = models.ForeignKey('Categoria',blank=True,null=True,related_name='cate')
 	estilo = models.ForeignKey('Estilo',blank=True,null=True)
 	color = models.ForeignKey('Color',blank=True,null=True,)
-	slug = models.CharField(max_length=120,editable=False)
+	slug = models.CharField(max_length=120,editable=False,unique=True)
 	parientes = models.ManyToManyField('self',blank=True,null=True, related_name='colores')
 	activo = models.BooleanField(default=True)
 	descripcion = models.TextField(blank=True,null=True)

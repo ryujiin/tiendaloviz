@@ -31,6 +31,27 @@ body .subtitulo{font:italic 21px Georgia,"Times New Roman",serif}
 .carro .panel-body #lineas_carro .img{width:110px}
 .carro .panel-body #lineas_carro .nombre{font-size:1.2em}
 .carro .panel-body #tabla_carro .table{border-bottom:none}
+.comentarios{position:relative;}
+.comentarios .boton-comentario{position:absolute;top:0;right:0}
+.comentarios .comentario{margin-top:15px;}
+.comentarios .comentario .coment_usuario img{border-radius:100px}
+.comentarios .comentario .coment_usuario .tiempo{font:italic 12px Georgia,"Times New Roman",serif}
+.comentarios .comentario .coment_cuerpo h3{margin:5px 0}
+.comentarios .comentario .coment_cuerpo .texto{background:#f4f4f4;padding:10px;border-radius:10px;min-height:100px}
+.comentarios .comentario .coment_cuerpo .estrellitas .activo{color:#2dbab2}
+.comentarios .comentario .coment_cuerpo .estrellitas .no_activo{color:#fff}
+#formulario_comentario .formulario_estrellas{margin:0 40px;}
+#formulario_comentario .formulario_estrellas button{outline:none;}
+#formulario_comentario .formulario_estrellas button.contraste{background:#333;color:#fff}
+#formulario_comentario .formulario_estrellas button.contraste_fijo{background:#333;color:#fff}
+#formulario_comentario .puntuacion .glyphicon{font-size:20px}
+#formulario_comentario .puntuacion .glyphicon-ok-sign{color:#ccc}
+#formulario_comentario .has-success label{color:#333}
+#formulario_comentario .has-success .glyphicon-ok-sign{color:#3c763d}
+#formulario_comentario .has-error .glyphicon,#formulario_comentario .has-error label{color:#a94442}
+#formulario_comentario .has-error .formulario_estrellas .glyphicon{color:#333}
+#formulario_comentario .has-error .formulario_estrellas .contraste .glyphicon{color:#fff}
+#formulario_comentario .has-error .formulario_estrellas .contraste_fijo .glyphicon{color:#fff}
 .header_principal{padding:10px 0;border-top:1px solid #f4f4f4;border-bottom:1px solid #f4f4f4;}
 .header_principal #mini_carro .number{background:#333}
 .header_utilis #menu_top_ayuda li,.header_utilis #menu_top_usuario li{border-right:1px solid #f4f4f4}

@@ -48,14 +48,14 @@ class UsuarioViewSet(viewsets.ModelViewSet):
 		return (AllowAny() if self.request.method == 'POST'
 			else IsStaffOrTargetUser()),
 
-class ComentarioViewSet(viewsets.ReadOnlyModelViewSet):
+class ComentarioViewSet(viewsets.ModelViewSet):
 	serializer_class = ComentairoSerializer
 
 	def get_queryset(self):
 		queryset = Comentario.objects.all().order_by('-pk')
 		producto = self.request.QUERY_PARAMS.get('producto', None)
 		if producto is not None:
-			queryset = Comentario.objects.filter(producto=producto)
+			queryset = Comentario.objects.filter(producto=producto).order_by('-pk')
 		return queryset
 
 class DireccionViewsets(viewsets.ModelViewSet):

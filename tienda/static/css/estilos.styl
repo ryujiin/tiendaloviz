@@ -94,6 +94,66 @@ body
 			.table
 				border-bottom none
 				
+.comentarios
+	position relative
+	.boton-comentario
+		position absolute
+		top 0
+		right 0
+	.comentario
+		margin-top 15px
+		.coment_usuario
+			img
+				border-radius 100px
+			.tiempo
+				font italic 12px Georgia,"Times New Roman",serif
+		.coment_cuerpo
+			h3
+				margin 5px 0
+			.texto
+				background #f4f4f4
+				padding 10px
+				border-radius 10px
+				min-height 100px
+			.estrellitas
+				.activo
+					color color2
+				.no_activo
+					color #fff
+#formulario_comentario
+	.formulario_estrellas
+		margin 0 40px
+		button
+			outline none				
+			&.contraste
+				background #333
+				color #fff
+			&.contraste_fijo
+				background #333
+				color #fff
+	.puntuacion
+		.glyphicon
+			font-size 20px
+		.glyphicon-ok-sign
+			color #ccc
+	.has-success
+		label
+			color #333
+		.glyphicon-ok-sign
+			color #3c763d
+	.has-error
+		.glyphicon
+		label
+			color #a94442
+		.formulario_estrellas
+			.glyphicon
+				color #333
+			.contraste
+				.glyphicon
+					color #fff
+			.contraste_fijo
+				.glyphicon
+					color #fff
 .header_principal
 	padding 10px 0
 	border-top 1px solid #f4f4f4

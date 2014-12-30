@@ -30,6 +30,7 @@ class Comentario(models.Model):
 	usuario = models.ForeignKey(User, null=True,blank=True)
 	verificado = models.BooleanField(default=False)
 	valoracion = models.PositiveIntegerField(default=0)
+	titulo_comentario = models.CharField(max_length=100,blank=True,null=True)
 	comentario = models.TextField()
 	creado = models.DateTimeField(auto_now_add=True)
 	email_invitado = models.CharField(max_length=100,blank=True,null=True)
