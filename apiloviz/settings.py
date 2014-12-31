@@ -77,7 +77,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': config.DB_NAME,
         'USER': config.DB_USER,
         'PASSWORD': config.DB_PASS,
