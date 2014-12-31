@@ -16,10 +16,6 @@ Loviz.Views.Estrellas = Backbone.View.extend({
         return this;
     },
     mostrar_formulario:function () {
-        var id = '#comentarios';
-        console.log('si');
-        $('body,html').stop(true,true).animate({
-            scrollTop:$(id).offset().top
-        },1000);
+        
     }
 });
